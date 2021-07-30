@@ -1,3 +1,11 @@
+:root {
+  
+}
+
+html {
+
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +13,54 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+
+}
+
+.flex {
+  display: flex;
+}
+
+.f-row {
+  flex-direction: row;
+}
+
+.f-column {
+  flex-direction: column;
+}
+
+.f-rowrev {
+  flex-direction: row-reverse;
+}
+
+.f-columnrev {
+  flex-direction: column-reverse;
+}
+
+.just-center {
+  justify-content: center;
+}
+
+.just-evenly {
+  justify-content: space-evenly;
+}
+
+.just-between {
+  justify-content:space-between
+}
+
+.just-around {
+  justify-content:space-around
+}
+
+.alcont-center {
+  align-content: center;
+}
+
+.alit-cneter {
+  align-items: center;
 }
 
 code {
