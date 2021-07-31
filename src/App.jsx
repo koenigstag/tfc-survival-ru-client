@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
-import styles from './App.module.scss';
+import styles from './App.module.sass';
 
 const App = () => {
   return (

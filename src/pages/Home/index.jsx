@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '@/logo.png';
-import styles from '@/App.module.scss'
+import styles from '@/App.module.sass'
 
 const HomePage = () => {
   return (
