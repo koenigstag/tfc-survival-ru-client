@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import Footer from './components/Footer';
 import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
@@ -34,6 +35,7 @@ const App = () => {
             <Route exact path='account/register' component={RegisterPage} />
           </Switch>
         </main>
+        <Footer />
         {rolltheDice && (
           <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
         )}

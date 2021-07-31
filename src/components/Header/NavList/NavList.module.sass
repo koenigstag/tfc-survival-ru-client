@@ -7,7 +7,7 @@ $hoverFontAccent: #0366d6
   justify-content: center
   list-style: none
 
-  max-width: 866px
+  min-width: 618px
   margin: 0 40px
 
   li a
@@ -17,8 +17,8 @@ $hoverFontAccent: #0366d6
 
     color: $fontAccent
 
-    transition: 0.3s ease-out
-    transition-property: color, outline
+    transition: 0.2s ease-out
+    transition-property: color, box-shadow
 
     &:hover
       color: $hoverFontAccent
@@ -28,14 +28,15 @@ $hoverFontAccent: #0366d6
   .headerNavlist
     margin: 20px 20px
 
-@media screen and ( max-width:  700px)
+@media screen and ( max-width:  715px)
   .headerNavlist
     display: none
+    border-bottom: 3px solid #e5e5e5
 
   .showOnBurgerAction
     display: block
     position: absolute
-    top: 135%
+    top: 158%
     left: 0
     right: 0
     background-color: white
