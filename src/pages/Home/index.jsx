@@ -4,7 +4,7 @@ import styles from '@/App.module.sass'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className={styles.reactIntro}>
       <img src={logo} className={styles.AppLogo} alt='logo' />
       <p>
         Edit <code>src/App.js</code> and save to reload.
