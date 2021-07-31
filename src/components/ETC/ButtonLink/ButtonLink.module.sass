@@ -1,3 +1,7 @@
+$whiteColor: #007bff
+$blueColor: #1861ac
+$blueHoverColor: #0069d9
+
 .buttonLink
   display: inline-block
 
@@ -11,23 +15,23 @@
 
   transition: 0.3s ease-out
   transition-property: color, background-color, border-color
-  
-.buttonLink + .buttonLink 
+
+.buttonLink + .buttonLink
   margin-left: 10px
 
 .buttonLinkWhite
-  border-color: #007bff
-  color: #007bff
+  border-color: $whiteColor
+  color: $whiteColor
   background-color: white
   &:hover
-    background-color: #007bff
+    background-color: $whiteColor
     color: white
 
 .buttonLinkBlue
-  border-color: #1b6ec2
+  border-color: $blueColor
   color: white
-  background-color: #1861ac
+  background-color: $blueColor
   &:hover
-    background-color: #0069d9
-    border-color: #0062cc
+    background-color: $blueHoverColor
+    border-color: $blueHoverColor
     color: white
