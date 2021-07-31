@@ -1,6 +1,6 @@
 :root {
   font-size: 16px;
-  fint-weight: 400px;
+  font-weight: 400px;
 }
 
 * {
@@ -25,6 +25,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 main {
 }
 
@@ -46,53 +51,4 @@ h1 {
 
 h3 {
   font-size: 1.75rem;
-}
-
-.flex {
-  display: flex;
-}
-
-.f-row {
-  flex-direction: row;
-}
-
-.f-column {
-  flex-direction: column;
-}
-
-.f-rowrev {
-  flex-direction: row-reverse;
-}
-
-.f-columnrev {
-  flex-direction: column-reverse;
-}
-
-.just-center {
-  justify-content: center;
-}
-
-.just-evenly {
-  justify-content: space-evenly;
-}
-
-.just-between {
-  justify-content: space-between;
-}
-
-.just-around {
-  justify-content: space-around;
-}
-
-.alcont-center {
-  align-content: center;
-}
-
-.alit-cneter {
-  align-items: center;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
