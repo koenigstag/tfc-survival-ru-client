@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import BannedPage from './pages/Home/Banned';
 import LauncherPage from '@/pages/Home/Launcher';
 import RulesPage from '@/pages/Home/Rules';
 import AboutPage from '@/pages/Home/About';
@@ -35,13 +36,15 @@ const App = () => {
           <div className={styles.container}>
             <Switch>
               <Route exact path='/' component={HomePage} />
-              <Route exact path='/account/login' component={LoginPage} />
-              <Route exact path='/account/register' component={RegisterPage} />
 
+              <Route exact path='/home/launcher' component={LauncherPage} />
               <Route exact path='/home/rules' component={RulesPage} />
               <Route exact path='/home/about' component={AboutPage} />
 
-              <Route exact path='/home/launcher' component={LauncherPage} />
+              <Route exact path='/account/login' component={LoginPage} />
+              <Route exact path='/account/register' component={RegisterPage} />
+
+              <Route exact path='/home/banned' component={BannedPage} />
             </Switch>
           </div>
         </main>
