@@ -1,5 +1,6 @@
 import React from 'react';
 import TableRow from './TableRow';
+import styles from './OnlinePage.module.sass';
 
 const OnlinePage = () => {
   //api call
@@ -8,7 +9,7 @@ const OnlinePage = () => {
   return (
     <div>
       <h4>Онлайн сервера</h4>
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Ники</th>

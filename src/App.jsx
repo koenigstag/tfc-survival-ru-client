@@ -3,6 +3,7 @@ import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
 import BannedPage from './pages/Home/Banned';
+import OnlinePage from './pages/Home/Online';
 import LauncherPage from '@/pages/Home/Launcher';
 import RulesPage from '@/pages/Home/Rules';
 import AboutPage from '@/pages/Home/About';
@@ -45,6 +46,7 @@ const App = () => {
               <Route exact path='/account/register' component={RegisterPage} />
 
               <Route exact path='/home/banned' component={BannedPage} />
+              <Route exact path='/home/online' component={OnlinePage} />
             </Switch>
           </div>
         </main>
