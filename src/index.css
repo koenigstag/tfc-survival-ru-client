@@ -52,3 +52,17 @@ h1 {
 h3 {
   font-size: 1.75rem;
 }
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #0366d6;
+}
+
+a:hover {
+  color: #007bff;
+}

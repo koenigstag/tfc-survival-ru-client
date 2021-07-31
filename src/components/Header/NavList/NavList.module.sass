@@ -1,8 +1,5 @@
 @import "@/media.module.sass"
-  
-$fontAccent: #0366d6
-$hoverFontAccent: #0366d6
-  
+
 .headerNavlist
   display: flex
   flex-flow: row nowrap
@@ -17,13 +14,10 @@ $hoverFontAccent: #0366d6
     padding: 10px 20px
     text-decoration: none
 
-    color: $fontAccent
-
     transition: 0.2s ease-out
     transition-property: color, box-shadow
 
     &:hover
-      color: $hoverFontAccent
       box-shadow: 0 0 10px #ddd
 
 @media screen and ( max-width: $mediaBreakNavList)
