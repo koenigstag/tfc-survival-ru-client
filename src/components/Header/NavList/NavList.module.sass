@@ -1,3 +1,5 @@
+@import "@/media.module.sass"
+  
 $fontAccent: #0366d6
 $hoverFontAccent: #0366d6
   
@@ -24,11 +26,11 @@ $hoverFontAccent: #0366d6
       color: $hoverFontAccent
       box-shadow: 0 0 10px #ddd
 
-@media screen and ( max-width:  900px)
+@media screen and ( max-width: $mediaBreakNavList)
   .headerNavlist
     margin: 20px 20px
 
-@media screen and ( max-width:  715px)
+@media screen and ( max-width:  $mediaShowBurgerMenu)
   .headerNavlist
     display: none
     border-bottom: 3px solid #e5e5e5

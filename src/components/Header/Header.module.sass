@@ -1,3 +1,6 @@
+@import "@/media.module.sass"
+@import "@/common.module.sass"
+
 .headerMain
   display: flex
   flex-flow: row wrap
@@ -6,30 +9,30 @@
 
   position: relative
 
-  border-bottom: 1px solid #e5e5e5
+  border-bottom: 1px solid $headerFooterBorderColor
 
-@media screen and (max-width:  1075px)
+@media screen and (max-width:  $mediaBreakAuthButtons)
   .headerMain
     padding: 20px
 
     .buttonGroup
       margin-top: 10px
 
-@media screen and (max-width: 900px)
+@media screen and (max-width: $mediaBreakNavList)
   .headerMain
     flex-flow: column nowrap
 
 /** show burger menu **/
-@media screen and (max-width: 715px)
+@media screen and (max-width: $mediaShowBurgerMenu)
   .headerMain
     flex-flow: row nowrap
     justify-content: space-between
     padding-left: 30px
     padding-right: 40px
-    
+
     .buttonGroup
       display: none
-    
+
     .showOnBurgerAction
       display: block
       position: absolute
@@ -41,7 +44,7 @@
       margin: 0
       padding-top: 20px
 
-@media screen and (max-width: 350px)
+@media screen and (max-width: $mediaDecreasePaddings)
   .headerMain
     padding-left: 10px
     padding-right: 20px
