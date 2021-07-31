@@ -3,9 +3,25 @@ import Header from '@/components/Header';
 import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
 const App = () => {
+  const rolltheDice = Math.random() * 100 >= 90;
+
+  if (rolltheDice) {
+    setTimeout(() => {
+      const elemXelo = document.querySelector('.' + styles.xelo);
+      console.log('.' + styles.xelo);
+      if (elemXelo) {
+        console.log('test');
+        elemXelo.addEventListener('mouseenter', () => {
+          elemXelo.style.transform = 'translate(0px, 100px) scaleX(-1)';
+        });
+      }
+    }, 500);
+  }
+
   return (
     <Router>
       <div className={styles.App}>
@@ -18,6 +34,9 @@ const App = () => {
             <Route exact path='account/register' component={RegisterPage} />
           </Switch>
         </main>
+        {rolltheDice && (
+          <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
+        )}
       </div>
     </Router>
   );
