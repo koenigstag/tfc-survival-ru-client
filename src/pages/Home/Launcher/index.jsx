@@ -1,0 +1,49 @@
+import React from 'react';
+import ButtonLink from '@/components/ETC/ButtonLink';
+import styles from './LauncherPage.module.sass';
+
+const LauncherPage = () => {
+  return (
+    <div className={styles.launcherDiv}>
+      <h1>Лаунчер</h1>
+      <br />
+      <p>Скачать лаунчер:</p>
+      <ul>
+        <li>
+          <div>
+            <span>Для Windows:</span>
+            <ButtonLink
+              type='blue'
+              text='Launcher.exe'
+              title='Исполняемый файл .exe для ОС Windows. Необходимо JRE 1.8+.'
+              link="home/Windows"
+            />
+          </div>
+        </li>
+        <li>
+          <br />
+          <div>
+            <span>Для MacOS/Linux:</span>
+            <ButtonLink
+              type='blue'
+              text='Launcher.jar'
+              title='Исполняемый файл .jar для ОС Linux. Необходимо JRE 1.8+.'
+              link="home/Other"
+            />
+          </div>
+        </li>
+      </ul>
+      <br />
+      <p>Для комфортной игры следует выделить более 2 ГБ оперативной памяти.</p>
+      <p>
+        Рекомендуем скачать java Offline 64-bit, для коректной работы игры:{' '}
+        <a class='text-info' href='https://www.java.com/en/download/manual.jsp'>
+          Ссылка на скачивание
+        </a>
+        .
+      </p>
+    </div>
+  );
+};
+
+export default LauncherPage;

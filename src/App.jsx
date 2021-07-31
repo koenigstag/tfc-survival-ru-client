@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '@/pages/Home';
-import RulesPage from './pages/Home/Rules';
-import AboutPage from './pages/Home/About';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import LauncherPage from '@/pages/Home/Launcher';
+import RulesPage from '@/pages/Home/Rules';
+import AboutPage from '@/pages/Home/About';
 import Header from '@/components/Header';
-import Footer from './components/Footer';
+import Footer from '@/components/Footer';
 import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
@@ -36,8 +37,11 @@ const App = () => {
               <Route exact path='/' component={HomePage} />
               <Route exact path='/account/login' component={LoginPage} />
               <Route exact path='/account/register' component={RegisterPage} />
+
               <Route exact path='/home/rules' component={RulesPage} />
               <Route exact path='/home/about' component={AboutPage} />
+
+              <Route exact path='/home/launcher' component={LauncherPage} />
             </Switch>
           </div>
         </main>
