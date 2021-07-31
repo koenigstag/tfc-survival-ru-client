@@ -1,15 +1,16 @@
 import React from 'react';
 import logo from '@/logo.png';
+import styles from '@/App.module.scss'
 
-const index = () => {
+const HomePage = () => {
   return (
     <div>
-      <img src={logo} className='App-logo' alt='logo' />
+      <img src={logo} className={styles.AppLogo} alt='logo' />
       <p>
         Edit <code>src/App.js</code> and save to reload.
       </p>
       <a
-        className='App-link'
+        className={styles.AppLink}
         href='https://reactjs.org'
         target='_blank'
         rel='noopener noreferrer'
@@ -20,4 +21,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default HomePage;

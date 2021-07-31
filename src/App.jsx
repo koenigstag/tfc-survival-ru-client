@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
 import Header from '@/components/Header';
-import HomePage from '@/pages';
+import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import styles from './App.module.scss';
 
 const App = () => {
   return (
     <Router>
-      <div className='App'>
+      <div className={styles.App}>
         <Header />
 
-        <main className='App-header'>
+        <main className={styles.AppMain}>
           <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='account/login' component={LoginPage} />
