@@ -3,9 +3,7 @@ $appMainBackground: #282c34
 .App
   display: flex
   flex-flow: wrap column
-  min-height: 150vh
-
-  text-align: center
+  min-height: 100vh
 
 .AppLogo
   height: 40vmin
@@ -16,17 +14,21 @@ $appMainBackground: #282c34
     animation: AppLogo-spin infinite 8s linear
 
 .AppMain
-  background-color: $appMainBackground
-  flex-grow: 1
   display: flex
+  flex-grow: 1
   flex-direction: column
   align-items: center
-  // justify-content: stretch;
-  &>div
-    margin-top: 15vmin
 
+  color: #212529
+  // background-color: $appMainBackground
+  background-color: #fbfbfb
+
+  .reactIntro
+    margin-top: 15vmin
+    text-align: center
     font-size: calc(10px + 2vmin)
-    color: white
+    // color: white
+    color: black
 
 .AppLink
   color: #61dafb
@@ -38,7 +40,24 @@ $appMainBackground: #282c34
   to
     transform: rotate(360deg)
 
-.xelo 
+.container
+  max-width: 1140px
+  padding: 0 15px
+  margin: 0 auto
+
+@media screen and (max-width: 1200px)
+  .container
+    max-width: 960px
+
+@media screen and (max-width: 992px)
+  .container
+    max-width: 720px
+
+@media screen and (max-width: 768px)
+  .container
+    max-width: 540px
+
+.xelo
   position: fixed
   width: 200px
   top: 90%

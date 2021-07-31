@@ -1,14 +1,15 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from '@/components/Header';
 import HomePage from '@/pages/Home';
+import RulesPage from './pages/Home/Rules';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import Header from '@/components/Header';
 import Footer from './components/Footer';
 import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
 const App = () => {
-  const rolltheDice = Math.random() * 100 >= 90;
+  const rolltheDice = Math.random() * 100 >= 95;
 
   if (rolltheDice) {
     setTimeout(() => {
@@ -29,11 +30,14 @@ const App = () => {
         <Header />
 
         <main className={styles.AppMain}>
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='account/login' component={LoginPage} />
-            <Route exact path='account/register' component={RegisterPage} />
-          </Switch>
+          <div className={styles.container}>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/account/login' component={LoginPage} />
+              <Route exact path='/account/register' component={RegisterPage} />
+              <Route exact path='/home/rules' component={RulesPage} />
+            </Switch>
+          </div>
         </main>
         <Footer />
         {rolltheDice && (
