@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import NavItem from './NavItem';
 import styles from './NavList.module.sass';
 
@@ -19,15 +20,17 @@ const navList = [
   { link: '/home/about', text: 'О нас', title: 'Описание и история проекта' },
 ];
 
-const NavList = () => {
+const NavList = ({ status }) => {
+  const classnames = cx(styles.hideForMenu, styles.headerNavlist, {
+    [styles.showOnBurgerAction]: status,
+  });
+
   return (
-    <div>
-      <nav className={styles.headerNavlist}>
-        {navList.map(({ link, text, title }) => {
-          return <NavItem link={link} text={text} title={title} />;
-        })}
-      </nav>
-    </div>
+    <nav className={classnames} id='mainNav'>
+      {navList.map(({ link, text, title }, index) => {
+        return <NavItem link={link} text={text} title={title} key={index} />;
+      })}
+    </nav>
   );
 };
 

@@ -1,15 +1,22 @@
-import React from 'react';
-import ButtonLink from '../ETC/ButtonLink';
-import styles from './Header.module.sass';
+import React, { useState } from 'react';
 import Logo from './Logo';
 import NavList from './NavList';
+import ButtonLink from '../ETC/ButtonLink';
+import BurgerMenu from './BurgerMenu';
+import cx from 'classnames';
+import styles from './Header.module.sass';
 
 const Header = () => {
+  const [statusShow, setShow] = useState(false);
+  const classNames = cx(styles.buttonGroup, {
+    [styles.showOnBurgerAction]: statusShow,
+  });
+
   return (
     <header className={styles.headerMain}>
-      <Logo />
-      <NavList />
-      <div>
+      <Logo className={styles.blockLogo} />
+      <NavList status={statusShow} />
+      <div className={classNames} id='authButtons'>
         <ButtonLink
           link='/account/login'
           text='Войти'
@@ -22,6 +29,7 @@ const Header = () => {
           type='blue'
         />
       </div>
+      <BurgerMenu action={setShow} status={statusShow} />
     </header>
   );
 };

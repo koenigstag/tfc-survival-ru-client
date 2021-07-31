@@ -1,21 +1,47 @@
+$fontAccent: #0366d6
+$hoverFontAccent: #0366d6
+  
 .headerNavlist
   display: flex
-  flex-flow: row wrap
+  flex-flow: row nowrap
   justify-content: center
   list-style: none
+
+  max-width: 866px
+  margin: 0 40px
 
   li a
     display: inline-block
     padding: 10px 20px
     text-decoration: none
 
-    color: #0366d6
-    outline: 1px solid rgba(0, 60, 84, 0.00)
-
+    color: $fontAccent
 
     transition: 0.3s ease-out
     transition-property: color, outline
 
     &:hover
-      color: #004ea1
-      outline: 1px solid rgba(0, 60, 84, 0.2)
+      color: $hoverFontAccent
+      box-shadow: 0 0 10px #ddd
+
+@media screen and ( max-width:  900px)
+  .headerNavlist
+    margin: 20px 20px
+
+@media screen and ( max-width:  700px)
+  .headerNavlist
+    display: none
+
+  .showOnBurgerAction
+    display: block
+    position: absolute
+    top: 135%
+    left: 0
+    right: 0
+    background-color: white
+    z-index: 1
+    margin: 0
+    padding: 20px 0
+
+    li a
+      width: 100%
