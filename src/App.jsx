@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '@/pages/Home';
 import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
+import ProfilePage from './pages/Profile';
 import BannedPage from './pages/Home/Banned';
 import OnlinePage from './pages/Home/Online';
 import LauncherPage from '@/pages/Home/Launcher';
@@ -44,6 +45,7 @@ const App = () => {
 
               <Route exact path='/account/login' component={LoginPage} />
               <Route exact path='/account/register' component={RegisterPage} />
+              <Route exact path='/profile' component={ProfilePage} />
 
               <Route exact path='/home/banned' component={BannedPage} />
               <Route exact path='/home/online' component={OnlinePage} />
