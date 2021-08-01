@@ -2,15 +2,7 @@ import { client } from './index';
 
 export const getUser = async (nickname, accessToken, refreshToken) => {
   try {
-    const user = await client.get('users', {
-      params: {
-        nickname,
-        token: {
-          access: accessToken,
-          refresh: refreshToken,
-        },
-      },
-    });
+    const user = await client.get(`users/${nickname}/${accessToken}`);
 
     if (!user) {
       throw new Error('Cannot get user');

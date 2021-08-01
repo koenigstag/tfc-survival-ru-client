@@ -12,7 +12,7 @@ const ProfilePage = () => {
     return () => {
       // cleanup;
     };
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   return (
     <div>

@@ -20,7 +20,7 @@ const initialState = {
 export const getUserAsync = createAsyncThunk('user/getUser', async nickname => {
   const response = await getUser(nickname);
   // The value we return becomes the `fulfilled` action payload
-  return response.data;
+  return response.data.data;
 });
 
 export const counterSlice = createSlice({
