@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getUser, registerUser } from '@/api/userAPI';
 
 const initialState = {
-  user: {
+  data: {
     nickname: null,
     accessToken: null,
 
@@ -66,7 +66,19 @@ export const counterSlice = createSlice({
       })
       .addCase(getUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.user = action.payload;
+        state.data = action.payload;
+      })
+
+      .addCase(registerUserAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(registerUserAsync.rejected, (state, action) => {
+        state.status = 'error';
+        console.log(action.payload);
+      })
+      .addCase(registerUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.data = action.payload;
       });
   },
 });
@@ -76,7 +88,7 @@ export const actionCreators = counterSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectUser = state => state.user.user;
+export const selectUser = state => state.user.data;
 
 export const selectStatus = state => state.user.status;
 
