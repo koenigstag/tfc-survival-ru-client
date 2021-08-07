@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import AsyncThunk from '@/utils/AsyncThunk';
-import { getUser, registerUser } from '@/api/userAPI';
+import { getUser, loginUser, registerUser } from '@/api/userAPI';
 
 const initialState = {
   data: {
@@ -32,9 +32,9 @@ export const registerUserAsync = new AsyncThunk(
 
 export const loginUserAsync = new AsyncThunk(
   'user',
-  getUser,
+  loginUser,
   dispatchUserError
-);
+).generate();
 
 export const counterSlice = createSlice({
   name: 'user',
