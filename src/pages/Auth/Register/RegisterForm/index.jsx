@@ -5,13 +5,20 @@ import FieldError from '@/components/ETC/FieldError';
 import { registerUserAsync, selectUser } from '@/app/slices/userSlice';
 import { registerScheme } from '@/validation/schemes';
 
+const initialValues = {
+  nickname: '',
+  email: '',
+  password: '',
+  confpassword: '',
+};
+
 const registrationErrors = {
   'Nickname is already in use': 'Никнейм уже зарегистрирован',
 };
 
 const RegisterForm = () => {
-  const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -21,12 +28,7 @@ const RegisterForm = () => {
         <div></div>
       )}
       <Formik
-        initialValues={{
-          nickname: '',
-          email: '',
-          password: '',
-          confpassword: '',
-        }}
+        initialValues={initialValues}
         validationSchema={registerScheme}
         onSubmit={(values, formikBag) => {
           console.log(values);
@@ -37,16 +39,36 @@ const RegisterForm = () => {
         {({ errors, touched }) => (
           <Form>
             <Field type='text' name='nickname' />
-            <FieldError name='nickname' errors={errors} touched={touched} />
+            <FieldError
+              name='nickname'
+              errors={errors}
+              touched={touched}
+              tag={'div'}
+            />
 
             <Field type='email' name='email' />
-            <FieldError name='email' errors={errors} touched={touched} />
+            <FieldError
+              name='email'
+              errors={errors}
+              touched={touched}
+              tag={'div'}
+            />
 
             <Field type='password' name='password' />
-            <FieldError name='password' errors={errors} touched={touched} />
+            <FieldError
+              name='password'
+              errors={errors}
+              touched={touched}
+              tag={'div'}
+            />
 
             <Field type='password' name='confpassword' />
-            <FieldError name='confpassword' errors={errors} touched={touched} />
+            <FieldError
+              name='confpassword'
+              errors={errors}
+              touched={touched}
+              tag={'div'}
+            />
 
             <button type='submit'>Регистрация</button>
           </Form>
