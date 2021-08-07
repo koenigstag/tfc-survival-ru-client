@@ -37,7 +37,7 @@ const LauncherPage = () => {
       <p>Для комфортной игры следует выделить более 2 ГБ оперативной памяти.</p>
       <p>
         Рекомендуем скачать java Offline 64-bit, для коректной работы игры:{' '}
-        <a class='text-info' href='https://www.java.com/en/download/manual.jsp'>
+        <a href='https://www.java.com/en/download/manual.jsp'>
           Ссылка на скачивание
         </a>
         .
