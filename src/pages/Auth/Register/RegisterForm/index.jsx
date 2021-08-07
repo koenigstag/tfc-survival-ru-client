@@ -1,12 +1,13 @@
 import React from 'react';
-import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { Field, Form, Formik } from 'formik';
+import FieldError from '@/components/ETC/FieldError';
 import { registerUserAsync } from '@/app/slices/userSlice';
+import { registerScheme } from '@/validation/schemes';
 
 const RegisterForm = () => {
-
   const dispatch = useDispatch();
-  
+
   return (
     <Formik
       initialValues={{
@@ -15,51 +16,29 @@ const RegisterForm = () => {
         password: '',
         confpassword: '',
       }}
+      validationSchema={registerScheme}
       onSubmit={(values, formikBag) => {
-        
         dispatch(registerUserAsync(values));
-        alert(JSON.stringify(values));
+        console.log(values);
         formikBag.resetForm();
       }}
     >
-      {props => (
-        <form onSubmit={props.handleSubmit}>
-          <input
-            type='text'
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
-            value={props.values.nickname}
-            required
-            name='nickname'
-          />
-          <input
-            type='email'
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
-            value={props.values.email}
-            required
-            name='email'
-          />
-          <input
-            type='password'
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
-            value={props.values.password}
-            required
-            name='password'
-          />
-          <input
-            type='password'
-            onChange={props.handleChange}
-            onBlur={props.handleBlur}
-            value={props.values.confpassword}
-            required
-            name='confpassword'
-          />
+      {({ errors, touched }) => (
+        <Form>
+          <Field type='text' name='nickname' />
+          <FieldError name='nickname' errors={errors} touched={touched} />
 
-          {props.errors.name && <div id='feedback'>{props.errors.name}</div>}
-          <button type='submit'>Submit</button>
-        </form>
+          <Field type='email' name='email' />
+          <FieldError name='email' errors={errors} touched={touched} />
+
+          <Field type='password' name='password' />
+          <FieldError name='password' errors={errors} touched={touched} />
+
+          <Field type='password' name='confpassword' />
+          <FieldError name='confpassword' errors={errors} touched={touched} />
+
+          <button type='submit'>Регистрация</button>
+        </Form>
       )}
     </Formik>
   );
