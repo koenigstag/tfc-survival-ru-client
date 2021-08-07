@@ -23,7 +23,7 @@ export const registerUser = async user => {
   return response;
 };
 
-export const loginUser = async (nickname, password) => {
+export const loginUser = async ({ nickname, password }) => {
   const user = await client.post(`users/${nickname}`, {
     password: encrypt(password),
   });

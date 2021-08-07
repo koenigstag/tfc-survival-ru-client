@@ -74,6 +74,17 @@ export const counterSlice = createSlice({
       .addCase(registerUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.data = action.payload;
+      })
+
+      .addCase(loginUserAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(loginUserAsync.rejected, (state, action) => {
+        state.status = 'error';
+      })
+      .addCase(loginUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.data = action.payload;
       });
   },
 });
