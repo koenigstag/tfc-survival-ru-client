@@ -26,6 +26,11 @@ export const registerScheme = Yup.object().shape({
   confpassword: confpasswordScheme,
 });
 
+export const loginScheme = Yup.object().shape({
+  nickname: nicknameScheme,
+  password: passwordScheme,
+});
+
 export const pretendScheme = Yup.object().shape({
   nickname: nicknameScheme,
   email: emailScheme,
