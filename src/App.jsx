@@ -1,15 +1,18 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from '@/pages/Home';
-import LoginPage from '@/pages/Auth/Login';
-import RegisterPage from '@/pages/Auth/Register';
-import ProfilePage from './pages/Profile';
-import BannedPage from './pages/Home/Banned';
-import OnlinePage from './pages/Home/Online';
 import LauncherPage from '@/pages/Home/Launcher';
 import RulesPage from '@/pages/Home/Rules';
 import AboutPage from '@/pages/Home/About';
+import BannedPage from './pages/Home/Banned';
+import OnlinePage from './pages/Home/Online';
+import LoginPage from '@/pages/Auth/Login';
+import RegisterPage from '@/pages/Auth/Register';
+import ProfilePage from './pages/Profile';
+import AdminPage from './pages/Admin';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import AuthRoute from './components/ETC/AuthRoute';
+import NoAuthRoute from './components/ETC/NoAuthRoute';
 import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
@@ -19,10 +22,14 @@ const App = () => {
   if (rolltheDice) {
     setTimeout(() => {
       const elemXelo = document.querySelector('.' + styles.xelo);
+
       if (elemXelo) {
-        elemXelo.addEventListener('mouseenter', () => {
+        const hideXelo = () => {
           elemXelo.style.transform = 'translate(0px, 100px) scaleX(-1)';
-        });
+        };
+
+        elemXelo.addEventListener('mouseenter', hideXelo);
+        setTimeout(hideXelo, 5000);
       }
     }, 500);
   }
@@ -41,12 +48,23 @@ const App = () => {
               <Route exact path='/home/rules' component={RulesPage} />
               <Route exact path='/home/about' component={AboutPage} />
 
-              <Route exact path='/account/login' component={LoginPage} />
-              <Route exact path='/account/register' component={RegisterPage} />
-              <Route exact path='/profile' component={ProfilePage} />
-
               <Route exact path='/home/banned' component={BannedPage} />
               <Route exact path='/home/online' component={OnlinePage} />
+
+              <NoAuthRoute
+                exact={true}
+                path='/account/login'
+                component={LoginPage}
+              />
+              <NoAuthRoute
+                exact={true}
+                path='/account/register'
+                component={RegisterPage}
+              />
+
+              <AuthRoute exact={true} path='/profile' component={ProfilePage} />
+
+              <Route exact path='/profile/admin' component={AdminPage} />
             </Switch>
           </div>
         </main>
