@@ -5,13 +5,21 @@ import FieldError from '@/components/ETC/FieldError';
 import { registerUserAsync, selectUser } from '@/app/slices/userSlice';
 import { registerScheme } from '@/validation/schemes';
 
+const registrationErrors = {
+  'Nickname is already in use': 'Никнейм уже зарегистрирован',
+};
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
   return (
     <>
-      {user.errorMessage ? <div>{user.errorMessage}</div> : <div></div>}
+      {user.status === 'error' ? (
+        <div>{registrationErrors[user.errorMessage]}</div>
+      ) : (
+        <div></div>
+      )}
       <Formik
         initialValues={{
           nickname: '',
