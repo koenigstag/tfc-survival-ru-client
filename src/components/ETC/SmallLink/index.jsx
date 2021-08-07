@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const SmallLink = ({ href, link, text, title }) => {
   if (href) {
-    console.log("test");
     return (
       <a href={href} title={title}>
         {text}

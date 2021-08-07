@@ -21,7 +21,6 @@ const App = () => {
       const elemXelo = document.querySelector('.' + styles.xelo);
       console.log('.' + styles.xelo);
       if (elemXelo) {
-        console.log('test');
         elemXelo.addEventListener('mouseenter', () => {
           elemXelo.style.transform = 'translate(0px, 100px) scaleX(-1)';
         });
