@@ -19,7 +19,6 @@ const App = () => {
   if (rolltheDice) {
     setTimeout(() => {
       const elemXelo = document.querySelector('.' + styles.xelo);
-      console.log('.' + styles.xelo);
       if (elemXelo) {
         elemXelo.addEventListener('mouseenter', () => {
           elemXelo.style.transform = 'translate(0px, 100px) scaleX(-1)';
