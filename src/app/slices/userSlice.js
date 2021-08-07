@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUser } from '@/api/userAPI';
+import { getUser, registerUser } from '@/api/userAPI';
 
 const initialState = {
   user: {
@@ -22,6 +22,15 @@ export const getUserAsync = createAsyncThunk('user/getUser', async nickname => {
   // The value we return becomes the `fulfilled` action payload
   return response.data.data;
 });
+
+export const registerUserAsync = createAsyncThunk(
+  'user/registerUser',
+  async values => {
+    const response = await registerUser(values);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data.data;
+  }
+);
 
 export const counterSlice = createSlice({
   name: 'user',
