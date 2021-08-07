@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUser, selectStatus, getUserAsync } from '@/app/slices/userSlice';
+import { selectUser, getUserAsync } from '@/app/slices/userSlice';
 
 const ProfilePage = () => {
   const user = useSelector(selectUser);
-  const status = useSelector(selectStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,8 +15,8 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <div>{status}</div>
-      <div>{JSON.stringify(user)}</div>
+      <div>{user.status}</div>
+      <div>{JSON.stringify(user.data)}</div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import ButtonLink from '../ETC/ButtonLink';
 import Logo from './Logo';
 import NavList from './NavList';
 import BurgerMenu from './BurgerMenu';
-import { selectUser } from '@/app/slices/userSlice';
+import { selectUserData } from '@/app/slices/userSlice';
 import styles from './Header.module.sass';
 
 const Header = () => {
@@ -14,7 +14,7 @@ const Header = () => {
     [styles.showOnBurgerAction]: statusShow,
   });
 
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUserData);
 
   return (
     <header className={styles.headerMain}>
