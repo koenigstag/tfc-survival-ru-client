@@ -30,6 +30,12 @@ export const registerUserAsync = new AsyncThunk(
   dispatchUserError
 ).generate();
 
+export const loginUserAsync = new AsyncThunk(
+  'user',
+  getUser,
+  dispatchUserError
+);
+
 export const counterSlice = createSlice({
   name: 'user',
   initialState,
