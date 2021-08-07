@@ -12,7 +12,7 @@ const initialValues = {
   confpassword: '',
 };
 
-const registrationErrors = {
+const registrationRUSErrors = {
   'Nickname is already in use': 'Никнейм уже зарегистрирован',
 };
 
@@ -23,7 +23,7 @@ const RegisterForm = () => {
   return (
     <>
       {user.status === 'error' ? (
-        <div>{registrationErrors[user.errorMessage]}</div>
+        <div>{registrationRUSErrors[user.errorMessage]}</div>
       ) : (
         <div></div>
       )}
