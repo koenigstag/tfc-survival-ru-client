@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import { Skeleton } from '@material-ui/lab';
 import styles from './Header.module.sass';
