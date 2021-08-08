@@ -11,9 +11,11 @@ export const getUser = async (nickname, accessToken, refreshToken) => {
   return user;
 };
 
-export const registerUser = async ({ user, password }) => {
+export const registerUser = async ({ user, password, ua }) => {
   const response = await client.post('users', {
+    // TODO
     user,
+    ua,
     passwordCrypt: encrypt(password),
   });
 
