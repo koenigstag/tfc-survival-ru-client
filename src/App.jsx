@@ -17,6 +17,8 @@ import NoAuthRoute from './components/ETC/NoAuthRoute';
 import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
+// TODO React.lazy load
+
 const App = () => {
   const rolltheDice = Math.random() * 100 >= 95;
 
