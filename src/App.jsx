@@ -1,18 +1,6 @@
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from '@/pages/Home';
-import LauncherPage from '@/pages/Home/Launcher';
-import RulesPage from '@/pages/Home/Rules';
-import AboutPage from '@/pages/Home/About';
-import MapPage from './pages/Home/Map';
-import BannedPage from './pages/Home/Banned';
-import OnlinePage from './pages/Home/Online';
-import LoginPage from '@/pages/Auth/Login';
-import RegisterPage from '@/pages/Auth/Register';
-import ProfilePage from './pages/Profile';
-import AdminPage from './pages/Admin';
-import PageNotFound from './pages/404';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+
 import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
 import AdminRoute from './components/ETC/Routes/AdminRoute';
@@ -20,6 +8,27 @@ import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
 // TODO React.lazy load
+import Loader from './components/Loader';
+
+const HomePage = React.lazy(() => import('@/pages/Home'));
+const PageNotFound = React.lazy(() => import('./pages/404'));
+
+const Header = React.lazy(() => import('@/components/Header'));
+const Footer = React.lazy(() => import('@/components/Footer'));
+
+const LauncherPage = React.lazy(() => import('@/pages/Home/Launcher'));
+const RulesPage = React.lazy(() => import('@/pages/Home/Rules'));
+const AboutPage = React.lazy(() => import('@/pages/Home/About'));
+
+const BannedPage = React.lazy(() => import('./pages/Home/Banned'));
+const MapPage = React.lazy(() => import('./pages/Home/Map'));
+const OnlinePage = React.lazy(() => import('./pages/Home/Online'));
+
+const LoginPage = React.lazy(() => import('@/pages/Auth/Login'));
+const RegisterPage = React.lazy(() => import('@/pages/Auth/Register'));
+const ProfilePage = React.lazy(() => import('./pages/Profile'));
+
+const AdminPage = React.lazy(() => import('./pages/Admin'));
 
 const App = () => {
   const rolltheDice = Math.random() * 100 >= 95;
@@ -42,42 +51,48 @@ const App = () => {
   return (
     <Router>
       <div className={styles.App}>
-        <Header />
+        <Suspense fallback={Loader}>
+          <Header />
 
-        <main className={styles.AppMain}>
-          <div className={styles.container}>
-            <Switch>
-              <Route exact path='/' component={HomePage} />
+          <main className={styles.AppMain}>
+            <div className={styles.container}>
+              <Switch>
+                <Route exact path='/' component={HomePage} />
 
-              <Route exact path='/home/launcher' component={LauncherPage} />
-              <Route exact path='/home/rules' component={RulesPage} />
-              <Route exact path='/home/about' component={AboutPage} />
+                <Route exact path='/home/launcher' component={LauncherPage} />
+                <Route exact path='/home/rules' component={RulesPage} />
+                <Route exact path='/home/about' component={AboutPage} />
 
-              <Route exact path='/home/map' component={MapPage} />
+                <Route exact path='/home/map' component={MapPage} />
 
-              <Route exact path='/home/banned' component={BannedPage} />
-              <Route exact path='/home/online' component={OnlinePage} />
+                <Route exact path='/home/banned' component={BannedPage} />
+                <Route exact path='/home/online' component={OnlinePage} />
 
-              <NoAuthRoute
-                exact={true}
-                path='/account/login'
-                component={LoginPage}
-              />
-              <NoAuthRoute
-                exact={true}
-                path='/account/register'
-                component={RegisterPage}
-              />
+                <NoAuthRoute
+                  exact={true}
+                  path='/account/login'
+                  component={LoginPage}
+                />
+                <NoAuthRoute
+                  exact={true}
+                  path='/account/register'
+                  component={RegisterPage}
+                />
 
-              <AuthRoute exact={true} path='/profile' component={ProfilePage} />
+                <AuthRoute
+                  exact={true}
+                  path='/profile'
+                  component={ProfilePage}
+                />
 
-              <AdminRoute exact path='/profile/admin' component={AdminPage} />
+                <AdminRoute exact path='/profile/admin' component={AdminPage} />
 
-              <Route path={['*', '/404']} component={PageNotFound} />
-            </Switch>
-          </div>
-        </main>
-        <Footer />
+                <Route path={['*', '/404']} component={PageNotFound} />
+              </Switch>
+            </div>
+          </main>
+          <Footer />
+        </Suspense>
         {rolltheDice && (
           <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
         )}
