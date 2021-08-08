@@ -4,11 +4,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
 import AdminRoute from './components/ETC/Routes/AdminRoute';
-import xelo from '@/xelo.png';
+import xelo from '@/xelo.webp';
 import styles from './App.module.sass';
 
 // TODO React.lazy load
-import Loader from './components/Loader';
+// import Loader from './components/Loader';
+import CircleLoader from 'react-spinners/ClipLoader';
+import HeaderSkeleton from './components/Header/HeaderSkeleton';
+import FooterSkeleton from './components/Footer/FooterSkeleton';
 
 const HomePage = React.lazy(() => import('@/pages/Home'));
 const PageNotFound = React.lazy(() => import('./pages/404'));
@@ -31,7 +34,7 @@ const ProfilePage = React.lazy(() => import('./pages/Profile'));
 const AdminPage = React.lazy(() => import('./pages/Admin'));
 
 const App = () => {
-  const rolltheDice = Math.random() * 100 >= 95;
+  const rolltheDice = Math.random() * 100 >= 98;
 
   if (rolltheDice) {
     setTimeout(() => {
@@ -51,11 +54,23 @@ const App = () => {
   return (
     <Router>
       <div className={styles.App}>
-        <Suspense fallback={Loader}>
+        <Suspense fallback={<HeaderSkeleton />}>
           <Header />
-
-          <main className={styles.AppMain}>
-            <div className={styles.container}>
+          <HeaderSkeleton />
+        </Suspense>
+        <main className={styles.AppMain}>
+          <div className={styles.container}>
+            <Suspense
+              fallback={
+                <center>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <CircleLoader color='blue' size={100} />
+                </center>
+              }
+            >
               <Switch>
                 <Route exact path='/' component={HomePage} />
 
@@ -89,8 +104,10 @@ const App = () => {
 
                 <Route path={['*', '/404']} component={PageNotFound} />
               </Switch>
-            </div>
-          </main>
+            </Suspense>
+          </div>
+        </main>
+        <Suspense fallback={<FooterSkeleton />}>
           <Footer />
         </Suspense>
         {rolltheDice && (
