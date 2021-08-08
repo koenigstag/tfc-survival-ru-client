@@ -2,15 +2,23 @@ import * as Yup from 'yup';
 
 // TODO regexp
 const nicknameScheme = Yup.string()
-  .matches(/^[a-z0-9_]{3,16}$/i, 'Не соответствует шаблону')
+  .matches(
+    /^[a-z0-9_]{3,16}$/i,
+    'Разрешенная длина ника от 3 до 16 символов. Используйте только латинские буквы, числа и символ подчеркивания'
+  )
   .required('Требуемое поле');
 const accessTokenScheme = Yup.string()
   .length(32)
   .matches();
-const discordScheme = Yup.string().matches();
+const discordScheme = Yup.string().matches(
+  /^.{3,32}#[0-9]{4}$/,
+  'Не соответствует шаблону Discord tag'
+);
 const emailScheme = Yup.string()
   .email('Не соответствует формату email')
   // .matches(/^$/, 'Не соответствует шаблону')
+  // TODO test whitelisted email domains
+  .test(() => {return true})
   .required('Требуемое поле');
 const passwordScheme = Yup.string()
   // .matches(/^$/, 'Не соответствует шаблону')
