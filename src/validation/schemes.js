@@ -15,10 +15,9 @@ const emailScheme = Yup.string()
 const passwordScheme = Yup.string()
   // .matches(/^$/, 'Не соответствует шаблону')
   .required('Требуемое поле');
-const confpasswordScheme = Yup.string().oneOf(
-  [Yup.ref('password'), null],
-  'Пароли должны совпадать'
-);
+const confpasswordScheme = Yup.string()
+  .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать')
+  .required('Повторите пароль');
 
 export const registerScheme = Yup.object().shape({
   nickname: nicknameScheme,
