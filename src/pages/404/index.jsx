@@ -18,7 +18,7 @@ const PageNotFound = () => {
   return (
     <div className={styles.pageNotFound}>
       <h1>404 - Страница не найдена</h1>
-      {/* <RickRoll /> */}
+      <RickRoll />
     </div>
   );
 };
