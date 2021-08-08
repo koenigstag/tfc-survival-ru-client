@@ -1,0 +1,37 @@
+@import "@/media.module.sass"
+
+.logoSkeleton
+  display: flex
+  align-items: center
+  position: relative
+
+  .logoImage
+    padding: 6px
+
+.navSkeleton
+  display: block
+  margin: 0 40px
+
+.buttonSkeleton
+  display: inline-block
+
+.buttonSkeleton + .buttonSkeleton
+  margin-left: 10px
+
+.buttonGroup
+  display: block
+
+.burgerSkeleton
+  display: none
+
+@media screen and (max-width: $mediaBreakNavList)
+  .navSkeleton
+    margin: 20px 20px
+
+@media screen and ( max-width:  $mediaShowBurgerMenu)
+  .navSkeleton,
+  .buttonGroup
+    display: none
+
+  .burgerSkeleton
+    display: block
