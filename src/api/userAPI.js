@@ -1,5 +1,5 @@
 import { client } from './index';
-import { encrypt } from '@/utils/passTransfer';
+import { encrypt } from '@/services/passTransfer';
 
 export const getUser = async (nickname, accessToken, refreshToken) => {
   const user = await client.get(`users/${nickname}/${accessToken}`);
