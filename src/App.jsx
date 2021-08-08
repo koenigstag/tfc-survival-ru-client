@@ -56,7 +56,6 @@ const App = () => {
       <div className={styles.App}>
         <Suspense fallback={<HeaderSkeleton />}>
           <Header />
-          <HeaderSkeleton />
         </Suspense>
         <main className={styles.AppMain}>
           <div className={styles.container}>
