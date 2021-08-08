@@ -10,10 +10,11 @@ const MapPage = () => {
         left: 0,
         bottom: '0',
         right: 0,
-        width: '95%',
-        margin: 'auto',
-        height: 'calc(100% + 1.5rem)',
         zIndex: 1,
+
+        margin: 'auto',
+        width: '95%',
+        height: 'calc(100% - 0.75rem)',
       }}
       title='Tfc-survival map'
       src={mapURL}

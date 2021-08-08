@@ -7,25 +7,27 @@ const BannedPage = () => {
   const bannedArray = [];
 
   return (
-    <div>
+    <>
       <h4>Забаненные игроки</h4>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Ники</th>
-            <th>Дата</th>
-            <th>Кем забанен</th>
-            <th>Когда истекает</th>
-            <th>Причина</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bannedArray.map(data => (
-            <TableRow data={data} />
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Ники</th>
+              <th>Дата</th>
+              <th>Кем забанен</th>
+              <th>Когда истекает</th>
+              <th>Причина</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bannedArray.map(data => (
+              <TableRow data={data} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
