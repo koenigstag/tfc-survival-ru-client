@@ -10,6 +10,10 @@ import styles from './Header.module.sass';
 
 const Header = () => {
   const [statusShow, setShow] = useState(false);
+  const hideOrShow = () => {
+    setShow(!statusShow);
+  };
+
   const hideOnSmallScreen = cx(styles.buttonGroup, {
     [styles.showOnBurgerAction]: statusShow,
   });
@@ -19,19 +23,21 @@ const Header = () => {
   return (
     <header className={styles.headerMain}>
       <Logo className={styles.blockLogo} />
-      <NavList status={statusShow} />
+      <NavList status={statusShow} onClick={hideOrShow} />
       {user.nickname === null ? (
         <div className={hideOnSmallScreen} id='authButtons'>
           <ButtonLink
             link='/account/login'
             text='Войти'
             title='Страница входа в ЛК'
+            onClick={hideOrShow}
           />
           <ButtonLink
             link='/account/register'
             text='Регистрация'
             title='Страница регистрации на проекте'
             type='blue'
+            onClick={hideOrShow}
           />
         </div>
       ) : (
@@ -40,16 +46,18 @@ const Header = () => {
             link='/profile'
             text='Личный кабинет'
             title='Страница ЛК'
+            action={hideOrShow}
           />
           <ButtonLink
             link='/'
             text='Выйти'
             title='Выйти из аккаунта'
             type='blue'
+            action={hideOrShow}
           />
         </div>
       )}
-      <BurgerMenu action={setShow} status={statusShow} />
+      <BurgerMenu onClick={hideOrShow} status={statusShow} />
     </header>
   );
 };

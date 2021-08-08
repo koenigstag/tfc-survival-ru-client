@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SmallLink = ({ href, link, text, title }) => {
+const SmallLink = ({ href, link, text, title, ...rest }) => {
   if (href) {
     return (
       <a href={href} title={title}>
@@ -11,7 +11,7 @@ const SmallLink = ({ href, link, text, title }) => {
   }
 
   return (
-    <Link to={link} title={title}>
+    <Link to={link} title={title} {...rest}>
       {text}
     </Link>
   );

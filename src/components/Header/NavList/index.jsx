@@ -25,7 +25,7 @@ const navList = [
   { link: '/home/about', text: 'О нас', title: 'Описание и история проекта' },
 ];
 
-const NavList = ({ status }) => {
+const NavList = ({ status, ...rest }) => {
   const classnames = cx(styles.hideForMenu, styles.headerNavlist, {
     [styles.showOnBurgerAction]: status,
   });
@@ -39,6 +39,7 @@ const NavList = ({ status }) => {
           text={text}
           title={title}
           key={index}
+          {...rest}
         />
       ))}
     </nav>
