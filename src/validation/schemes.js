@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 
+// TODO regexp
 const nicknameScheme = Yup.string()
   .matches(/^[a-z0-9_]{3,16}$/i, 'Не соответствует шаблону')
   .required('Требуемое поле');
