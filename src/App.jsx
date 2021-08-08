@@ -3,6 +3,7 @@ import HomePage from '@/pages/Home';
 import LauncherPage from '@/pages/Home/Launcher';
 import RulesPage from '@/pages/Home/Rules';
 import AboutPage from '@/pages/Home/About';
+import MapPage from './pages/Home/Map';
 import BannedPage from './pages/Home/Banned';
 import OnlinePage from './pages/Home/Online';
 import LoginPage from '@/pages/Auth/Login';
@@ -47,6 +48,8 @@ const App = () => {
               <Route exact path='/home/launcher' component={LauncherPage} />
               <Route exact path='/home/rules' component={RulesPage} />
               <Route exact path='/home/about' component={AboutPage} />
+
+              <Route exact path='/home/map' component={MapPage} />
 
               <Route exact path='/home/banned' component={BannedPage} />
               <Route exact path='/home/online' component={OnlinePage} />

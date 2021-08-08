@@ -18,7 +18,7 @@ const navList = [
   },
   { link: '/home/online', text: 'Онлайн', title: 'Список игроков онлайн' },
   {
-    href: 'http://tfc-survival.ru:8154',
+    link: '/home/map',
     text: 'Карта',
     title: 'Карта игрового мира',
   },

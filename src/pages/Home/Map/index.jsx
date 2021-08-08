@@ -1,4 +1,5 @@
 import React from 'react';
+import { mapURL } from '@/api/';
 
 const MapPage = () => {
   return (
@@ -15,9 +16,7 @@ const MapPage = () => {
         zIndex: 1,
       }}
       title='Tfc-survival map'
-      src='http://tfc-survival.ru:8154/'
-      // width='100%'
-      // height='100%'
+      src={mapURL}
     ></iframe>
   );
 };
