@@ -30,7 +30,12 @@ const LoginForm = () => {
         validationSchema={loginScheme}
         onSubmit={(values, formikBag) => {
           console.log(values);
-          dispatch(loginUserAsync(values));
+          dispatch(
+            loginUserAsync({
+              nickname: values.nickname,
+              password: values.password,
+            })
+          );
           formikBag.resetForm();
         }}
       >

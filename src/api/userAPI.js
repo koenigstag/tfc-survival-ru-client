@@ -11,9 +11,10 @@ export const getUser = async (nickname, accessToken, refreshToken) => {
   return user;
 };
 
-export const registerUser = async user => {
+export const registerUser = async ({ user, password }) => {
   const response = await client.post('users', {
     user,
+    passwordCrypt: encrypt(password),
   });
 
   if (!response) {
@@ -25,7 +26,7 @@ export const registerUser = async user => {
 
 export const loginUser = async ({ nickname, password }) => {
   const user = await client.post(`users/${nickname}`, {
-    password: encrypt(password),
+    passwordCrypt: encrypt(password),
   });
 
   if (!user) {

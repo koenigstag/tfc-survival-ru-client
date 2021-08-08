@@ -31,8 +31,12 @@ const RegisterForm = () => {
         initialValues={initialValues}
         validationSchema={registerScheme}
         onSubmit={(values, formikBag) => {
+          const password = values.password;
+          delete values.password;
+          delete values.confpassword;
           console.log(values);
-          dispatch(registerUserAsync(values));
+          dispatch(registerUserAsync({ user: values, password }));
+
           formikBag.resetForm();
         }}
       >
