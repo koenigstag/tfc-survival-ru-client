@@ -6,7 +6,7 @@ const MapPage = () => {
     <iframe
       style={{
         position: 'absolute',
-        top: '-1.5rem',
+        top: '0',
         left: 0,
         bottom: '0',
         right: 0,
