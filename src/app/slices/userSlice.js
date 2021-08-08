@@ -44,7 +44,7 @@ export const counterSlice = createSlice({
       state.errorMessage = action.payload;
     },
     setUserData: (state, action) => {
-      state.data = action.payload;
+      state.data = { ...state.data, ...action.payload };
     },
     logout: (state, action) => {
       state.data = initialState.data;
