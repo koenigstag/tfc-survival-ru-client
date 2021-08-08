@@ -41,21 +41,27 @@ const LoginForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <Field type='text' name='nickname' />
-            <FieldError
-              name='nickname'
-              errors={errors}
-              touched={touched}
-              tag={'div'}
-            />
+            <label>
+              <div>Логин</div>
+              <Field type='text' name='nickname' />
+              <FieldError
+                name='nickname'
+                errors={errors}
+                touched={touched}
+                tag={'div'}
+              />
+            </label>
 
-            <Field type='password' name='password' />
-            <FieldError
-              name='password'
-              errors={errors}
-              touched={touched}
-              tag={'div'}
-            />
+            <label>
+              <div>Пароль</div>
+              <Field type='password' name='password' />
+              <FieldError
+                name='password'
+                errors={errors}
+                touched={touched}
+                tag={'div'}
+              />
+            </label>
 
             <button type='submit'>Логин</button>
           </Form>
