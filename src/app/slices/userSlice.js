@@ -46,6 +46,9 @@ export const counterSlice = createSlice({
     setUserData: (state, action) => {
       state.data = action.payload;
     },
+    logout: (state, action) => {
+      state.data = initialState.data;
+    },
     setStatus: (state, action) => {
       state.status = action.payload;
     },

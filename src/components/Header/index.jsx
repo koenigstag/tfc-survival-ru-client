@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
-import ButtonLink from '../ETC/ButtonLink';
 import Logo from './Logo';
 import NavList from './NavList';
 import BurgerMenu from './BurgerMenu';
-import { selectUserData } from '@/app/slices/userSlice';
+import ButtonLink from '../ETC/ButtonLink';
+import { selectUserData, actionCreators } from '@/app/slices/userSlice';
 import styles from './Header.module.sass';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [statusShow, setShow] = useState(false);
+
   const hideOrShow = () => {
     setShow(!statusShow);
+  };
+
+  const logout = () => {
+    dispatch(actionCreators.logout());
+    hideOrShow();
   };
 
   const hideOnSmallScreen = cx(styles.buttonGroup, {
@@ -46,14 +53,14 @@ const Header = () => {
             link='/profile'
             text='Личный кабинет'
             title='Страница ЛК'
-            action={hideOrShow}
+            onClick={hideOrShow}
           />
           <ButtonLink
             link='/'
             text='Выйти'
             title='Выйти из аккаунта'
             type='blue'
-            action={hideOrShow}
+            onClick={logout}
           />
         </div>
       )}
