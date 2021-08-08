@@ -3,14 +3,14 @@ import { Redirect, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from '@/app/slices/userSlice';
 
-const AuthRoute = ({ exact, path, component }) => {
+const NoAuthRoute = ({ exact, path, component }) => {
   const user = useSelector(selectUser);
-  console.log('test');
-  if (user.status === 'error' || user.data.nickname === null) {
-    return <Redirect to='/account/login' />;
+  // console.log('no auth', user);
+  if (user.status === 'idle' && user.data.nickname !== null) {
+    return <Redirect to='/profile' />;
   }
 
   return <Route exact={exact} path={path} component={component} />;
 };
 
-export default AuthRoute;
+export default NoAuthRoute;

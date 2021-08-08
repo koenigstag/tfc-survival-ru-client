@@ -10,10 +10,12 @@ import LoginPage from '@/pages/Auth/Login';
 import RegisterPage from '@/pages/Auth/Register';
 import ProfilePage from './pages/Profile';
 import AdminPage from './pages/Admin';
+import PageNotFound from './pages/404';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AuthRoute from './components/ETC/AuthRoute';
-import NoAuthRoute from './components/ETC/NoAuthRoute';
+import AuthRoute from './components/ETC/Routes/AuthRoute';
+import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
+import AdminRoute from './components/ETC/Routes/AdminRoute';
 import xelo from '@/xelo.png';
 import styles from './App.module.sass';
 
@@ -69,7 +71,9 @@ const App = () => {
 
               <AuthRoute exact={true} path='/profile' component={ProfilePage} />
 
-              <Route exact path='/profile/admin' component={AdminPage} />
+              <AdminRoute exact path='/profile/admin' component={AdminPage} />
+
+              <Route path={['*', '/404']} component={PageNotFound} />
             </Switch>
           </div>
         </main>
