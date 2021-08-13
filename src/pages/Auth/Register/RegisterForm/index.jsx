@@ -18,6 +18,8 @@ const initialValues = {
 
 const registrationRUSErrors = {
   'Nickname is already in use': 'Никнейм уже зарегистрирован',
+  "Cannot read property 'data' of undefined":
+    'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
 };
 
 const RegisterForm = () => {
@@ -108,7 +110,13 @@ const RegisterForm = () => {
               />
             </label>
 
-            <button type='submit'>Регистрация</button>
+            {user.status === 'loading' ? (
+              <button type='submit' disabled>
+                Регистрация ⌛
+              </button>
+            ) : (
+              <button type='submit'>Регистрация </button>
+            )}
           </Form>
         )}
       </Formik>

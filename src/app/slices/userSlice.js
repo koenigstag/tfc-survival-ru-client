@@ -61,6 +61,7 @@ export const counterSlice = createSlice({
     },
     [getUserAsync.rejected]: (state, action) => {
       state.status = 'error';
+      state.errorMessage = action.error.message
     },
     [getUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
@@ -72,6 +73,7 @@ export const counterSlice = createSlice({
     },
     [registerUserAsync.rejected]: (state, action) => {
       state.status = 'error';
+      state.errorMessage = action.error.message
     },
     [registerUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
@@ -83,6 +85,7 @@ export const counterSlice = createSlice({
     },
     [loginUserAsync.rejected]: (state, action) => {
       state.status = 'error';
+      state.errorMessage = action.error.message
     },
     [loginUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
