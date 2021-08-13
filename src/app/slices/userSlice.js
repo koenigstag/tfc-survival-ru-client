@@ -58,38 +58,50 @@ export const counterSlice = createSlice({
   extraReducers: {
     [getUserAsync.pending]: state => {
       state.status = 'loading';
+      state.errorMessage = '';
     },
     [getUserAsync.rejected]: (state, action) => {
       state.status = 'error';
-      state.errorMessage = action.error.message
+      if (state.errorMessage === '') {
+        state.errorMessage = action.error.message;
+      }
     },
     [getUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
       state.data = action.payload;
+      state.errorMessage = '';
     },
 
     [registerUserAsync.pending]: state => {
       state.status = 'loading';
+      state.errorMessage = '';
     },
     [registerUserAsync.rejected]: (state, action) => {
       state.status = 'error';
-      state.errorMessage = action.error.message
+      if (state.errorMessage === '') {
+        state.errorMessage = action.error.message;
+      }
     },
     [registerUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
       state.data = action.payload;
+      state.errorMessage = '';
     },
 
     [loginUserAsync.pending]: state => {
       state.status = 'loading';
+      state.errorMessage = '';
     },
     [loginUserAsync.rejected]: (state, action) => {
       state.status = 'error';
-      state.errorMessage = action.error.message
+      if (state.errorMessage === '') {
+        state.errorMessage = action.error.message;
+      }
     },
     [loginUserAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
       state.data = action.payload;
+      state.errorMessage = '';
     },
   },
 });
