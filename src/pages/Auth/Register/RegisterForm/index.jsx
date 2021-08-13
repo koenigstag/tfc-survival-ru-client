@@ -56,7 +56,6 @@ const RegisterForm = () => {
           const password = copy.password;
           delete copy.password;
           delete copy.confpassword;
-          // console.log(copy);
 
           dispatch(
             registerUserAsync({ user: copy, password, ua: user.data.ua })
