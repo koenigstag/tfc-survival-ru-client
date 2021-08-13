@@ -11,7 +11,7 @@ const initialValues = {
 };
 
 const loginRUSErrors = {
-  'Invalid nickname or password': 'Неверный логин или пароль',
+  'Invalid nickname or password': 'Неверный логин или пароль 🔐',
   "Cannot read property 'data' of undefined":
     'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
 };
