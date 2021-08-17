@@ -42,48 +42,56 @@ const ChangePasswordForm = () => {
     >
       {({ errors, touched }) => (
         <Form>
-          <label>
-            <div>Старый пароль</div>
-            <Field type='password' name='oldpassword' />
-            <FieldError
-              name='oldpassword'
-              errors={errors}
-              touched={touched}
-              tag={'div'}
-            />
-          </label>
-          <label>
-            <div>Новый пароль</div>
-            <Field type='password' name='password' />
-            <FieldError
-              name='password'
-              errors={errors}
-              touched={touched}
-              tag={'div'}
-            />
-          </label>
+          <fieldset>
+            <legend>Смена пароля</legend>
+            <label>
+              <div>Старый пароль</div>
+              <Field type='password' name='oldpassword' />
+              <FieldError
+                name='oldpassword'
+                errors={errors}
+                touched={touched}
+                tag={'div'}
+              />
+            </label>
+            <label>
+              <div>Новый пароль</div>
+              <Field type='password' name='password' />
+              <FieldError
+                name='password'
+                errors={errors}
+                touched={touched}
+                tag={'div'}
+              />
+            </label>
 
-          <label>
-            <div>Подтверждение пароля</div>
-            <Field type='password' name='confpassword' />
-            <FieldError
-              name='confpassword'
-              errors={errors}
-              touched={touched}
-              tag={'div'}
-            />
-          </label>
+            <label>
+              <div>Подтверждение пароля</div>
+              <Field type='password' name='confpassword' />
+              <FieldError
+                name='confpassword'
+                errors={errors}
+                touched={touched}
+                tag={'div'}
+              />
+            </label>
 
-          {user.status === 'loading' ? (
-            <ButtonLink
-              type='submit'
-              text='Смена пароля ⌛'
-              variant='blue'
-              disabled
-            />
-          ) : (
-            <ButtonLink type='submit' text='Смена пароля' variant='blue' />
-          )}
+            {user.status === 'loading' ? (
+              <ButtonLink
+                type='submit'
+                text='Смена пароля ⌛'
+                variant='blue'
+                disabled
+              />
+            ) : (
+              <ButtonLink
+                type='submit'
+                text='Сменить пароль'
+                variant='blue'
+                style={{ marginTop: '10px' }}
+              />
+            )}
+          </fieldset>
         </Form>
       )}
     </Formik>
