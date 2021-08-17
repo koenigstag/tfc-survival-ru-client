@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
+import FieldError from '@/components/ETC/FieldError';
+import ButtonLink from '@/components/ETC/ButtonLink';
 import { loginUserAsync, selectUser } from '@/app/slices/userSlice';
 import { loginScheme } from '@/validation/schemes';
-import FieldError from '@/components/ETC/FieldError';
 
 const initialValues = {
   nickname: '',
@@ -65,7 +66,12 @@ const LoginForm = () => {
               />
             </label>
 
-            <button type='submit'>Логин</button>
+            <ButtonLink
+                type='submit'
+                text='Логин'
+                variant='blue'
+                style={{ marginTop: '10px' }}
+              />
           </Form>
         )}
       </Formik>

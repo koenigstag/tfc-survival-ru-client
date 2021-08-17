@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import FieldError from '@/components/ETC/FieldError';
+import ButtonLink from '@/components/ETC/ButtonLink';
 import {
   registerUserAsync,
   selectUser,
@@ -112,11 +113,19 @@ const RegisterForm = () => {
             </label>
 
             {user.status === 'loading' ? (
-              <button type='submit' disabled>
-                Регистрация ⌛
-              </button>
+              <ButtonLink
+                type='submit'
+                text='Регистрация ⌛'
+                variant='blue'
+                style={{ marginTop: '10px' }}
+              />
             ) : (
-              <button type='submit'>Регистрация </button>
+              <ButtonLink
+                type='submit'
+                text='Регистрация'
+                variant='blue'
+                style={{ marginTop: '10px' }}
+              />
             )}
           </Form>
         )}
