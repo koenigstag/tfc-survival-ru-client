@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonLink from '@/components/ETC/ButtonLink';
 
 const ConfirmEmailForm = ({ user }) => {
-  // TODO confirm
+  // TODO confirm email
   const confirmEmail = () => {
     // send email
   };
