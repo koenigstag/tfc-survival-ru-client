@@ -1,14 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import FieldError from '@/components/ETC/FieldError';
-import {
-  selectUser,
-  changePassAsync,
-  actionCreators,
-} from '@/app/slices/userSlice';
+import ButtonLink from '@/components/ETC/ButtonLink';
+import { changePassAsync, actionCreators } from '@/app/slices/userSlice';
 import { changePasswordScheme } from '@/validation/schemes';
-import ButtonLink from '../../../components/ETC/ButtonLink';
 
 const initialValues = {
   oldpassword: '',
@@ -16,9 +12,7 @@ const initialValues = {
   confpassword: '',
 };
 
-const ChangePasswordForm = () => {
-  const user = useSelector(selectUser);
-
+const ChangePasswordForm = ({ user }) => {
   const dispatch = useDispatch();
 
   return (
@@ -51,7 +45,7 @@ const ChangePasswordForm = () => {
                 name='oldpassword'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
             <label>
@@ -61,7 +55,7 @@ const ChangePasswordForm = () => {
                 name='password'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
@@ -72,7 +66,7 @@ const ChangePasswordForm = () => {
                 name='confpassword'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
