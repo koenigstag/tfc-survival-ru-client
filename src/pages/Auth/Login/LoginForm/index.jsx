@@ -44,34 +44,32 @@ const LoginForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <label>
-              <div>Логин</div>
+            <FieldError
+              name='nickname'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Логин'
+            >
               <Field type='text' name='nickname' />
-              <FieldError
-                name='nickname'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
-            <label>
-              <div>Пароль</div>
+            <FieldError
+              name='password'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Пароль'
+            >
               <Field type='password' name='password' />
-              <FieldError
-                name='password'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
             <ButtonLink
-                type='submit'
-                text='Логин'
-                variant='blue'
-                style={{ marginTop: '10px' }}
-              />
+              type='submit'
+              text='Логин'
+              variant='blue'
+              style={{ marginTop: '10px' }}
+            />
           </Form>
         )}
       </Formik>

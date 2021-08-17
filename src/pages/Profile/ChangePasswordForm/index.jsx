@@ -38,37 +38,36 @@ const ChangePasswordForm = ({ user }) => {
         <Form>
           <fieldset>
             <legend>Смена пароля</legend>
-            <label>
-              <div>Старый пароль</div>
-              <Field type='password' name='oldpassword' />
-              <FieldError
-                name='oldpassword'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
-            <label>
-              <div>Новый пароль</div>
-              <Field type='password' name='password' />
-              <FieldError
-                name='password'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
 
-            <label>
-              <div>Подтверждение пароля</div>
+            <FieldError
+              name='oldpassword'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Старый пароль'
+            >
+              <Field type='password' name='oldpassword' />
+            </FieldError>
+
+            <FieldError
+              name='password'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Новый пароль'
+            >
+              <Field type='password' name='password' />
+            </FieldError>
+
+            <FieldError
+              name='confpassword'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Подтверждение пароля'
+            >
               <Field type='password' name='confpassword' />
-              <FieldError
-                name='confpassword'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
             {user.status === 'loading' ? (
               <ButtonLink

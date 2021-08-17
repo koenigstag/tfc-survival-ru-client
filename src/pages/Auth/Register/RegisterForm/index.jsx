@@ -68,49 +68,45 @@ const RegisterForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <label>
-              <div>Никнейм</div>
+            <FieldError
+              name='nickname'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Логин'
+            >
               <Field type='text' name='nickname' />
-              <FieldError
-                name='nickname'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
-            <label>
-              <div>Эл. почта</div>
+            <FieldError
+              name='email'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Email'
+            >
               <Field type='text' name='email' />
-              <FieldError
-                name='email'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
-            <label>
-              <div>Пароль</div>
+            <FieldError
+              name='password'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Пароль'
+            >
               <Field type='password' name='password' />
-              <FieldError
-                name='password'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
-            <label>
-              <div>Подтверждение пароля</div>
+            <FieldError
+              name='confpassword'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Подтверждение пароля'
+            >
               <Field type='password' name='confpassword' />
-              <FieldError
-                name='confpassword'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
 
             {user.status === 'loading' ? (
               <ButtonLink

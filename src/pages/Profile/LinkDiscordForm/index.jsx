@@ -60,21 +60,22 @@ const LinkDiscordForm = ({ user }) => {
         <Form>
           <fieldset>
             <legend>Привязка Discord</legend>
-            <label>
-              <div>Тэг Discord аккаунта</div>
+
+            <FieldError
+              name='discord'
+              errors={errors}
+              touched={touched}
+              tag='div'
+              text='Тэг Discord аккаунта'
+            >
               <Field
                 type='text'
                 name='discord'
                 placeholder={fakeDiscord()}
                 disabled={user.data.discord !== null}
               />
-              <FieldError
-                name='discord'
-                errors={errors}
-                touched={touched}
-                tag='div'
-              />
-            </label>
+            </FieldError>
+
             <ButtonLink
               variant='blue'
               type='submit'
