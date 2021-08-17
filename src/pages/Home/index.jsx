@@ -1,11 +1,17 @@
 import React from 'react';
 import ButtonLink from '@/components/ETC/ButtonLink';
-import styles from "./HomePage.module.sass";
+import { useSelector } from 'react-redux';
+import { selectUser } from '@/app/slices/userSlice';
+import styles from './HomePage.module.sass';
 
 const HomePage = () => {
+  const user = useSelector(selectUser);
   return (
     <div className={styles.homePage}>
-      <h3>Добро пожаловать на TFC-survival, дружок</h3>
+      <h3>
+        Добро пожаловать на TFC-survival,{' '}
+        {user.data.nickname ? user.data.nickname : 'дружок'}
+      </h3>
       <div className={styles.homePageButtons}>
         <ButtonLink
           text='Наш дискорд сервер'
