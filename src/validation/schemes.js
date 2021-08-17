@@ -23,7 +23,10 @@ const emailScheme = Yup.string()
   })
   .required('Требуемое поле');
 const passwordScheme = Yup.string()
-  // .matches(/^$/, 'Не соответствует шаблону')
+  .matches(
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/,
+    'Не соответствует шаблону. Минимум 6 символов: цифр, и латинских букв обоих регистров'
+  )
   .required('Требуемое поле');
 const confpasswordScheme = Yup.string()
   .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать')
