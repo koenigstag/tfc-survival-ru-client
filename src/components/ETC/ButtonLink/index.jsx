@@ -11,13 +11,14 @@ const ButtonLink = ({ href, link, text, type, ...rest }) => {
 
   if (href) {
     return (
-      <span
+      <a
+        href={href}
         className={classnames}
-        onClick={() => window.open(href, '_blank')}
-        style={{ cursor: 'pointer' }}
+        target="_blank"
+        rel="noreferrer"
       >
         {text}
-      </span>
+      </a>
     );
   }
 
