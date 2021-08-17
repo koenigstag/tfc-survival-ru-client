@@ -14,6 +14,11 @@ const Header = () => {
 
   const hideOrShow = () => {
     setShow(!statusShow);
+    if (!statusShow) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   };
 
   const logout = () => {
@@ -76,10 +81,10 @@ const Header = () => {
             position: 'fixed',
             left: 0,
             right: 0,
-            top: 0,
+            top: '50%',
             bottom: 0,
-            backgroundColor: "#aaa",
-            opacity: "0.75",
+            backgroundColor: '#aaa',
+            opacity: '0.75',
             zIndex: 1,
           }}
           onClick={hideOrShow}
