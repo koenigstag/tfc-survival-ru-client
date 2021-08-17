@@ -11,12 +11,12 @@ const accessTokenScheme = Yup.string()
   .length(32)
   .matches();
 const discordScheme = Yup.string().matches(
-  /^.{3,32}#[0-9]{4}$/,
+  /^.{2,32}#[0-9]{4}$/,
   'Не соответствует шаблону Discord tag'
 );
 const emailScheme = Yup.string()
   .email('Не соответствует формату email')
-  // .matches(/^$/, 'Не соответствует шаблону')
+  .matches(/^\S+@\S+\.\S+$/, 'Не соответствует шаблону')
   // TODO test whitelisted email domains
   .test(() => {
     return true;
@@ -24,8 +24,8 @@ const emailScheme = Yup.string()
   .required('Требуемое поле');
 const passwordScheme = Yup.string()
   .matches(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/,
-    'Не соответствует шаблону. Минимум 6 символов: цифр, и латинских букв обоих регистров'
+    /^(?=.*\d)(?=.*[a-z])[0-9a-z]{6,}$/i,
+    'Не соответствует шаблону. Минимум 6 символов: цифр, и латинских букв'
   )
   .required('Требуемое поле');
 const confpasswordScheme = Yup.string()
