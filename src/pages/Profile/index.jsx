@@ -5,6 +5,7 @@ import { selectUser } from '@/app/slices/userSlice';
 import UploadSkinForm from './UploadSkinForm';
 import UploadCapeForm from './UploadCapeForm';
 import LinkDiscordForm from './LinkDiscordForm';
+import ConfirmEmailForm from './ConfirmEmailForm';
 
 const ProfilePage = () => {
   const user = useSelector(selectUser);
@@ -12,6 +13,7 @@ const ProfilePage = () => {
   return (
     <div>
       <div>{JSON.stringify(user.data, null, 4)}</div>
+      <ConfirmEmailForm user={user} />
       <ChangePasswordForm user={user} />
       <UploadSkinForm user={user} />
       <UploadCapeForm user={user} />
