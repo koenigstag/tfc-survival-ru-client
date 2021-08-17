@@ -8,6 +8,7 @@ import {
   actionCreators,
 } from '@/app/slices/userSlice';
 import { changePasswordScheme } from '@/validation/schemes';
+import ButtonLink from '../../../components/ETC/ButtonLink';
 
 const initialValues = {
   password: '',
@@ -62,11 +63,14 @@ const ChangePasswordForm = () => {
           </label>
 
           {user.status === 'loading' ? (
-            <button type='submit' disabled>
-              Смена пароля ⌛
-            </button>
+            <ButtonLink
+              type='submit'
+              text='Смена пароля ⌛'
+              variant='blue'
+              disabled
+            />
           ) : (
-            <button type='submit'>Смена пароля </button>
+            <ButtonLink type='submit' text='Смена пароля' variant='blue' />
           )}
         </Form>
       )}

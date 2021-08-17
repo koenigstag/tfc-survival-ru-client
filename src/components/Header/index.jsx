@@ -52,7 +52,7 @@ const Header = () => {
               link='/account/register'
               text='Регистрация'
               title='Страница регистрации на проекте'
-              type='blue'
+              variant='blue'
               onClick={hideOrShow}
             />
           </div>
@@ -68,7 +68,7 @@ const Header = () => {
               link='/'
               text='Выйти'
               title='Выйти из аккаунта'
-              type='blue'
+              variant='blue'
               onClick={logout}
             />
           </div>

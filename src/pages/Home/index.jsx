@@ -22,7 +22,7 @@ const HomePage = () => {
           text='Скачать лаунчер'
           link='/home/launcher'
           title='Скачать лаунчер для игры на сервере'
-          type='blue'
+          variant='blue'
         />
       </div>
       <h5>Мы есть на мониторингах, голосуйте за нас</h5>
