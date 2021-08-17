@@ -18,7 +18,9 @@ const emailScheme = Yup.string()
   .email('Не соответствует формату email')
   // .matches(/^$/, 'Не соответствует шаблону')
   // TODO test whitelisted email domains
-  .test(() => {return true})
+  .test(() => {
+    return true;
+  })
   .required('Требуемое поле');
 const passwordScheme = Yup.string()
   // .matches(/^$/, 'Не соответствует шаблону')
@@ -37,6 +39,11 @@ export const registerScheme = Yup.object().shape({
 export const loginScheme = Yup.object().shape({
   nickname: nicknameScheme,
   password: passwordScheme,
+});
+
+export const changePasswordScheme = Yup.object().shape({
+  password: passwordScheme,
+  confpassword: confpasswordScheme,
 });
 
 export const pretendScheme = Yup.object().shape({
