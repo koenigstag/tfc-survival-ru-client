@@ -10,7 +10,7 @@ const nicknameScheme = Yup.string()
 const accessTokenScheme = Yup.string()
   .length(32)
   .matches();
-const discordScheme = Yup.string().matches(
+export const discordScheme = Yup.string().matches(
   /^.{3,32}#[0-9]{4}$/,
   'Не соответствует шаблону Discord tag'
 );
