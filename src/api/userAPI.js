@@ -39,9 +39,10 @@ export const loginUser = async ({ nickname, password }) => {
   return user;
 };
 
-export const changePass = async ({ nickname, password }) => {
+export const changePass = async ({ nickname, password, oldpassword }) => {
   const user = await client.patch(`users/${nickname}`, {
     passwordCrypt: encrypt(password),
+    oldpassword,
   });
 
   if (!user) {

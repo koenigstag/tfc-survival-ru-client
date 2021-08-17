@@ -11,6 +11,7 @@ import { changePasswordScheme } from '@/validation/schemes';
 import ButtonLink from '../../../components/ETC/ButtonLink';
 
 const initialValues = {
+  oldpassword: '',
   password: '',
   confpassword: '',
 };
@@ -29,6 +30,7 @@ const ChangePasswordForm = () => {
           changePassAsync({
             nickname: user.data.nickname,
             password: values.password,
+            oldpassword: values.oldpassword,
           })
         );
         setTimeout(() => {
@@ -40,6 +42,16 @@ const ChangePasswordForm = () => {
     >
       {({ errors, touched }) => (
         <Form>
+          <label>
+            <div>Старый пароль</div>
+            <Field type='password' name='oldpassword' />
+            <FieldError
+              name='oldpassword'
+              errors={errors}
+              touched={touched}
+              tag={'div'}
+            />
+          </label>
           <label>
             <div>Новый пароль</div>
             <Field type='password' name='password' />
