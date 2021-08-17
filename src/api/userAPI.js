@@ -1,6 +1,7 @@
 import { client } from './index';
 import { encrypt } from '@/services/passTransfer';
 
+// TODO check if needed
 export const getUser = async (nickname, accessToken, refreshToken) => {
   const user = await client.get(`users/${nickname}/${accessToken}`);
 
@@ -33,6 +34,18 @@ export const loginUser = async ({ nickname, password }) => {
 
   if (!user) {
     throw new Error('Cannot get user');
+  }
+
+  return user;
+};
+
+export const changePass = async ({ nickname, password }) => {
+  const user = await client.patch(`users/${nickname}`, {
+    passwordCrypt: encrypt(password),
+  });
+
+  if (!user) {
+    throw new Error('Cannot change user password');
   }
 
   return user;
