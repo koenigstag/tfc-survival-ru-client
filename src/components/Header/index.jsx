@@ -39,21 +39,24 @@ const Header = () => {
         style={{ position: 'relative', zIndex: 2 }}
       >
         <Logo className={styles.blockLogo} />
-        <NavList status={statusShow} onClick={hideOrShow} />
+        <NavList
+          status={statusShow}
+          onClick={statusShow ? hideOrShow : () => {}}
+        />
         {user.nickname === null ? (
           <div className={hideOnSmallScreen} id='authButtons'>
             <ButtonLink
               link='/account/login'
               text='Войти'
               title='Страница входа в ЛК'
-              onClick={hideOrShow}
+              onClick={statusShow ? hideOrShow : () => {}}
             />
             <ButtonLink
               link='/account/register'
               text='Регистрация'
               title='Страница регистрации на проекте'
               variant='blue'
-              onClick={hideOrShow}
+              onClick={statusShow ? hideOrShow : () => {}}
             />
           </div>
         ) : (
@@ -62,7 +65,7 @@ const Header = () => {
               link='/profile'
               text='Личный кабинет'
               title='Страница ЛК'
-              onClick={hideOrShow}
+              onClick={statusShow ? hideOrShow : () => {}}
             />
             <ButtonLink
               link='/'
