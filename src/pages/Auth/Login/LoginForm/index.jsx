@@ -51,7 +51,7 @@ const LoginForm = () => {
                 name='nickname'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
@@ -62,7 +62,7 @@ const LoginForm = () => {
                 name='password'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 

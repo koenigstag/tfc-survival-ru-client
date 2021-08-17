@@ -75,7 +75,7 @@ const RegisterForm = () => {
                 name='nickname'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
@@ -86,7 +86,7 @@ const RegisterForm = () => {
                 name='email'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
@@ -97,7 +97,7 @@ const RegisterForm = () => {
                 name='password'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
@@ -108,7 +108,7 @@ const RegisterForm = () => {
                 name='confpassword'
                 errors={errors}
                 touched={touched}
-                tag={'div'}
+                tag='div'
               />
             </label>
 
