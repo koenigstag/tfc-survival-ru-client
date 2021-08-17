@@ -41,7 +41,7 @@ const ChangePasswordForm = () => {
       {({ errors, touched }) => (
         <Form>
           <label>
-            <div>Пароль</div>
+            <div>Новый пароль</div>
             <Field type='password' name='password' />
             <FieldError
               name='password'
@@ -52,7 +52,7 @@ const ChangePasswordForm = () => {
           </label>
 
           <label>
-            <div>Повтор пароля</div>
+            <div>Подтверждение пароля</div>
             <Field type='password' name='confpassword' />
             <FieldError
               name='confpassword'

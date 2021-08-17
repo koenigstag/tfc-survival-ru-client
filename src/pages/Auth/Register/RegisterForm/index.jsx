@@ -101,7 +101,7 @@ const RegisterForm = () => {
             </label>
 
             <label>
-              <div>Повтор пароля</div>
+              <div>Подтверждение пароля</div>
               <Field type='password' name='confpassword' />
               <FieldError
                 name='confpassword'
