@@ -1,11 +1,18 @@
 import React from 'react';
+import styles from './FieldError.module.sass';
 
-const FieldError = ({ name, errors, touched, tag }) => {
+const FieldError = ({ text, name, errors, touched, tag, children }) => {
   const prepTag = tag || 'span';
-  return React.createElement(
-    prepTag,
-    {},
-    errors[name] && touched[name] ? errors[name] : ''
+  return (
+    <label style={{ display: 'block', position: 'relative' }}>
+      {text ? <div>{text}</div> : null}
+      {children}
+      {errors[name] && touched[name] && React.createElement(
+        prepTag,
+        { className: styles.fieldError },
+         errors[name]
+      )}
+    </label>
   );
 };
 
