@@ -11,6 +11,8 @@ export default class AsyncThunk {
     this.sliceName = sliceName;
     this.apiMethod = apiMethod;
     this.dispatchError = dispatchError;
+    this.asyncThunk = this.generate();
+    this.extraReducers = this.extraReducers();
   }
 
   generate () {
@@ -26,5 +28,25 @@ export default class AsyncThunk {
         }
       }
     );
+  }
+
+  extraReducers () {
+    return {
+      [this.asyncThunk.pending]: state => {
+        state.status = 'loading';
+        state.errorMessage = '';
+      },
+      [this.asyncThunk.rejected]: (state, action) => {
+        state.status = 'error';
+        if (state.errorMessage === '') {
+          state.errorMessage = action.error.message;
+        }
+      },
+      [this.asyncThunk.fulfilled]: (state, action) => {
+        state.status = 'idle';
+        state.data = action.payload;
+        state.errorMessage = '';
+      },
+    };
   }
 }
