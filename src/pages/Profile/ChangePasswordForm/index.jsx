@@ -2,7 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import FieldError from '@/components/ETC/FieldError';
-import { selectUser, changePassAsync } from '@/app/slices/userSlice';
+import {
+  selectUser,
+  changePassAsync,
+  actionCreators,
+} from '@/app/slices/userSlice';
 import { changePasswordScheme } from '@/validation/schemes';
 
 const initialValues = {
@@ -22,10 +26,14 @@ const ChangePasswordForm = () => {
       onSubmit={(values, formikBag) => {
         dispatch(
           changePassAsync({
-            nickname: values.nickname,
+            nickname: user.data.nickname,
             password: values.password,
           })
         );
+        setTimeout(() => {
+          dispatch(actionCreators.logout());
+        }, 1000);
+
         formikBag.resetForm();
       }}
     >
