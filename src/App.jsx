@@ -7,7 +7,6 @@ import AdminRoute from './components/ETC/Routes/AdminRoute';
 import xelo from '@/xelo.webp';
 import styles from './App.module.sass';
 
-// TODO React.lazy load
 // import Loader from './components/Loader';
 import CircleLoader from 'react-spinners/ClipLoader';
 import HeaderSkeleton from './components/Header/HeaderSkeleton';
@@ -109,6 +108,7 @@ const App = () => {
         <Suspense fallback={<FooterSkeleton />}>
           <Footer />
         </Suspense>
+        {/* // TODO nigga xelo on dark theme */}
         {rolltheDice && (
           <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
         )}

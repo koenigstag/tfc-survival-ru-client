@@ -14,7 +14,7 @@ export const getUser = async (nickname, accessToken, refreshToken) => {
 
 export const registerUser = async ({ user, password, ua }) => {
   const response = await client.post('users', {
-    // TODO
+    // TODO useragent
     user,
     ua,
     passwordCrypt: encrypt(password),
