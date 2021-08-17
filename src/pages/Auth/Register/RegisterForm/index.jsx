@@ -47,7 +47,9 @@ const RegisterForm = () => {
   return (
     <>
       {user.status === 'error' ? (
-        <div>{registrationRUSErrors[user.errorMessage]}</div>
+        <div style={{ color: '#aa4400' }}>
+          {registrationRUSErrors[user.errorMessage]}
+        </div>
       ) : (
         <div></div>
       )}
