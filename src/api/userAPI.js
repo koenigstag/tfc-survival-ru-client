@@ -51,3 +51,15 @@ export const changePass = async ({ nickname, password, oldpassword }) => {
 
   return user;
 };
+
+export const linkDiscord = async ({ nickname, discord }) => {
+  const user = await client.patch(`users/discord/${nickname}`, {
+    discord,
+  });
+
+  if (!user) {
+    throw new Error('Cannot link discord');
+  }
+
+  return user;
+};

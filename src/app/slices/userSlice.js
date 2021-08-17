@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import AsyncThunk from '@/utils/AsyncThunk';
-import { getUser, loginUser, registerUser, changePass } from '@/api/userAPI';
+import {
+  getUser,
+  loginUser,
+  registerUser,
+  changePass,
+  linkDiscord,
+} from '@/api/userAPI';
 
 const initialState = {
   data: {
@@ -32,7 +38,11 @@ export const registerUserAsync = registerUserAsyncObj.asyncThunk;
 const loginUserAsyncObj = new AsyncThunk('user', loginUser, dispatchUserError);
 export const loginUserAsync = loginUserAsyncObj.asyncThunk;
 
-const changePassAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
+const changePassAsyncObj = new AsyncThunk(
+  'user',
+  changePass,
+  dispatchUserError
+);
 export const changePassAsync = changePassAsyncObj.asyncThunk;
 
 const setCapeAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
@@ -41,7 +51,11 @@ export const setCapeAsync = setCapeAsyncObj.asyncThunk;
 const setSkinAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
 export const setSkinAsync = setSkinAsyncObj.asyncThunk;
 
-const linkDiscordAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
+const linkDiscordAsyncObj = new AsyncThunk(
+  'user',
+  linkDiscord,
+  dispatchUserError
+);
 export const linkDiscordAsync = linkDiscordAsyncObj.asyncThunk;
 
 export const userSlice = createSlice({
@@ -71,6 +85,8 @@ export const userSlice = createSlice({
     ...loginUserAsyncObj.extraReducers,
 
     ...changePassAsyncObj.extraReducers,
+
+    ...linkDiscordAsyncObj.extraReducers,
   },
 });
 
