@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import { setSkinAsync } from '@/app/slices/userSlice';
 
 const initialValues = {
-  skin: null,
+  skin: '',
 };
 
 const UploadSkinForm = ({ user }) => {

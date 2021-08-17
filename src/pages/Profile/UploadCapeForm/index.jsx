@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import { setCapeAsync } from '@/app/slices/userSlice';
 
 const initialValues = {
-  cape: null,
+  cape: '',
 };
 
 const UploadCapeForm = ({ user }) => {
