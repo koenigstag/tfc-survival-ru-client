@@ -4,7 +4,6 @@ import cx from 'classnames';
 import styles from './ButtonLink.module.sass';
 
 const ButtonLink = ({ href, link, text, variant, ...rest }) => {
-  console.log(variant ? variant : 'white');
   const classnames = cx(styles.buttonLink, {
     [styles.buttonLinkWhite]: (variant ? variant : 'white') === 'white',
     [styles.buttonLinkBlue]: variant === 'blue',
