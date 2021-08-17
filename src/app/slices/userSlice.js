@@ -35,6 +35,15 @@ export const loginUserAsync = loginUserAsyncObj.asyncThunk;
 const changePassAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
 export const changePassAsync = changePassAsyncObj.asyncThunk;
 
+const setCapeAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
+export const setCapeAsync = setCapeAsyncObj.asyncThunk;
+
+const setSkinAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
+export const setSkinAsync = setSkinAsyncObj.asyncThunk;
+
+const linkDiscordAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
+export const linkDiscordAsync = linkDiscordAsyncObj.asyncThunk;
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
