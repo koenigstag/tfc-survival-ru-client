@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import FieldError from '@/components/ETC/FieldError';
 import ButtonLink from '@/components/ETC/ButtonLink';
-import { linkDiscordAsync } from '@/app/slices/userSlice';
+import { linkDiscordAsync, selectUser } from '@/app/slices/userSlice';
+
 import { linkDiscordScheme } from '@/validation/schemes';
 
 const initialValues = user => ({
@@ -39,8 +40,10 @@ const fakeDiscord = () => {
   return `${tagDescr} ${tagName}#${tagNum}`;
 };
 
-const LinkDiscordForm = ({ user }) => {
+const LinkDiscordForm = (props) => {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  
   return (
     <Formik
       initialValues={initialValues(user)}
