@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TableRow = ({ nickname, }) => {
+const TableRow = ({ nickname }) => {
   return (
     <tr>
       <td>{nickname}</td>

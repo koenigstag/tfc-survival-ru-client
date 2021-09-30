@@ -40,10 +40,10 @@ const fakeDiscord = () => {
   return `${tagDescr} ${tagName}#${tagNum}`;
 };
 
-const LinkDiscordForm = (props) => {
+const LinkDiscordForm = props => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  
+
   return (
     <Formik
       initialValues={initialValues(user)}

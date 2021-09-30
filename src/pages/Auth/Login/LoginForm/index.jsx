@@ -24,7 +24,9 @@ const LoginForm = () => {
   return (
     <>
       {user.status === 'error' ? (
-        <div style={{color: "#aa4400"}}>{loginRUSErrors[user.errorMessage]}</div>
+        <div style={{ color: '#aa4400' }}>
+          {loginRUSErrors[user.errorMessage]}
+        </div>
       ) : (
         <div></div>
       )}
