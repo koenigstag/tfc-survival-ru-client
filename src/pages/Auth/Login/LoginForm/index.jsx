@@ -34,7 +34,6 @@ const LoginForm = () => {
         initialValues={initialValues}
         validationSchema={loginScheme}
         onSubmit={(values, formikBag) => {
-          //console.log(values);
           dispatch(
             loginUserAsync({
               nickname: values.nickname,
