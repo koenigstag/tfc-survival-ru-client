@@ -6,15 +6,10 @@ import { store } from '@/app/store';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
-// const App = React.lazy(() => import('./App'));
-// import Loader from './components/Loader';
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <Suspense fallback={Loader}> */}
       <App />
-      {/* </Suspense> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
