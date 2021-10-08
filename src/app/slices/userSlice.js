@@ -24,8 +24,8 @@ const dispatchUserError = (dispatch, error) => {
   dispatch(actionCreators.setErrorMessage(error.response.data.error.message));
 };
 
-// TODO check if needed
-const getUserAsyncObj = new AsyncThunk('user', getUser, dispatchUserError);
+// TODO check not needed
+// const getUserAsyncObj = new AsyncThunk('user', getUser, dispatchUserError);
 export const getUserAsync = getUserAsyncObj.asyncThunk;
 
 const registerUserAsyncObj = new AsyncThunk(

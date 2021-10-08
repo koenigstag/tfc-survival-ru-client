@@ -1,8 +1,8 @@
 import { client } from './index';
 import { encrypt } from '@/services/passTransfer';
 
-// TODO check if needed
-export const getUser = async (nickname, accessToken, refreshToken) => {
+// TODO check not needed
+/* export const getUser = async (nickname, accessToken, refreshToken) => {
   const user = await client.get(`users/${nickname}/${accessToken}`);
 
   if (!user) {
@@ -10,11 +10,11 @@ export const getUser = async (nickname, accessToken, refreshToken) => {
   }
 
   return user;
-};
+}; */
 
 export const registerUser = async ({ user, password, ua }) => {
   const response = await client.post('users', {
-    // TODO useragent
+    // TODO more useragent data
     user,
     ua,
     passwordCrypt: encrypt(password),
