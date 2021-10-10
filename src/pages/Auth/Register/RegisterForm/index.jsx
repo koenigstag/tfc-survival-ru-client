@@ -81,9 +81,9 @@ const RegisterForm = () => {
               errors={errors}
               touched={touched}
               tag='div'
-              text='Логин'
+              text='Логин/Ник'
             >
-              <Field type='text' name='nickname' />
+              <Field type='text' name='nickname' autoFocus />
             </FieldError>
 
             <FieldError
