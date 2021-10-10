@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Form, Formik } from 'formik';
 
 const UploadFileForm = ({
@@ -18,9 +18,15 @@ const UploadFileForm = ({
         setFileSrc(res);
       })
       .catch(e => {
+        // TODO show errors in ui
         console.error(e.message);
       });
-  }, [sideEffect, sideEffectDependency]);
+  }, [sideEffect, fileSrc]);
+
+  const preview = useCallback(() => filePreview(fileSrc), [
+    fileSrc,
+    filePreview,
+  ]);
 
   return (
     <Formik
@@ -29,13 +35,12 @@ const UploadFileForm = ({
         if (!file) {
           return;
         }
-        console.log('submit file');
 
         submitFunc(file).then(res => {
-          console.log(res);
           setFileSrc(res);
         });
 
+        formikBag.setFieldValue('file', '');
         formikBag.resetForm();
       }}
     >
@@ -74,13 +79,13 @@ const UploadFileForm = ({
                 <input type='file' name='file' onChange={onChangeFile} />
 
                 <div>
-                  <button type='submit' disabled={errors.file || !values.file}>
+                  <button type='submit' disabled={!values.file || errors.file}>
                     {text.submitBtn}
                   </button>{' '}
                   {errors.file ? errors.file : ''}
                 </div>
               </Form>
-              <div>{filePreview(fileSrc)}</div>
+              <div>{preview()}</div>
             </fieldset>
           </>
         );

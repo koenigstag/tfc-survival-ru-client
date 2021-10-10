@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'app/slices/userSlice';
 import ChangePasswordForm from './ChangePasswordForm';
 import LinkDiscordForm from './LinkDiscordForm';
 import ConfirmEmailForm from './ConfirmEmailForm';
 import UploadFileForm from './UploadFileForm';
-import UploadSkinForm from './UploadSkinForm';
-import UploadCapeForm from './UploadCapeForm';
+import Skin3DPreview from './Skin3DPreview';
 import { getCape, setCape, getSkin, setSkin } from 'api/userAPI';
-import { baseURL } from 'api';
+
+const imageStyles = {
+  marginTop: '10px',
+  maxWidth: '300px',
+  // border: '1px solid #555',
+  // borderRadius: '5px',
+  outline: 'thick double #555',
+};
 
 const ProfilePage = () => {
   const user = useSelector(selectUser);
-  const [show, setShow] = useState(false);
-
-  const imageStyles = {
-    marginTop: '10px',
-    maxWidth: '300px',
-    // border: '1px solid #555',
-    // borderRadius: '5px',
-    outline: 'thick double #555',
-  };
 
   return (
     <div>
@@ -45,58 +42,11 @@ const ProfilePage = () => {
             file,
           })
         }
-        filePreview={fileSrc => {
-          let renderSrc;
-          if (fileSrc) {
-            const fileURL = new URL(fileSrc);
-            const paths = fileURL.pathname.split('/');
-            const filename = paths[paths.length - 1];
-            renderSrc = `/3drender/index.html?filename=${filename}`;
-            console.log(renderSrc);
-          }
-
-          return (
-            <div>
-              {fileSrc === null ? (
-                <img
-                  style={imageStyles}
-                  src={`${baseURL}/static/skins/steve.png`}
-                  alt='Default skin'
-                />
-              ) : (
-                <img style={imageStyles} src={fileSrc} alt='User skin' />
-              )}
-              {/* <iframe
-              title='skin 3d render'
-              src='https://minerender.org/embed/skin/?skin=asdasd&shadow=true'
-              frameborder='10'
-            ></iframe> */}
-
-              <div>
-                <button
-                  onClick={() => {
-                    setShow(s => !s);
-                  }}
-                  type='button'
-                >
-                  Показать/Скрыть превью
-                </button>
-
-                <iframe
-                  title='skin 3d render'
-                  style={{
-                    width: '500px',
-                    height: '500px',
-                    display: show ? 'block' : 'none',
-                  }}
-                  src={renderSrc}
-                  frameBorder='1'
-                ></iframe>
-              </div>
-            </div>
-          );
-        }}
+        filePreview={fileSrc => (
+          <Skin3DPreview fileSrc={fileSrc} imageStyles={imageStyles} />
+        )}
       />
+
       <UploadFileForm
         text={{
           legend: 'Загрузка плаща',
