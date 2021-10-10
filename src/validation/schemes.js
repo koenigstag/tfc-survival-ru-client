@@ -1,17 +1,16 @@
 import * as Yup from 'yup';
 
 // regexp
-const usernameRegex = /^[a-z0-9_]{3,16}$/i;
+const nicknameRegex = /^[a-z0-9_]{3,16}$/i;
 const emailRegex = /^\S+@\S+\.\S+$/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])[0-9a-z]{6,}$/i;
 const discordRegex = /^.{2,32}#\d{4}$/;
-const tokenRegex = /^\$2[a-z0-9.\/$]{58}$/i;
-const skinFilenameRegex = /^[a-z0-9_\-\/]{3,16}.png$/i;
+const tokenRegex = /^\$2[a-z0-9./$]{58}$/i;
 
 // schemes
 const nicknameScheme = Yup.string()
   .matches(
-    usernameRegex,
+    nicknameRegex,
     'Разрешенная длина ника от 3 до 16 символов. Используйте только латинские буквы, числа и символ подчеркивания'
   )
   .required('Требуемое поле');
