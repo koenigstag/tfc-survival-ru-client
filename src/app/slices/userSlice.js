@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import AsyncThunk from '@/utils/AsyncThunk';
+import AsyncThunk from 'utils/AsyncThunk';
 import {
-  getUser,
   loginUser,
   registerUser,
   changePass,
   linkDiscord,
-} from '@/api/userAPI';
+} from 'api/userAPI';
 
 const initialState = {
   data: {
@@ -14,6 +13,7 @@ const initialState = {
     accessToken: null,
 
     email: null,
+    confirmedEmail: null,
     discord: null,
   },
   errorMessage: '',
@@ -26,7 +26,7 @@ const dispatchUserError = (dispatch, error) => {
 
 // TODO check not needed
 // const getUserAsyncObj = new AsyncThunk('user', getUser, dispatchUserError);
-export const getUserAsync = getUserAsyncObj.asyncThunk;
+// export const getUserAsync = getUserAsyncObj.asyncThunk;
 
 const registerUserAsyncObj = new AsyncThunk(
   'user',
@@ -44,12 +44,6 @@ const changePassAsyncObj = new AsyncThunk(
   dispatchUserError
 );
 export const changePassAsync = changePassAsyncObj.asyncThunk;
-
-const setCapeAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
-export const setCapeAsync = setCapeAsyncObj.asyncThunk;
-
-const setSkinAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
-export const setSkinAsync = setSkinAsyncObj.asyncThunk;
 
 const linkDiscordAsyncObj = new AsyncThunk(
   'user',
