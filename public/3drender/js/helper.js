@@ -5,9 +5,9 @@ var skinSrc = {
 function getSkinSrc () {
   let params = new URL(document.location).searchParams;
   let filename = params.get('filename');
-  console.log('filename', filename);
   if (!Boolean(filename) || filename === 'undefined' || filename === 'null') {
     filename = 'steve.png';
   }
+  // console.log('filename', filename);
   return skinSrc.current + filename;
 }

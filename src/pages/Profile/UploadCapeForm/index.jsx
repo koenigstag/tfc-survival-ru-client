@@ -26,7 +26,6 @@ const UploadCapeForm = ({ user }) => {
         if (!values.cape) {
           return;
         }
-        console.log('submit cape');
 
         setCape({
           nickname: user.data.nickname,

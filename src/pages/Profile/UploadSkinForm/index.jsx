@@ -27,7 +27,6 @@ const UploadSkinForm = ({ user }) => {
         if (!values.skin) {
           return;
         }
-        console.log('submit skin');
 
         setSkin({
           nickname: user.data.nickname,
