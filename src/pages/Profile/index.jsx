@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ChangePasswordForm from './ChangePasswordForm';
-import { selectUser } from '@/app/slices/userSlice';
+import { selectUser } from 'app/slices/userSlice';
 import UploadSkinForm from './UploadSkinForm';
 import UploadCapeForm from './UploadCapeForm';
 import LinkDiscordForm from './LinkDiscordForm';

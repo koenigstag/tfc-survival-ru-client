@@ -1,11 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import ButtonLink from '@/components/ETC/ButtonLink';
-import { linkDiscordAsync, selectUser } from '@/app/slices/userSlice';
-
-import { linkDiscordScheme } from '@/validation/schemes';
+import FieldError from 'components/ETC/FieldError';
+import ButtonLink from 'components/ETC/ButtonLink';
+import { linkDiscordAsync, selectUser } from 'app/slices/userSlice';
+import { linkDiscordScheme } from 'validation/schemes';
 
 const initialValues = user => ({
   discord: user.data.discord === null ? '' : user.data.discord,

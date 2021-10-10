@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import ButtonLink from '@/components/ETC/ButtonLink';
+import FieldError from 'components/ETC/FieldError';
+import ButtonLink from 'components/ETC/ButtonLink';
 import {
   registerUserAsync,
   selectUser,
   actionCreators,
-} from '@/app/slices/userSlice';
-import { registerScheme } from '@/validation/schemes';
+} from 'app/slices/userSlice';
+import { registerScheme } from 'validation/schemes';
 
 const initialValues = {
   nickname: '',

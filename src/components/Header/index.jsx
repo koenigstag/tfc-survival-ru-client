@@ -5,7 +5,7 @@ import Logo from './Logo';
 import NavList from './NavList';
 import BurgerMenu from './BurgerMenu';
 import ButtonLink from '../ETC/ButtonLink';
-import { selectUserData, actionCreators } from '@/app/slices/userSlice';
+import { selectUserData, actionCreators } from 'app/slices/userSlice';
 import styles from './Header.module.sass';
 
 const Header = () => {

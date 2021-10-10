@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonLink from '@/components/ETC/ButtonLink';
+import ButtonLink from 'components/ETC/ButtonLink';
 import styles from './LauncherPage.module.sass';
 
 const LauncherPage = () => {

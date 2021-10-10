@@ -2,7 +2,7 @@ import React /*, { Suspense }*/ from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App.jsx';
-import { store } from '@/app/store';
+import { store } from 'app/store';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 

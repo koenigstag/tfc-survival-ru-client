@@ -1,5 +1,5 @@
 import React from 'react';
-import SmallLink from '@/components/ETC/SmallLink';
+import SmallLink from 'components/ETC/SmallLink';
 
 const NavItem = ({ text, link, href, title, ...rest }) => {
   return (

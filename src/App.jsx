@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
 import AdminRoute from './components/ETC/Routes/AdminRoute';
-import xelo from '@/xelo.webp';
+import xelo from 'xelo.webp';
 import styles from './App.module.sass';
 
 // import Loader from './components/Loader';
@@ -12,22 +12,22 @@ import CircleLoader from 'react-spinners/ClipLoader';
 import HeaderSkeleton from './components/Header/HeaderSkeleton';
 import FooterSkeleton from './components/Footer/FooterSkeleton';
 
-const HomePage = React.lazy(() => import('@/pages/Home'));
+const HomePage = React.lazy(() => import('pages/Home'));
 const PageNotFound = React.lazy(() => import('./pages/404'));
 
-const Header = React.lazy(() => import('@/components/Header'));
-const Footer = React.lazy(() => import('@/components/Footer'));
+const Header = React.lazy(() => import('components/Header'));
+const Footer = React.lazy(() => import('components/Footer'));
 
-const LauncherPage = React.lazy(() => import('@/pages/Home/Launcher'));
-const RulesPage = React.lazy(() => import('@/pages/Home/Rules'));
-const AboutPage = React.lazy(() => import('@/pages/Home/About'));
+const LauncherPage = React.lazy(() => import('pages/Home/Launcher'));
+const RulesPage = React.lazy(() => import('pages/Home/Rules'));
+const AboutPage = React.lazy(() => import('pages/Home/About'));
 
 const BannedPage = React.lazy(() => import('./pages/Home/Banned'));
 const MapPage = React.lazy(() => import('./pages/Home/Map'));
 const OnlinePage = React.lazy(() => import('./pages/Home/Online'));
 
-const LoginPage = React.lazy(() => import('@/pages/Auth/Login'));
-const RegisterPage = React.lazy(() => import('@/pages/Auth/Register'));
+const LoginPage = React.lazy(() => import('pages/Auth/Login'));
+const RegisterPage = React.lazy(() => import('pages/Auth/Register'));
 const ProfilePage = React.lazy(() => import('./pages/Profile'));
 
 const AdminPage = React.lazy(() => import('./pages/Admin'));

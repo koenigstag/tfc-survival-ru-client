@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import ButtonLink from '@/components/ETC/ButtonLink';
-import { loginUserAsync, selectUser } from '@/app/slices/userSlice';
-import { loginScheme } from '@/validation/schemes';
+import FieldError from 'components/ETC/FieldError';
+import ButtonLink from 'components/ETC/ButtonLink';
+import { loginUserAsync, selectUser } from 'app/slices/userSlice';
+import { loginScheme } from 'validation/schemes';
 
 const initialValues = {
   nickname: '',

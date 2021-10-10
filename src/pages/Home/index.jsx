@@ -1,7 +1,7 @@
 import React from 'react';
-import ButtonLink from '@/components/ETC/ButtonLink';
+import ButtonLink from 'components/ETC/ButtonLink';
 import { useSelector } from 'react-redux';
-import { selectUser } from '@/app/slices/userSlice';
+import { selectUser } from 'app/slices/userSlice';
 import styles from './HomePage.module.sass';
 
 const HomePage = () => {
