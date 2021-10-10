@@ -88,19 +88,20 @@ const UploadSkinForm = ({ user }) => {
                   </button>{' '}
                   {errors.skin ? errors.skin : ''}
                 </div>
-                <div style={style}>
+                <div>
                   {skinSrc === null ? (
                     <img
+                      style={style}
                       src={`${baseURL}/static/skins/steve.png`}
                       alt='default skin'
                     />
                   ) : (
-                    <img src={skinSrc} alt='user skin' />
+                    <img style={style} src={skinSrc} alt='user skin' />
                   )}
                 </div>
               </fieldset>
             </Form>
-            
+            <iframe title="render 3d" src="https://minerender.org/embed/skin/?skin=MiniDigger&shadow=true" frameborder="0"></iframe>
           </>
         );
       }}
