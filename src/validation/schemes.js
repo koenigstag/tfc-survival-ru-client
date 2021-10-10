@@ -52,7 +52,7 @@ export const registerScheme = Yup.object().shape({
 
 export const loginScheme = Yup.object().shape({
   nickname: nicknameScheme,
-  password: passwordScheme,
+  // password: passwordScheme,
 });
 
 export const changePasswordScheme = Yup.object().shape({
