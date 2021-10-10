@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
-import { getCape, setCape } from '../../../api/userAPI';
+import { getCape, setCape } from 'api/userAPI';
 
 const initialValues = {
   cape: '',

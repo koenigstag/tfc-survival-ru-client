@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
-import { getSkin, setSkin } from '../../../api/userAPI';
-import { baseURL } from '../../../api';
+import { getSkin, setSkin } from 'api/userAPI';
+import { baseURL } from 'api';
 
 const initialValues = {
   skin: '',
@@ -88,20 +88,19 @@ const UploadSkinForm = ({ user }) => {
                   </button>{' '}
                   {errors.skin ? errors.skin : ''}
                 </div>
-                <div>
+                <div style={style}>
                   {skinSrc === null ? (
                     <img
-                      style={style}
                       src={`${baseURL}/static/skins/steve.png`}
                       alt='default skin'
                     />
                   ) : (
-                    <img style={style} src={skinSrc} alt='user skin' />
+                    <img src={skinSrc} alt='user skin' />
                   )}
                 </div>
               </fieldset>
             </Form>
-            <iframe title="render 3d" src="https://minerender.org/embed/skin/?skin=MiniDigger&shadow=true" frameborder="0"></iframe>
+            
           </>
         );
       }}
