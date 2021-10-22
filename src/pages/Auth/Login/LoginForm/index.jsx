@@ -11,13 +11,12 @@ const initialValues = {
   password: '',
 };
 
-const loginRUSErrors = {
-  'Invalid nickname or password': 'Неверный логин или пароль 🔐',
+const loginRUSErrors = (errMsg) => {
+  if (errMsg === 'Invalid nickname or password') { return  'Неверный логин или пароль 🔐' }
   
-  "Cannot read property 'data' of undefined":
-    'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
-  'Server database is switched off':
-    'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
+  if (/^Cannot read [\w]* ((data)|(undefined)?).*$/i.test(errMsg) ||
+    errMsg === 'Server database is switched off') {
+   return  'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.' }
 };
 
 const LoginForm = () => {
@@ -28,7 +27,7 @@ const LoginForm = () => {
     <>
       {user.status === 'error' ? (
         <div style={{ color: '#aa4400' }}>
-          {loginRUSErrors[user.errorMessage]}
+          {loginRUSErrors(user.errorMessage)}
         </div>
       ) : (
         <div></div>
