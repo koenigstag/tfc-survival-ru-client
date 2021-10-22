@@ -6,6 +6,7 @@ import {
   registerUser,
   changePass,
   linkDiscord,
+  setSkin
 } from '@/api/userAPI';
 
 const initialState = {
@@ -48,7 +49,7 @@ export const changePassAsync = changePassAsyncObj.asyncThunk;
 const setCapeAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
 export const setCapeAsync = setCapeAsyncObj.asyncThunk;
 
-const setSkinAsyncObj = new AsyncThunk('user', changePass, dispatchUserError);
+const setSkinAsyncObj = new AsyncThunk('user', setSkin, dispatchUserError);
 export const setSkinAsync = setSkinAsyncObj.asyncThunk;
 
 const linkDiscordAsyncObj = new AsyncThunk(

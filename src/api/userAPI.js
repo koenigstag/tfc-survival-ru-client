@@ -13,7 +13,7 @@ export const getUser = async (nickname, accessToken, refreshToken) => {
 };
 
 export const registerUser = async ({ user, password, ua }) => {
-  const response = await client.post('users', {
+  const response = await client.post('users/register', {
     // TODO useragent
     user,
     ua,
@@ -28,7 +28,7 @@ export const registerUser = async ({ user, password, ua }) => {
 };
 
 export const loginUser = async ({ nickname, password }) => {
-  const user = await client.post(`users/${nickname}`, {
+  const user = await client.post(`users/${nickname}/login`, {
     passwordCrypt: encrypt(password),
   });
 
@@ -40,7 +40,7 @@ export const loginUser = async ({ nickname, password }) => {
 };
 
 export const changePass = async ({ nickname, password, oldpassword }) => {
-  const user = await client.patch(`users/${nickname}`, {
+  const user = await client.patch(`users/${nickname}/password`, {
     passwordCrypt: encrypt(password),
     oldpassword,
   });
@@ -53,7 +53,8 @@ export const changePass = async ({ nickname, password, oldpassword }) => {
 };
 
 export const linkDiscord = async ({ nickname, discord }) => {
-  const user = await client.patch(`users/discord/${nickname}`, {
+  // TODO accessToken check
+  const user = await client.patch(`users/${nickname}/discord/`, {
     discord,
   });
 
@@ -63,3 +64,17 @@ export const linkDiscord = async ({ nickname, discord }) => {
 
   return user;
 };
+
+export const setSkin = async ({ nickname, skin }) => {
+  // TODO accessToken check
+  const user = await client.patch(`users/${nickname}/skin`, {
+    skin,
+  });
+
+  if (!user) {
+    throw new Error('Cannot set new skin');
+  }
+
+  return user;
+};
+

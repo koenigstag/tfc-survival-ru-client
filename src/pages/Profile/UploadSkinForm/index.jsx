@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
+import { client } from '@/api';
 import { setSkinAsync } from '@/app/slices/userSlice';
 
 const initialValues = {
@@ -8,6 +9,7 @@ const initialValues = {
 };
 
 const UploadSkinForm = ({ user }) => {
+  // console.log(client) // check if client has baseURL field 
   const dispatch = useDispatch();
 
   // load cape
@@ -25,7 +27,7 @@ const UploadSkinForm = ({ user }) => {
         dispatch(
           setSkinAsync({
             nickname: user.data.nickname,
-            cape: values.cape,
+            skin: values.skin,
           })
         );
 
@@ -36,8 +38,13 @@ const UploadSkinForm = ({ user }) => {
         <Form>
           <fieldset>
             <legend>Загрузка скина</legend>
-            <div>Файл скина в формате png</div>
-            <Field type='file' name='skin' />
+            <label>Файл скина в формате png
+              <Field type='file' name='skin' />
+            </label>
+            
+            <div style={{ maxWidth: '300px' }}>
+              <img src={ client.baseURL + user.data.skin ? user.data.skin : '/skins/steve.png'} alt="skin preview" />
+            </div>
           </fieldset>
         </Form>
       )}
