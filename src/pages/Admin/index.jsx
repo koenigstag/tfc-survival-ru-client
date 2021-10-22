@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import { selectUser, actionCreators } from '@/app/slices/userSlice';
+import FieldError from 'components/ETC/FieldError';
+import { selectUser, actionCreators } from 'app/slices/userSlice';
 
 const AdminPage = () => {
   const user = useSelector(selectUser);

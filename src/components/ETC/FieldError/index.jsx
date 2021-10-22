@@ -7,11 +7,13 @@ const FieldError = ({ text, name, errors, touched, tag, children }) => {
     <label style={{ display: 'block', position: 'relative' }}>
       {text ? <div>{text}</div> : null}
       {children}
-      {errors[name] && touched[name] && React.createElement(
-        prepTag,
-        { className: styles.fieldError },
-         errors[name]
-      )}
+      {errors[name] &&
+        touched[name] &&
+        React.createElement(
+          prepTag,
+          { className: styles.fieldError },
+          errors[name]
+        )}
     </label>
   );
 };

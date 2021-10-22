@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import ButtonLink from '@/components/ETC/ButtonLink';
+import FieldError from 'components/ETC/FieldError';
+import ButtonLink from 'components/ETC/ButtonLink';
 import {
   registerUserAsync,
   selectUser,
   actionCreators,
-} from '@/app/slices/userSlice';
-import { registerScheme } from '@/validation/schemes';
+} from 'app/slices/userSlice';
+import { registerScheme } from 'validation/schemes';
 
 const initialValues = {
   nickname: '',
@@ -19,10 +19,16 @@ const initialValues = {
 
 const registrationRUSErrors = {
   'Nickname is already in use': 'Никнейм уже зарегистрирован',
+
   "Cannot read property 'data' of undefined":
     'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
+  'Server database is switched off':
+    'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
+
   'Only 3 accounts permitted on 1 email':
-    'На этот Email уже зарегистрировано 3 аккаунта. Куда еще больше❓',
+    'Уже зарегистрировано 3 аккаунта. Куда еще больше❓',
+  'Only 3 accounts permitted on 1 ip address':
+    'Уже зарегистрировано 3 аккаунта. Куда еще больше❓',
 };
 
 const RegisterForm = () => {
@@ -75,9 +81,9 @@ const RegisterForm = () => {
               errors={errors}
               touched={touched}
               tag='div'
-              text='Логин'
+              text='Логин/Ник'
             >
-              <Field type='text' name='nickname' />
+              <Field type='text' name='nickname' autoFocus />
             </FieldError>
 
             <FieldError

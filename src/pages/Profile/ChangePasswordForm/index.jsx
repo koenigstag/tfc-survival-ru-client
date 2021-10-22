@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import ButtonLink from '@/components/ETC/ButtonLink';
-import { changePassAsync, actionCreators } from '@/app/slices/userSlice';
-import { changePasswordScheme } from '@/validation/schemes';
+import FieldError from 'components/ETC/FieldError';
+import ButtonLink from 'components/ETC/ButtonLink';
+import { changePassAsync, actionCreators } from 'app/slices/userSlice';
+import { changePasswordScheme } from 'validation/schemes';
 
 const initialValues = {
   oldpassword: '',

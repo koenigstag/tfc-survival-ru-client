@@ -1,8 +1,9 @@
-import { client } from './index';
-import { encrypt } from '@/services/passTransfer';
+import axios from 'axios';
+import { baseURL, clientApi } from './index';
+import { encrypt } from 'services/passTransfer';
 
-// TODO check if needed
-export const getUser = async (nickname, accessToken, refreshToken) => {
+// TODO check not needed
+/* export const getUser = async (nickname, accessToken, refreshToken) => {
   const user = await client.get(`users/${nickname}/${accessToken}`);
 
   if (!user) {
@@ -10,11 +11,11 @@ export const getUser = async (nickname, accessToken, refreshToken) => {
   }
 
   return user;
-};
+}; */
 
 export const registerUser = async ({ user, password, ua }) => {
-  const response = await client.post('users/register', {
-    // TODO useragent
+  const response = await clientApi.post('users', {
+    // TODO more useragent data
     user,
     ua,
     passwordCrypt: encrypt(password),
@@ -28,7 +29,7 @@ export const registerUser = async ({ user, password, ua }) => {
 };
 
 export const loginUser = async ({ nickname, password }) => {
-  const user = await client.post(`users/${nickname}/login`, {
+  const user = await clientApi.post(`users/${nickname}`, {
     passwordCrypt: encrypt(password),
   });
 
@@ -40,7 +41,7 @@ export const loginUser = async ({ nickname, password }) => {
 };
 
 export const changePass = async ({ nickname, password, oldpassword }) => {
-  const user = await client.patch(`users/${nickname}/password`, {
+  const user = await clientApi.patch(`users/${nickname}`, {
     passwordCrypt: encrypt(password),
     oldpassword,
   });
@@ -54,7 +55,7 @@ export const changePass = async ({ nickname, password, oldpassword }) => {
 
 export const linkDiscord = async ({ nickname, discord }) => {
   // TODO accessToken check
-  const user = await client.patch(`users/${nickname}/discord/`, {
+  const user = await clientApi.patch(`users/discord/${nickname}`, {
     discord,
   });
 
@@ -65,16 +66,51 @@ export const linkDiscord = async ({ nickname, discord }) => {
   return user;
 };
 
-export const setSkin = async ({ nickname, skin }) => {
-  // TODO accessToken check
-  const user = await client.patch(`users/${nickname}/skin`, {
-    skin,
-  });
+// TODO access token check
+// TODO test api
+export const setSkin = async ({ nickname, accessToken, file }) => {
+  const data = new FormData();
+  data.append('file', file);
+  data.append('accessToken', accessToken);
 
-  if (!user) {
-    throw new Error('Cannot set new skin');
+  const res = await clientApi.post(`media/skin/${nickname}`, data);
+
+  if (res.status !== 200) {
+    throw new Error('Cannot set skin');
   }
 
-  return user;
+  return baseURL + `/static/skins/${nickname}.png`;
 };
 
+export const setCape = async ({ nickname, accessToken, file }) => {
+  const data = new FormData();
+  data.append('file', file);
+  data.append('accessToken', accessToken);
+  const res = await clientApi.post(`media/cape/${nickname}`, data);
+
+  if (res.status !== 200) {
+    throw new Error('Cannot set skin');
+  }
+
+  return baseURL + `/static/capes/${nickname}.png`;
+};
+
+export const getSkin = async ({ nickname }) => {
+  const res = await axios.get(`${baseURL}/static/skins/${nickname}.png`);
+
+  if (res.status !== 200) {
+    throw new Error('Cannot get skin');
+  }
+
+  return baseURL + `/static/skins/${nickname}.png`;
+};
+
+export const getCape = async ({ nickname }) => {
+  const res = await axios.get(`${baseURL}/static/capes/${nickname}.png`);
+
+  if (res.status !== 200) {
+    throw new Error('Cannot get cape');
+  }
+
+  return baseURL + `/static/capes/${nickname}.png`;
+};

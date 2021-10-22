@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonLink from '@/components/ETC/ButtonLink';
+import ButtonLink from 'components/ETC/ButtonLink';
 import styles from './LauncherPage.module.sass';
 
 const LauncherPage = () => {
@@ -16,7 +16,7 @@ const LauncherPage = () => {
               variant='blue'
               text='Launcher.exe'
               title='Исполняемый файл .exe для ОС Windows. Необходимо JRE 1.8+.'
-              link="home/Windows"
+              link='home/Windows'
             />
           </div>
         </li>
@@ -28,7 +28,7 @@ const LauncherPage = () => {
               variant='blue'
               text='Launcher.jar'
               title='Исполняемый файл .jar для ОС Linux. Необходимо JRE 1.8+.'
-              link="home/Other"
+              link='home/Other'
             />
           </div>
         </li>

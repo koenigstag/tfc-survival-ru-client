@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
-import FieldError from '@/components/ETC/FieldError';
-import ButtonLink from '@/components/ETC/ButtonLink';
-import { loginUserAsync, selectUser } from '@/app/slices/userSlice';
-import { loginScheme } from '@/validation/schemes';
+import FieldError from 'components/ETC/FieldError';
+import ButtonLink from 'components/ETC/ButtonLink';
+import { loginUserAsync, selectUser } from 'app/slices/userSlice';
+import { loginScheme } from 'validation/schemes';
 
 const initialValues = {
   nickname: '',
@@ -13,7 +13,10 @@ const initialValues = {
 
 const loginRUSErrors = {
   'Invalid nickname or password': 'Неверный логин или пароль 🔐',
+  
   "Cannot read property 'data' of undefined":
+    'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
+  'Server database is switched off':
     'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.',
 };
 
@@ -24,7 +27,9 @@ const LoginForm = () => {
   return (
     <>
       {user.status === 'error' ? (
-        <div style={{color: "#aa4400"}}>{loginRUSErrors[user.errorMessage]}</div>
+        <div style={{ color: '#aa4400' }}>
+          {loginRUSErrors[user.errorMessage]}
+        </div>
       ) : (
         <div></div>
       )}
@@ -32,7 +37,6 @@ const LoginForm = () => {
         initialValues={initialValues}
         validationSchema={loginScheme}
         onSubmit={(values, formikBag) => {
-          //console.log(values);
           dispatch(
             loginUserAsync({
               nickname: values.nickname,
@@ -49,9 +53,9 @@ const LoginForm = () => {
               errors={errors}
               touched={touched}
               tag='div'
-              text='Логин'
+              text='Логин/Ник'
             >
-              <Field type='text' name='nickname' />
+              <Field type='text' name='nickname' autoFocus />
             </FieldError>
 
             <FieldError

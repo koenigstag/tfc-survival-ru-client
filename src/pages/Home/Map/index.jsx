@@ -1,5 +1,5 @@
 import React from 'react';
-import { mapURL } from '@/api/';
+import { mapURL } from 'api/';
 import blank_map from './media/images/blank_map.png';
 
 const MapPage = () => {
