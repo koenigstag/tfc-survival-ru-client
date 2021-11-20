@@ -15,11 +15,9 @@ export const mapURL = 'http://tfc-survival.ru:8154/';
 clientApi.interceptors.request.use(
   config => {
     const token = window.localStorage.getItem(CONTANTS.ACCESS_TOKEN);
-    console.log(token);
     if (token) {
       config.headers = { ...config.headers, Authorization: "Bearer " + token };
     }
-    console.log(config);
     return config;
   },
   err => Promise.reject(err)
