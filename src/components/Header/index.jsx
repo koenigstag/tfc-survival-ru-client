@@ -11,6 +11,7 @@ import styles from './Header.module.sass';
 const Header = () => {
   const dispatch = useDispatch();
   const [statusShow, setShow] = useState(false);
+  const user = useSelector(selectUserData);
 
   const hideOrShow = () => {
     setShow(!statusShow);
@@ -30,7 +31,6 @@ const Header = () => {
     [styles.showOnBurgerAction]: statusShow,
   });
 
-  const user = useSelector(selectUserData);
 
   return (
     <>
