@@ -12,11 +12,12 @@ const initialValues = {
 };
 
 const loginRUSErrors = (errMsg) => {
-  if (errMsg === 'Invalid nickname or password') { return  'Неверный логин или пароль 🔐' }
-  
+  if (errMsg === 'Invalid credentials') { return 'Неверный логин или пароль 🔐' }
+
   if (/^Cannot read [\w]* ((data)|(undefined)?).*$/i.test(errMsg) ||
     errMsg === 'Server database is switched off') {
-   return  'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.' }
+    return 'Ошибка отправки данных. Бэк-сервер в отключке 😴. Пожалуйста сообщите админу.'
+  }
 };
 
 const LoginForm = () => {
