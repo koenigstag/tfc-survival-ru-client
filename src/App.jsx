@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import browserHistory from './browserHistory';
 
 import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
@@ -51,7 +52,7 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <Router history={browserHistory}>
       <div className={styles.App}>
         <Suspense fallback={<HeaderSkeleton />}>
           <Header />
