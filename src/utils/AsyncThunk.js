@@ -21,7 +21,7 @@ export default class AsyncThunk {
       async (values, thunkAPI) => {
         try {
           const response = await this.apiMethod(values);
-          return response.data.data;
+          return response;
         } catch (error) {
           this.dispatchError(thunkAPI.dispatch, error);
           throw error;

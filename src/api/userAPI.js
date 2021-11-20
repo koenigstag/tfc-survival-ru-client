@@ -1,22 +1,24 @@
 import axios from 'axios';
-import { baseURL, clientApi } from './index';
+import _ from 'lodash';
+import { baseURL } from './index';
+import clientApi from './index';
 import { encrypt } from 'services/passTransfer';
 
 // TODO check not needed
 /* export const getUser = async (nickname, accessToken, refreshToken) => {
-  const user = await client.get(`users/${nickname}/${accessToken}`);
+  const response = await client.get(`users/${nickname}/${accessToken}`);
 
-  if (!user) {
+  if (!response) {
     throw new Error('Cannot get user');
   }
 
-  return user;
+  return response.data.data;
 }; */
 
 export const registerUser = async ({ user, password, ua }) => {
-  const response = await clientApi.post('users', {
+  const response = await clientApi.post('auth/sign-up', {
+    user: _.pick(user, ['nickname', 'email']),
     // TODO more useragent data
-    user,
     ua,
     passwordCrypt: encrypt(password),
   });
@@ -25,45 +27,68 @@ export const registerUser = async ({ user, password, ua }) => {
     throw new Error('Cannot register user');
   }
 
-  return response;
+  localStorage.setItem('accessToken', response.data.data.tokenPair.access);
+  localStorage.setItem('refreshToken', response.data.data.tokenPair.refresh);
+
+  return response.data.data.user;
 };
 
-export const loginUser = async ({ nickname, password }) => {
-  const user = await clientApi.post(`users/${nickname}`, {
+export const loginUser = async ({ nickname, password, ua }) => {
+  const response = await clientApi.post('auth/sign-in', {
+    nickname: nickname,
     passwordCrypt: encrypt(password),
+    ua,
   });
 
-  if (!user) {
+  if (!response) {
     throw new Error('Cannot get user');
   }
 
-  return user;
+  localStorage.setItem('accessToken', response.data.data.tokenPair.access);
+  localStorage.setItem('refreshToken', response.data.data.tokenPair.refresh);
+
+  return response.data.data.user;
+};
+
+export const refreshUser = async refreshToken => {
+  const response = await clientApi.post('auth/refresh', {
+    refreshToken,
+  });
+
+  if (!response) {
+    throw new Error('Cannot get user');
+  }
+
+  localStorage.setItem('accessToken', response.data.data.tokenPair.access);
+  localStorage.setItem('refreshToken', response.data.data.tokenPair.refresh);
+
+  return response.data.data.user;
 };
 
 export const changePass = async ({ nickname, password, oldpassword }) => {
-  const user = await clientApi.patch(`users/${nickname}`, {
+  const response = await clientApi.patch(`users/password/${nickname}`, {
     passwordCrypt: encrypt(password),
     oldpassword,
   });
 
-  if (!user) {
+  if (!response) {
     throw new Error('Cannot change user password');
   }
 
-  return user;
+  return response.data.data;
 };
 
 export const linkDiscord = async ({ nickname, discord }) => {
   // TODO accessToken check
-  const user = await clientApi.patch(`users/discord/${nickname}`, {
+  const response = await clientApi.patch(`users/discord/${nickname}`, {
     discord,
   });
 
-  if (!user) {
+  if (!response) {
     throw new Error('Cannot link discord');
   }
 
-  return user;
+  return response.data.data;
 };
 
 // TODO access token check
@@ -71,7 +96,7 @@ export const linkDiscord = async ({ nickname, discord }) => {
 export const setSkin = async ({ nickname, accessToken, file }) => {
   const data = new FormData();
   data.append('file', file);
-  data.append('accessToken', accessToken);
+  // data.append('accessToken', accessToken);
 
   const res = await clientApi.post(`media/skin/${nickname}`, data);
 

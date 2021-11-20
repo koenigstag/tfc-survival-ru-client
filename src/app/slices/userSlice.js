@@ -1,16 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import AsyncThunk from 'utils/AsyncThunk';
-import {
-  loginUser,
-  registerUser,
-  changePass,
-  linkDiscord,
-} from 'api/userAPI';
+import { loginUser, registerUser, changePass, linkDiscord, refreshUser } from 'api/userAPI';
 
 const initialState = {
   data: {
     nickname: null,
-    accessToken: null,
 
     email: null,
     confirmedEmail: null,
@@ -38,6 +32,9 @@ export const registerUserAsync = registerUserAsyncObj.asyncThunk;
 const loginUserAsyncObj = new AsyncThunk('user', loginUser, dispatchUserError);
 export const loginUserAsync = loginUserAsyncObj.asyncThunk;
 
+const refreshUserAsyncObj = new AsyncThunk('user', refreshUser, dispatchUserError);
+export const refreshUserAsync = refreshUserAsyncObj.asyncThunk;
+
 const changePassAsyncObj = new AsyncThunk(
   'user',
   changePass,
@@ -64,6 +61,8 @@ export const userSlice = createSlice({
     },
     logout: (state, action) => {
       state.data = initialState.data;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     },
     setStatus: (state, action) => {
       state.status = action.payload;
@@ -77,6 +76,8 @@ export const userSlice = createSlice({
     ...registerUserAsyncObj.extraReducers,
 
     ...loginUserAsyncObj.extraReducers,
+
+    ...refreshUserAsyncObj.extraReducers,
 
     ...changePassAsyncObj.extraReducers,
 
