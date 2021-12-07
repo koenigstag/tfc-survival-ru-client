@@ -125,7 +125,7 @@ const App = () => {
         <Suspense fallback={<FooterSkeleton />}>
           <Footer />
         </Suspense>
-        {/* // TODO nigga xelo on dark theme */}
+        {/* TODO nigga xelo on dark theme */}
         {rolltheDice && (
           <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
         )}

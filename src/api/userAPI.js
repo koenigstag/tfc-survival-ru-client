@@ -14,6 +14,7 @@ import { encrypt } from 'utils/passTransfer';
   return response.data;
 }; */
 
+// TODO test api
 export const changePass = async ({ nickname, password, oldpassword }) => {
   const response = await clientApi.patch(`users/password/${nickname}`, {
     passwordCrypt: encrypt(password),
@@ -27,8 +28,8 @@ export const changePass = async ({ nickname, password, oldpassword }) => {
   return response.data;
 };
 
+// TODO test api
 export const linkDiscord = async ({ nickname, discord }) => {
-  // TODO accessToken check
   const response = await clientApi.patch(`users/discord/${nickname}`, {
     discord,
   });
@@ -40,7 +41,6 @@ export const linkDiscord = async ({ nickname, discord }) => {
   return response.data;
 };
 
-// TODO access token check
 // TODO test api
 export const setSkin = async ({ nickname, accessToken, file }) => {
   const data = new FormData();
