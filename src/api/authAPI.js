@@ -45,11 +45,11 @@ export const refreshUser = async (refreshToken) => {
 };
 
 export const saveTokens = (tokenPair) => {
-  localStorage.setItem(constants.ACCESS_TOKEN, tokenPair.access);
-  localStorage.setItem(constants.REFRESH_TOKEN, tokenPair.refresh);
+  window.localStorage.setItem(constants.ACCESS_TOKEN, tokenPair.access);
+  window.localStorage.setItem(constants.REFRESH_TOKEN, tokenPair.refresh);
 };
 
 export const removeTokens = () => {
-  localStorage.removeItem(constants.ACCESS_TOKEN);
-  localStorage.removeItem(constants.REFRESH_TOKEN);
+  window.localStorage.removeItem(constants.ACCESS_TOKEN);
+  window.localStorage.removeItem(constants.REFRESH_TOKEN);
 };
