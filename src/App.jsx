@@ -48,7 +48,7 @@ const App = () => {
         dispatch(refreshUserAsync(refreshToken));
       }
     }
-  }, [dispatch]);
+  }, [dispatch, user.data]);
 
   const rolltheDice = Math.random() * 100 >= 98;
 
