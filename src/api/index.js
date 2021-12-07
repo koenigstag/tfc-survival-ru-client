@@ -14,10 +14,15 @@ export const mapURL = CONSTANTS.mapURL;
 /* interceptors */
 clientApi.interceptors.request.use(
   config => {
-    const token = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
-    if (token) {
-      config.headers = { ...config.headers, Authorization: 'Bearer ' + token };
+    const accessToken = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
+    if (accessToken) {
+      config.headers = { ...config.headers, Authorization: 'Bearer ' + accessToken };
     }
+    const adminToken = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
+    if(adminToken) {
+      config.headers = { ...config.headers, "X-Admin-Token": adminToken };
+    }
+
     return config;
   },
   err => Promise.reject(err)
@@ -28,6 +33,13 @@ clientApi.interceptors.response.use(
     if (response.data.data.tokenPair) {
       saveTokens(response.data.data.tokenPair);
     }
+    if (response.data.data.adminToken) {
+      window.localStorage.setItem(
+        CONSTANTS.ADMIN_TOKEN,
+        response.data.data.adminToken
+      );
+    }
+
     return response;
   },
   async err => {

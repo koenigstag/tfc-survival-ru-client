@@ -45,6 +45,14 @@ const Header = () => {
         />
         {user.isAuth ? (
           <div className={hideOnSmallScreen}>
+            {user.data?.role === 'admin' &&
+              <ButtonLink
+                link='/profile/admin'
+                text='Опа, админочка'
+                title='Страница АДМ'
+                onClick={statusShow ? hideOrShow : () => { }}
+                style={{backgroundColor: '#009900', color: 'white', borderColor: '#004400'}}
+              />}
             <ButtonLink
               link='/profile'
               text='Личный кабинет'

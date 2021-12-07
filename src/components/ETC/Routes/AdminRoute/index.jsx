@@ -6,9 +6,14 @@ import CONSTANTS from '../../../../constants';
 
 const AdminRoute = ({ exact, path, component }) => {
   const user = useSelector(selectUser);
-  const adminToken = localStorage.getItem(CONSTANTS.ADMIN_TOKEN)
+  const adminToken = localStorage.getItem(CONSTANTS.ADMIN_TOKEN);
 
-  if (!adminToken || !user.admin || user.status === 'error' || user.isAuth === false) {
+  if (
+    !adminToken ||
+    user.data?.role !== 'admin' ||
+    user.status === 'error' ||
+    user.isAuth === false
+  ) {
     return <Redirect to='/404' />;
   }
 
