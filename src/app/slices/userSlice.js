@@ -50,7 +50,7 @@ const changePassAsyncObj = new AsyncThunk({
   apiMethod: changePass,
   dispatchError: dispatchUserError,
   responsePath: 'data',
-  addToState: { fulfilled: { isAuth: false } },
+  addToState: { rejected: { isAuth: false }, fulfilled: { isAuth: true } },
 });
 export const changePassAsync = changePassAsyncObj.asyncThunk;
 
