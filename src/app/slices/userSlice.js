@@ -1,17 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import AsyncThunk from 'utils/AsyncThunk';
-import { loginUser, registerUser, changePass, linkDiscord, refreshUser } from 'api/userAPI';
+import { createSlice } from "@reduxjs/toolkit";
+import AsyncThunk from "utils/AsyncThunk";
+import { changePass, linkDiscord } from "api/userAPI";
+import { loginUser, registerUser, refreshUser, removeTokens } from "api/authAPI";
 
 const initialState = {
-  data: {
-    nickname: null,
-
-    email: null,
-    confirmedEmail: null,
-    discord: null,
-  },
-  errorMessage: '',
-  status: 'idle',
+  data: null,
+  errorMessage: "",
+  status: "idle",
+  isAuth: false,
 };
 
 const dispatchUserError = (dispatch, error) => {
@@ -22,35 +18,51 @@ const dispatchUserError = (dispatch, error) => {
 // const getUserAsyncObj = new AsyncThunk('user', getUser, dispatchUserError);
 // export const getUserAsync = getUserAsyncObj.asyncThunk;
 
-const registerUserAsyncObj = new AsyncThunk(
-  'user',
-  registerUser,
-  dispatchUserError
-);
+const registerUserAsyncObj = new AsyncThunk({
+  sliceName: "user",
+  apiMethod: registerUser,
+  dispatchError: dispatchUserError,
+  responsePath: "user",
+  addToState: { fulfilled: { isAuth: true } },
+});
 export const registerUserAsync = registerUserAsyncObj.asyncThunk;
 
-const loginUserAsyncObj = new AsyncThunk('user', loginUser, dispatchUserError);
+const loginUserAsyncObj = new AsyncThunk({
+  sliceName: "user",
+  apiMethod: loginUser,
+  dispatchError: dispatchUserError,
+  responsePath: "user",
+  addToState: { fulfilled: { isAuth: true } },
+});
 export const loginUserAsync = loginUserAsyncObj.asyncThunk;
 
-const refreshUserAsyncObj = new AsyncThunk('user', refreshUser, dispatchUserError);
+const refreshUserAsyncObj = new AsyncThunk({
+  sliceName: "user",
+  apiMethod: refreshUser,
+  dispatchError: dispatchUserError,
+  responsePath: "user",
+  addToState: { fulfilled: { isAuth: true } },
+});
 export const refreshUserAsync = refreshUserAsyncObj.asyncThunk;
 
-const changePassAsyncObj = new AsyncThunk(
-  'user',
-  changePass,
-  dispatchUserError
-);
+const changePassAsyncObj = new AsyncThunk({
+  sliceName: "user",
+  apiMethod: changePass,
+  dispatchError: dispatchUserError,
+  responsePath: 'data',
+  addToState: { fulfilled: { isAuth: false } },
+});
 export const changePassAsync = changePassAsyncObj.asyncThunk;
 
-const linkDiscordAsyncObj = new AsyncThunk(
-  'user',
-  linkDiscord,
-  dispatchUserError
-);
+const linkDiscordAsyncObj = new AsyncThunk({
+  sliceName: "user",
+  apiMethod: linkDiscord,
+  dispatchError: dispatchUserError
+});
 export const linkDiscordAsync = linkDiscordAsyncObj.asyncThunk;
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setErrorMessage: (state, action) => {
@@ -61,8 +73,8 @@ export const userSlice = createSlice({
     },
     logout: (state, action) => {
       state.data = initialState.data;
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
+      state.isAuth = false;
+      removeTokens();
     },
     setStatus: (state, action) => {
       state.status = action.payload;
@@ -90,9 +102,9 @@ export const actionCreators = userSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectUser = state => state.user;
+export const selectUser = (state) => state.user;
 
-export const selectUserData = state => state.user.data;
+export const selectUserData = (state) => state.user.data;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

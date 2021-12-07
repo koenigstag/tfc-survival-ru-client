@@ -1,10 +1,9 @@
 import axios from 'axios';
-import _ from 'lodash';
 import { baseURL } from './index';
 import clientApi from './index';
-import { encrypt } from 'services/passTransfer';
+import { encrypt } from 'utils/passTransfer';
 
-// TODO check not needed
+// TODO delete if not needed
 /* export const getUser = async (nickname, accessToken, refreshToken) => {
   const response = await client.get(`users/${nickname}/${accessToken}`);
 
@@ -12,58 +11,8 @@ import { encrypt } from 'services/passTransfer';
     throw new Error('Cannot get user');
   }
 
-  return response.data.data;
+  return response.data;
 }; */
-
-export const registerUser = async ({ user, password, ua }) => {
-  const response = await clientApi.post('auth/sign-up', {
-    user: _.pick(user, ['nickname', 'email']),
-    // TODO more useragent data
-    ua,
-    passwordCrypt: encrypt(password),
-  });
-
-  if (!response) {
-    throw new Error('Cannot register user');
-  }
-
-  localStorage.setItem('accessToken', response.data.data.tokenPair.access);
-  localStorage.setItem('refreshToken', response.data.data.tokenPair.refresh);
-
-  return response.data.data.user;
-};
-
-export const loginUser = async ({ nickname, password, ua }) => {
-  const response = await clientApi.post('auth/sign-in', {
-    nickname: nickname,
-    passwordCrypt: encrypt(password),
-    ua,
-  });
-
-  if (!response) {
-    throw new Error('Cannot get user');
-  }
-
-  localStorage.setItem('accessToken', response.data.data.tokenPair.access);
-  localStorage.setItem('refreshToken', response.data.data.tokenPair.refresh);
-
-  return response.data.data.user;
-};
-
-export const refreshUser = async refreshToken => {
-  const response = await clientApi.post('auth/refresh', {
-    refreshToken,
-  });
-
-  if (!response) {
-    throw new Error('Cannot get user');
-  }
-
-  localStorage.setItem('accessToken', response.data.data.tokenPair.access);
-  localStorage.setItem('refreshToken', response.data.data.tokenPair.refresh);
-
-  return response.data.data.user;
-};
 
 export const changePass = async ({ nickname, password, oldpassword }) => {
   const response = await clientApi.patch(`users/password/${nickname}`, {
@@ -75,7 +24,7 @@ export const changePass = async ({ nickname, password, oldpassword }) => {
     throw new Error('Cannot change user password');
   }
 
-  return response.data.data;
+  return response.data;
 };
 
 export const linkDiscord = async ({ nickname, discord }) => {
@@ -88,7 +37,7 @@ export const linkDiscord = async ({ nickname, discord }) => {
     throw new Error('Cannot link discord');
   }
 
-  return response.data.data;
+  return response.data;
 };
 
 // TODO access token check

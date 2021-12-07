@@ -1,6 +1,9 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { refreshUserAsync, selectUser } from 'app/slices/userSlice';
 import browserHistory from './browserHistory';
+import constants from './constants';
 
 import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
@@ -34,6 +37,19 @@ const ProfilePage = React.lazy(() => import('./pages/Profile'));
 const AdminPage = React.lazy(() => import('./pages/Admin'));
 
 const App = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    if (user.data === null) {
+
+      const refreshToken = localStorage.getItem(constants.REFRESH_TOKEN)
+      if (refreshToken) {
+        dispatch(refreshUserAsync(refreshToken));
+      }
+    }
+  }, [dispatch]);
+
   const rolltheDice = Math.random() * 100 >= 98;
 
   if (rolltheDice) {
