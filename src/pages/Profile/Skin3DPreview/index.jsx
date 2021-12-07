@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { baseURL } from 'api';
 
 const Skin3DPreview = ({ fileSrc, imageStyles }) => {
@@ -19,17 +19,6 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
       />
     );
 
-  const [image, setImage] = useState(calcImage());
-
-  useEffect(() => {
-    const ID = setInterval(() => {
-      setImage(calcImage());
-    }, 2000);
-    return () => {
-      clearInterval(ID);
-    };
-  });
-
   let renderSrc;
   if (fileSrc) {
     const fileURL = new URL(fileSrc);
@@ -40,7 +29,7 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
 
   return (
     <div>
-      {image}
+      {calcImage()}
       {/* <iframe
       title='skin 3d render'
       src='https://minerender.org/embed/skin/?skin=asdasd&shadow=true'
