@@ -2,10 +2,13 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'app/slices/userSlice';
+import CONSTANTS from '../../../../constants';
 
 const AdminRoute = ({ exact, path, component }) => {
   const user = useSelector(selectUser);
-  if (!user.admin || user.status === 'error' || user.data.nickname === null) {
+  const adminToken = localStorage.getItem(CONSTANTS.ADMIN_TOKEN)
+
+  if (!adminToken || !user.admin || user.status === 'error' || user.isAuth === false) {
     return <Redirect to='/404' />;
   }
 
