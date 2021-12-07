@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 
 const UploadFileForm = ({
@@ -82,7 +82,7 @@ const UploadFileForm = ({
                   <button type='submit' disabled={!values.file || errors.file}>
                     {text.submitBtn}
                   </button>{' '}
-                  {errors.file ? errors.file : ''}
+                  <span style={{ color: 'red' }}>{errors.file ? errors.file : ''}</span>
                 </div>
               </Form>
               <div>{preview()}</div>
