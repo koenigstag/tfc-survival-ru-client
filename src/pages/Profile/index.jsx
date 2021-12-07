@@ -7,6 +7,7 @@ import ConfirmEmailForm from './ConfirmEmailForm';
 import UploadFileForm from './UploadFileForm';
 import Skin3DPreview from './Skin3DPreview';
 import { getCape, setCape, getSkin, setSkin } from 'api/userAPI';
+import { Redirect } from 'react-router';
 
 const imageStyles = {
   marginTop: '10px',
@@ -18,6 +19,10 @@ const imageStyles = {
 
 const ProfilePage = () => {
   const user = useSelector(selectUser);
+
+  if(!user.isAuth) {
+    return <Redirect to="/account/login" />
+  }
 
   return (
     <div>

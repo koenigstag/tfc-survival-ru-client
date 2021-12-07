@@ -5,13 +5,13 @@ import Logo from './Logo';
 import NavList from './NavList';
 import BurgerMenu from './BurgerMenu';
 import ButtonLink from '../ETC/ButtonLink';
-import { selectUserData, actionCreators } from 'app/slices/userSlice';
+import { selectUser, actionCreators } from 'app/slices/userSlice';
 import styles from './Header.module.sass';
 
 const Header = () => {
   const dispatch = useDispatch();
   const [statusShow, setShow] = useState(false);
-  const user = useSelector(selectUserData);
+  const user = useSelector(selectUser);
 
   const hideOrShow = () => {
     setShow(!statusShow);
@@ -24,7 +24,7 @@ const Header = () => {
 
   const logout = () => {
     dispatch(actionCreators.logout());
-    hideOrShow();
+    // hideOrShow();
   };
 
   const hideOnSmallScreen = cx(styles.buttonGroup, {
@@ -41,31 +41,15 @@ const Header = () => {
         <Logo className={styles.blockLogo} />
         <NavList
           status={statusShow}
-          onClick={statusShow ? hideOrShow : () => {}}
+          onClick={statusShow ? hideOrShow : () => { }}
         />
-        {user.nickname === null ? (
-          <div className={hideOnSmallScreen} id='authButtons'>
-            <ButtonLink
-              link='/account/login'
-              text='Войти'
-              title='Страница входа в ЛК'
-              onClick={statusShow ? hideOrShow : () => {}}
-            />
-            <ButtonLink
-              link='/account/register'
-              text='Регистрация'
-              title='Страница регистрации на проекте'
-              variant='blue'
-              onClick={statusShow ? hideOrShow : () => {}}
-            />
-          </div>
-        ) : (
+        {user.isAuth ? (
           <div className={hideOnSmallScreen}>
             <ButtonLink
               link='/profile'
               text='Личный кабинет'
               title='Страница ЛК'
-              onClick={statusShow ? hideOrShow : () => {}}
+              onClick={statusShow ? hideOrShow : () => { }}
             />
             <ButtonLink
               link='/'
@@ -75,6 +59,24 @@ const Header = () => {
               onClick={logout}
             />
           </div>
+        ) : (
+          <div className={hideOnSmallScreen} id='authButtons'>
+            <ButtonLink
+              link='/account/login'
+              text='Войти'
+              title='Страница входа в ЛК'
+              onClick={statusShow ? hideOrShow : () => { }}
+            />
+            <ButtonLink
+              link='/account/register'
+              text='Регистрация'
+              title='Страница регистрации на проекте'
+              variant='blue'
+              onClick={statusShow ? hideOrShow : () => { }}
+            />
+          </div>
+
+
         )}
         <BurgerMenu onClick={hideOrShow} status={statusShow} />
       </header>

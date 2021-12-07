@@ -10,7 +10,7 @@ const HomePage = () => {
     <div className={styles.homePage}>
       <h3>
         Добро пожаловать на TFC-survival,{' '}
-        {user.data.nickname ? user.data.nickname : 'дружок'}
+        {user.isAuth ? user.data.nickname : 'дружок'}
       </h3>
       <div className={styles.homePageButtons}>
         <ButtonLink

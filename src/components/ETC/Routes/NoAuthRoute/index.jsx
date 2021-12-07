@@ -5,7 +5,7 @@ import { selectUser } from 'app/slices/userSlice';
 
 const NoAuthRoute = ({ exact, path, component }) => {
   const user = useSelector(selectUser);
-  if (user.status === 'idle' && user.data.nickname !== null) {
+  if (user.status === 'idle' && user.isAuth === true) {
     return <Redirect to='/profile' />;
   }
 
