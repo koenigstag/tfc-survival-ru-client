@@ -48,8 +48,7 @@ clientApi.interceptors.response.use(
             ...err.config.headers,
             Authorization: "Bearer " + tokenPair.access,
           };
-          clientApi.request(err.config);
-          return;
+          return clientApi.request(err.config);
         } catch (error) {
           removeTokens();
           history.replace("/account/login");
