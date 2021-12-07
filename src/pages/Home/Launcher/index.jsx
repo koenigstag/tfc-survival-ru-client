@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonLink from 'components/ETC/ButtonLink';
 import styles from './LauncherPage.module.sass';
+import { baseURL } from 'api';
 
 const LauncherPage = () => {
   return (
@@ -16,7 +17,7 @@ const LauncherPage = () => {
               variant='blue'
               text='Launcher.exe'
               title='Исполняемый файл .exe для ОС Windows. Необходимо JRE 1.8+.'
-              link='launcher/Windows'
+              href={`${baseURL}/static/launchers/Launcher.exe`}
             />
           </div>
         </li>
@@ -28,7 +29,7 @@ const LauncherPage = () => {
               variant='blue'
               text='Launcher.jar'
               title='Исполняемый файл .jar для ОС Linux. Необходимо JRE 1.8+.'
-              link='launcher/Other'
+              href={`${baseURL}/static/launchers/Launcher.jar`}
             />
           </div>
         </li>
