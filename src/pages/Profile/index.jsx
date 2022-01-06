@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'app/slices/userSlice';
 import ChangePasswordForm from './ChangePasswordForm';
 import LinkDiscordForm from './LinkDiscordForm';
-import ConfirmEmailForm from './ConfirmEmailForm';
 import UploadFileForm from './UploadFileForm';
 import Skin3DPreview from './Skin3DPreview';
 import { getCape, setCape, getSkin, setSkin } from 'api/userAPI';
@@ -27,7 +26,6 @@ const ProfilePage = () => {
   return (
     <div>
       <div>{JSON.stringify(user.data, null, 4)}</div>
-      <ConfirmEmailForm user={user} />
       <ChangePasswordForm user={user} />
       <LinkDiscordForm user={user} />
 
