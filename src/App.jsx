@@ -15,6 +15,7 @@ import styles from './App.module.sass';
 import CircleLoader from 'react-spinners/ClipLoader';
 import HeaderSkeleton from './components/Header/HeaderSkeleton';
 import FooterSkeleton from './components/Footer/FooterSkeleton';
+import ActivateEmailPage from 'pages/Auth/ActivateEmail';
 
 const HomePage = React.lazy(() => import('pages/Home'));
 const PageNotFound = React.lazy(() => import('./pages/404'));
@@ -87,6 +88,7 @@ const App = () => {
               }
             >
               <Switch>
+                {/* Public routes */}
                 <Route exact path='/' component={HomePage} />
 
                 <Route exact path='/home/launcher' component={LauncherPage} />
@@ -98,6 +100,7 @@ const App = () => {
                 <Route exact path='/home/banned' component={BannedPage} />
                 <Route exact path='/home/online' component={OnlinePage} />
 
+                {/* No auth routes */}
                 <NoAuthRoute
                   exact={true}
                   path='/account/login'
@@ -108,15 +111,19 @@ const App = () => {
                   path='/account/register'
                   component={RegisterPage}
                 />
+                <NoAuthRoute exact={true} path='/activate-email' component={ActivateEmailPage} />
 
+                {/* Auth required routes */}  
                 <AuthRoute
                   exact={true}
                   path='/profile'
                   component={ProfilePage}
                 />
 
+                {/* Admin routes */}
                 <AdminRoute exact path='/profile/admin' component={AdminPage} />
 
+                {/* 404 */}
                 <Route path={['*', '/404']} component={PageNotFound} />
               </Switch>
             </Suspense>

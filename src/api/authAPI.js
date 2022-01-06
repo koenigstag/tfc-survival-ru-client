@@ -53,3 +53,9 @@ export const removeTokens = () => {
   window.localStorage.removeItem(constants.ACCESS_TOKEN);
   window.localStorage.removeItem(constants.REFRESH_TOKEN);
 };
+
+export const sendActivationRequest = async (link) => {
+  const response = await clientApi.get("/users/activate/" + link);
+
+  return response;
+}
