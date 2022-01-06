@@ -30,10 +30,10 @@ clientApi.interceptors.request.use(
 
 clientApi.interceptors.response.use(
   response => {
-    if (response.data.data.tokenPair) {
+    if (response?.data?.data?.tokenPair) {
       saveTokens(response.data.data.tokenPair);
     }
-    if (response.data.data.adminToken) {
+    if (response?.data?.data?.adminToken) {
       window.localStorage.setItem(
         CONSTANTS.ADMIN_TOKEN,
         response.data.data.adminToken
@@ -44,7 +44,7 @@ clientApi.interceptors.response.use(
   },
   async err => {
     if (
-      err.response.status === 401 &&
+      err?.response?.status === 401 &&
       history.location.pathname !== '/account/login' &&
       history.location.pathname !== '/account/register' &&
       history.location.pathname !== '/'
@@ -68,7 +68,7 @@ clientApi.interceptors.response.use(
     }
 
     if (
-      err.response.status === 419 &&
+      err?.response?.status === 419 &&
       history.location.pathname !== '/account/login' &&
       history.location.pathname !== '/account/register' &&
       history.location.pathname !== '/'
