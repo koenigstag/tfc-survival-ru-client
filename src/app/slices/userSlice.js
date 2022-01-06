@@ -23,7 +23,7 @@ const registerUserAsyncObj = new AsyncThunk({
   apiMethod: registerUser,
   dispatchError: dispatchUserError,
   responsePath: "user",
-  addToState: { fulfilled: { isAuth: true } },
+  // addToState: { fulfilled: { isAuth: true } },
 });
 export const registerUserAsync = registerUserAsyncObj.asyncThunk;
 
