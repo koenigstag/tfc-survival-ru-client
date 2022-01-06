@@ -30,6 +30,7 @@ const AboutPage = React.lazy(() => import('pages/Home/About'));
 const BannedPage = React.lazy(() => import('./pages/Home/Banned'));
 const MapPage = React.lazy(() => import('./pages/Home/Map'));
 const OnlinePage = React.lazy(() => import('./pages/Home/Online'));
+const StatsPage = React.lazy(() => import('pages/Home/Stats'));
 
 const LoginPage = React.lazy(() => import('pages/Auth/Login'));
 const RegisterPage = React.lazy(() => import('pages/Auth/Register'));
@@ -99,6 +100,7 @@ const App = () => {
 
                 <Route exact path='/home/banned' component={BannedPage} />
                 <Route exact path='/home/online' component={OnlinePage} />
+                <Route exact path='/home/stats' component={StatsPage} />
 
                 {/* No auth routes */}
                 <NoAuthRoute

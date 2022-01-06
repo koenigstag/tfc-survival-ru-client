@@ -88,3 +88,15 @@ export const getCape = async ({ nickname }) => {
 
   return baseURL + `/static/capes/${nickname}.png`;
 };
+
+export const getUserStats = async () => {
+  const response = await clientApi.get('/users/stats');
+
+  return response.data.data;
+};
+
+export const getUserData = async () => {
+  const response = await clientApi.get('/users/data');
+
+  return response.data.data;
+};
