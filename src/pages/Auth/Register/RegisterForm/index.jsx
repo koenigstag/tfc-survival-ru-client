@@ -20,12 +20,12 @@ const initialValues = {
 const registrationRUSErrors = {
   'Nickname is already in use': 'Никнейм уже зарегистрирован',
   'Email domain is not acceptable': 'Запрещенный домен почты. Попробуйте другую почту',
-  
-  "Server is switched off": 
+
+  "Server is switched off":
     'Ошибка отправки данных. Похоже что бэк-сервер в отключке 😴. Пожалуйста сообщите админу',
   'Server database is switched off':
     'Ошибка отправки данных. Похоже что бэк-сервер в отключке 😴. Пожалуйста сообщите админу',
-  'Server Error': 
+  'Server Error':
     'Ошибка отправки данных. Похоже что бэк-сервер в отключке 😴. Пожалуйста сообщите админу',
 
   'Only 3 accounts permitted on 1 email':
@@ -40,7 +40,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     // effect
-    async function fetchIP () {
+    async function fetchIP() {
       const IP = await fetch('https://api.ipify.org/?format=json').then(
         response => response.json()
       );
@@ -60,7 +60,7 @@ const RegisterForm = () => {
           {registrationRUSErrors[user.errorMessage]}
         </div>
       ) : (
-        <div></div>
+        <div style={{ color: 'orangered' }}>{user.isMailSent && 'Письмо активации отправлено. Пожалуйста проверьте почту и пройдите по ссылке активации.'}</div>
       )}
       <Formik
         initialValues={initialValues}
