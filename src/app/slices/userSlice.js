@@ -1,17 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
-import AsyncThunk from "utils/AsyncThunk";
-import { changePass, linkDiscord } from "api/userAPI";
-import { loginUser, registerUser, refreshUser, removeTokens } from "api/authAPI";
+import { createSlice } from '@reduxjs/toolkit';
+import AsyncThunk from 'utils/AsyncThunk';
+import { changePass, linkDiscord } from 'api/userAPI';
+import {
+  loginUser,
+  registerUser,
+  refreshUser,
+  removeTokens,
+} from 'api/authAPI';
 
 const initialState = {
   data: null,
-  errorMessage: "",
-  status: "idle",
+  errorMessage: '',
+  status: 'idle',
   isAuth: false,
 };
 
 const dispatchUserError = (dispatch, error) => {
-  dispatch(actionCreators.setErrorMessage(error.response.data.error.message));
+  if (error.config.url === 'auth/refresh') {
+    dispatch(actionCreators.logout());
+  }
+  if (error.response) {
+    dispatch(
+      actionCreators.setErrorMessage(error.response?.data.error.message)
+    );
+  } else {
+    dispatch(actionCreators.setErrorMessage('Server is switched off'));
+  }
 };
 
 // TODO check not needed
@@ -19,50 +33,53 @@ const dispatchUserError = (dispatch, error) => {
 // export const getUserAsync = getUserAsyncObj.asyncThunk;
 
 const registerUserAsyncObj = new AsyncThunk({
-  sliceName: "user",
+  sliceName: 'user',
   apiMethod: registerUser,
   dispatchError: dispatchUserError,
-  responsePath: "user",
+  responsePath: 'user',
   // addToState: { fulfilled: { isAuth: true } },
 });
 export const registerUserAsync = registerUserAsyncObj.asyncThunk;
 
 const loginUserAsyncObj = new AsyncThunk({
-  sliceName: "user",
+  sliceName: 'user',
   apiMethod: loginUser,
   dispatchError: dispatchUserError,
-  responsePath: "user",
+  responsePath: 'user',
   addToState: { fulfilled: { isAuth: true } },
 });
 export const loginUserAsync = loginUserAsyncObj.asyncThunk;
 
 const refreshUserAsyncObj = new AsyncThunk({
-  sliceName: "user",
+  sliceName: 'user',
   apiMethod: refreshUser,
   dispatchError: dispatchUserError,
-  responsePath: "user",
-  addToState: { fulfilled: { isAuth: true } },
+  responsePath: 'user',
+  addToState: { fulfilled: { isAuth: true }, rejected: { isAuth: false } },
 });
 export const refreshUserAsync = refreshUserAsyncObj.asyncThunk;
 
 const changePassAsyncObj = new AsyncThunk({
-  sliceName: "user",
+  sliceName: 'user',
   apiMethod: changePass,
   dispatchError: dispatchUserError,
   responsePath: 'data',
-  addToState: { rejected: { isAuth: false }, fulfilled: { isAuth: true } },
+  addToState: {
+    rejected: { isAuth: false },
+    fulfilled: { isAuth: true },
+  },
 });
 export const changePassAsync = changePassAsyncObj.asyncThunk;
 
 const linkDiscordAsyncObj = new AsyncThunk({
-  sliceName: "user",
+  sliceName: 'user',
   apiMethod: linkDiscord,
-  dispatchError: dispatchUserError
+  dispatchError: dispatchUserError,
 });
 export const linkDiscordAsync = linkDiscordAsyncObj.asyncThunk;
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setErrorMessage: (state, action) => {
@@ -102,9 +119,9 @@ export const actionCreators = userSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectUser = (state) => state.user;
+export const selectUser = state => state.user;
 
-export const selectUserData = (state) => state.user.data;
+export const selectUserData = state => state.user.data;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
