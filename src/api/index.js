@@ -1,7 +1,7 @@
-import axios from 'axios';
-import CONSTANTS from '../constants';
-import history from '../browserHistory';
-import { removeTokens, refreshUser, saveTokens } from './authAPI';
+// import decode from 'jwt-decode';
+import axios from "axios";
+import CONSTANTS from "../constants";
+import { removeTokens, refreshUser, saveTokens } from "./authAPI";
 
 export const baseURL = `http://${CONSTANTS.SERVER_DOMAIN}`;
 
@@ -13,23 +13,31 @@ export const mapURL = CONSTANTS.mapURL;
 
 /* interceptors */
 clientApi.interceptors.request.use(
-  config => {
-    const accessToken = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
+  (config) => {
+    let accessToken = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
     if (accessToken) {
-      config.headers = { ...config.headers, Authorization: 'Bearer ' + accessToken };
+
+      /* const expires = decode(accessToken).exp
+
+      console.log(expires); */
+
+      config.headers = {
+        ...config.headers,
+        Authorization: "Bearer " + accessToken,
+      };
     }
     const adminToken = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
-    if(adminToken) {
+    if (adminToken) {
       config.headers = { ...config.headers, "X-Admin-Token": adminToken };
     }
 
     return config;
   },
-  err => Promise.reject(err)
+  (err) => Promise.reject(err)
 );
 
 clientApi.interceptors.response.use(
-  response => {
+  (response) => {
     if (response?.data?.data?.tokenPair) {
       saveTokens(response.data.data.tokenPair);
     }
@@ -42,12 +50,12 @@ clientApi.interceptors.response.use(
 
     return response;
   },
-  async err => {
+  async (err) => {
     if (
       err?.response?.status === 401 &&
-      history.location.pathname !== '/account/login' &&
-      history.location.pathname !== '/account/register' &&
-      history.location.pathname !== '/'
+      window.location.pathname !== "/account/login" &&
+      window.location.pathname !== "/account/register" &&
+      window.location.pathname !== "/"
     ) {
       const refreshToken = localStorage.getItem(CONSTANTS.REFRESH_TOKEN);
       if (refreshToken) {
@@ -57,24 +65,24 @@ clientApi.interceptors.response.use(
 
           err.config.headers = {
             ...err.config.headers,
-            Authorization: 'Bearer ' + tokenPair.access,
+            Authorization: "Bearer " + tokenPair.access,
           };
           return clientApi.request(err.config);
         } catch (error) {
           removeTokens();
-          history.replace('/account/login');
+          window.history.replaceState(null, "", "/account/login");
         }
       }
     }
 
     if (
       err?.response?.status === 419 &&
-      history.location.pathname !== '/account/login' &&
-      history.location.pathname !== '/account/register' &&
-      history.location.pathname !== '/'
-    ) {
+      window.location.pathname !== "/account/login" &&
+      window.location.pathname !== "/account/register" &&
+      window.location.pathname !== "/"
+      ) {
       removeTokens();
-      history.replace('/account/login');
+      window.history.replaceState(null, "", "/account/login");
     }
     return Promise.reject(err);
   }
