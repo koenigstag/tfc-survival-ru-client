@@ -30,9 +30,11 @@ const OnlinePage = () => {
     <div>
       <h4>Онлайн сервера</h4>
       <div>Статус сервера: {serverInfo.online ? 'Включен' : 'Отключен'}</div>
-      <div>Кол-во онлайн: {serverInfo.players && `${serverInfo.players.online} / ${serverInfo.players.max}`} </div>
-      <div><br />Онлайн случайные 12 человек:</div>
+      <div>Сейчас онлайн: {serverInfo.players && `${serverInfo.players.online} / ${serverInfo.players.max}`} </div>
 
+      <iframe title='minecraftrating/tfc.survival' src="https://minecraftrating.ru/server_chart/114193/" width="100%" height="300" frameBorder="0"></iframe>
+
+      <h4>Онлайн (до 12 случайных игроков):</h4>
       <Table
         className={styles.table}
         list={serverInfo.players.sample}
