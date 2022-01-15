@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 // regexp
 const nicknameRegex = /^[a-z0-9_]{3,16}$/i;
 const emailRegex = /^\S{1,64}@\S{1,64}\.\S{1,64}$/;
-// const passwordRegex = /^(?=.*\d)(?=.*[a-zа-яё\W])([^\s]){8,}$/i;
 const discordRegex = /^.{2,32}#\d{4}$/;
 const tokenRegex = /^\$2[a-z0-9./$]{58}$/i;
 

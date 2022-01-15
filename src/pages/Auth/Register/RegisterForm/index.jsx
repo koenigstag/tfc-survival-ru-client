@@ -38,21 +38,6 @@ const RegisterForm = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // effect
-    async function fetchIP() {
-      const IP = await fetch('https://api.ipify.org/?format=json').then(
-        response => response.json()
-      );
-
-      dispatch(actionCreators.setUserData({ ua: { ...IP } }));
-    }
-    fetchIP();
-    return () => {
-      // cleanup
-    };
-  }, [dispatch]);
-
   return (
     <>
       {user.status === 'error' ? (
@@ -72,7 +57,7 @@ const RegisterForm = () => {
           delete copy.confpassword;
 
           dispatch(
-            registerUserAsync({ user: copy, password, ua: user.data.ua })
+            registerUserAsync({ user: copy, password })
           );
           formikBag.resetForm();
         }}
