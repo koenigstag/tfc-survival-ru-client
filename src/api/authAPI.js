@@ -11,11 +11,11 @@ export const registerUser = async ({ user, password, ua }) => {
     passwordCrypt: encrypt(password),
   });
 
-  if (!response.data.data.user) {
+  if (response.status !== 201) {
     throw new Error("Cannot register user");
   }
 
-  return response.data.data;
+  return null;
 };
 
 export const loginUser = async ({ nickname, password, ua }) => {
