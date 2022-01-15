@@ -1,8 +1,8 @@
 import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { refreshUserAsync, selectUser } from 'app/slices/userSlice';
-import browserHistory from './browserHistory';
+// import browserHistory from './browserHistory';
 import constants from './constants';
 
 import AuthRoute from './components/ETC/Routes/AuthRoute';
@@ -70,7 +70,7 @@ const App = () => {
   }
 
   return (
-    <Router history={browserHistory}>
+    <BrowserRouter /* history={browserHistory} */>
       <div className={styles.App}>
         <Suspense fallback={<HeaderSkeleton />}>
           <Header />
@@ -139,7 +139,7 @@ const App = () => {
           <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
         )}
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 
