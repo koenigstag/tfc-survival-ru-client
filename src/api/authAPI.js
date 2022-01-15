@@ -38,7 +38,7 @@ export const refreshUser = async (refreshToken) => {
   });
 
   if (!response.data.data.user) {
-    throw new Error("Cannot login user");
+    throw new Error("Cannot refresh user");
   }
 
   return response.data.data;
@@ -52,6 +52,7 @@ export const saveTokens = (tokenPair) => {
 export const removeTokens = () => {
   window.localStorage.removeItem(constants.ACCESS_TOKEN);
   window.localStorage.removeItem(constants.REFRESH_TOKEN);
+  window.localStorage.removeItem(constants.ADMIN_TOKEN);
 };
 
 export const sendActivationRequest = async (link) => {
