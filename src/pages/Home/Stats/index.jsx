@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { /* getUserData,  */getUserStats } from 'api/userAPI';
-import Table from 'components/ETC/Table';
+import React, { useEffect, useState } from "react";
+import { /* getUserData,  */ getUserStats } from "api/userAPI";
+import Table from "components/ETC/Table";
+import styles from "./StatsPage.module.sass";
 
 export const StatsPage = () => {
   const [stats, setStats] = useState(null);
@@ -10,7 +11,12 @@ export const StatsPage = () => {
     const getStats = async () => {
       const stats = await getUserStats();
 
-      setStats(stats);
+      const prepared = stats.map((item) => ({
+        ...item,
+        "stat.playOneMinute": (item["stat.playOneMinute"] / 20 / 60).toFixed(0),
+      }));
+
+      setStats(prepared);
     };
 
     getStats();
@@ -25,18 +31,35 @@ export const StatsPage = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex' }}>
-      {stats && (
-        <Table
-          headers={['Ники', 'Смертей', 'Выходов', 'Прыжков']}
-          list={stats}
-          paths={['', 'stat.deaths', 'stat.leaveGame', 'stat.jump']}
-          itemKey={'uuid'}
-        />
-      )}
-      {/* <pre>Stats {JSON.stringify(stats, null, 4)}</pre>
+    <>
+      <h4>Статистика игроков</h4>
+
+      <div className={styles.tableWrapper}>
+        {stats && (
+          <Table
+            className={styles.table}
+            headers={[
+              "Ники",
+              "Смертей",
+              "Выходов",
+              "Прыжков",
+              "Минут наиграно",
+            ]}
+            list={stats}
+            paths={[
+              "nickname",
+              "stat.deaths",
+              "stat.leaveGame",
+              "stat.jump",
+              "stat.playOneMinute",
+            ]}
+            itemKey={"nickname"}
+          />
+        )}
+        {/* <pre>Stats {JSON.stringify(stats, null, 4)}</pre>
       <pre>Dat {JSON.stringify(data, null, 4)}</pre> */}
-    </div>
+      </div>
+    </>
   );
 };
 
