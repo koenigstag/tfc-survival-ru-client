@@ -16,28 +16,27 @@ const initialState = {
 };
 
 const dispatchUserError = (dispatch, error) => {
-  if (error.config.url === 'auth/refresh') {
+  if (error.config?.url === 'auth/refresh') {
     dispatch(actionCreators.logout());
   }
-  if (error.response) {
+
+  if (error.response?.status && error.response.data) {
     dispatch(
-      actionCreators.setErrorMessage(error.response?.data.error.message)
+      actionCreators.setErrorMessage(error.response.data.error.message)
     );
   } else {
     dispatch(actionCreators.setErrorMessage('Server is switched off'));
   }
 };
 
-// TODO check not needed
-// const getUserAsyncObj = new AsyncThunk('user', getUser, dispatchUserError);
-// export const getUserAsync = getUserAsyncObj.asyncThunk;
-
 const registerUserAsyncObj = new AsyncThunk({
   sliceName: 'user',
   apiMethod: registerUser,
   dispatchError: dispatchUserError,
-  responsePath: 'user',
-  // addToState: { fulfilled: { isAuth: true } },
+  addToState: {
+    fulfilled: { isMailSent: true },
+    rejected: { isMailSent: false },
+  },
 });
 export const registerUserAsync = registerUserAsyncObj.asyncThunk;
 
