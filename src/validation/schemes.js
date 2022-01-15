@@ -29,7 +29,7 @@ const accessTokenScheme = Yup.string().matches(tokenRegex);
 
 const passwordScheme = Yup.string()
   .matches(
-    /^.*{8,32}$/,
+    /^.{8,32}$/,
     'Не соответствует шаблону: минимум 8 символов'
   )
   .matches(/(\d)+/, 'Не соответствует шаблону: должен содержать цифры')
