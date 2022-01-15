@@ -1,9 +1,9 @@
 import TableRow from './TableRow'
 import React from 'react'
 
-export default function Table({ className, list, sortFunc, paths, headers, itemKey }) {
+export default function Table({ style, className, list, sortFunc, paths, headers, itemKey }) {
   return (
-    <table className={className}>
+    <table className={className} style={style} >
       <thead>
         <tr>
           {headers.map((header) => <td key={header}>{header}</td>)}
