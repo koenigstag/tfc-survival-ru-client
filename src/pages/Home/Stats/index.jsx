@@ -13,7 +13,7 @@ export const StatsPage = () => {
 
       const prepared = stats.map((item) => ({
         ...item,
-        "stat.playOneMinute": (item["stat.playOneMinute"] / 20 / 60).toFixed(0),
+        "stat.playOneMinute": (item["stat.playOneMinute"] / 72000).toFixed(2),
       }));
 
       setStats(prepared);
@@ -43,7 +43,7 @@ export const StatsPage = () => {
               "Смертей",
               "Выходов",
               "Прыжков",
-              "Минут наиграно",
+              "Часов",
             ]}
             list={stats}
             paths={[
