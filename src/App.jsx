@@ -44,8 +44,8 @@ const App = () => {
 
   useEffect(() => {
     if (user.data === null) {
-
       const refreshToken = localStorage.getItem(constants.REFRESH_TOKEN)
+      
       if (refreshToken) {
         dispatch(refreshUserAsync(refreshToken));
       }
