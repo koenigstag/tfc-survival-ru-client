@@ -3,17 +3,6 @@ import { baseURL } from './index';
 import clientApi from './index';
 import { encrypt } from 'utils/passTransfer';
 
-// TODO delete if not needed
-/* export const getUser = async (nickname, accessToken, refreshToken) => {
-  const response = await client.get(`users/${nickname}/${accessToken}`);
-
-  if (!response) {
-    throw new Error('Cannot get user');
-  }
-
-  return response.data;
-}; */
-
 // TODO test api
 export const changePass = async ({ nickname, password, oldpassword }) => {
   const response = await clientApi.patch(`users/password/${nickname}`, {
@@ -41,7 +30,6 @@ export const linkDiscord = async ({ nickname, discord }) => {
   return response.data;
 };
 
-// TODO test api
 export const setSkin = async ({ nickname, accessToken, file }) => {
   const data = new FormData();
   data.append('file', file);
@@ -100,3 +88,9 @@ export const getUserData = async () => {
 
   return response.data.data;
 };
+
+export const getBannedPlayers = async () => {
+  const response = await clientApi.get('/banlist');
+
+  return response.data.data;
+}

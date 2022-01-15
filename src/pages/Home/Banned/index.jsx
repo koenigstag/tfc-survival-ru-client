@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'components/ETC/Table';
-import bannedList from 'banned-players.json'
+import { getBannedPlayers } from 'api/userAPI';
 import styles from './BannedPage.module.sass';
 
 const BannedPage = () => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const getBanned = async () => {
+      const list = await getBannedPlayers();
+      setList(list);
+    };
+
+    getBanned();
+  })
+
   return (
     <>
       <h4>Забаненные игроки</h4>
       <div className={styles.tableWrapper}>
         <Table
           className={styles.table}
-          list={bannedList}
+          list={list || []}
           sortFunc={(item1, item2) => {
             if (item2.created > item1.created) {
               return 1
