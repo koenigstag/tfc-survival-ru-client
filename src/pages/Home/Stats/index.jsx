@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getUserData, getUserStats } from 'api/userAPI';
+import { /* getUserData,  */getUserStats } from 'api/userAPI';
 import Table from 'components/ETC/Table';
 
 export const StatsPage = () => {
   const [stats, setStats] = useState(null);
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
   useEffect(() => {
     const getStats = async () => {
@@ -15,13 +15,13 @@ export const StatsPage = () => {
 
     getStats();
 
-    const getData = async () => {
+    /* const getData = async () => {
       const data = await getUserData();
 
       setData(data);
-    };
+    }; */
 
-    getData();
+    // getData();
   }, []);
 
   return (
