@@ -9,8 +9,6 @@ const clientApi = axios.create({
   baseURL: `${baseURL}/api/`,
 });
 
-export const mapURL = CONSTANTS.mapURL;
-
 /* interceptors */
 clientApi.interceptors.request.use(
   (config) => {
