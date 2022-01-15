@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 
 // regexp
 const nicknameRegex = /^[a-z0-9_]{3,16}$/i;
-const emailRegex = /^\S+@\S+\.\S+$/;
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])[0-9a-z]{6,}$/i;
+const emailRegex = /^\S{1,64}@\S{1,64}\.\S{1,64}$/;
+// const passwordRegex = /^(?=.*\d)(?=.*[a-zа-яё\W])([^\s]){8,}$/i;
 const discordRegex = /^.{2,32}#\d{4}$/;
 const tokenRegex = /^\$2[a-z0-9./$]{58}$/i;
 
@@ -18,10 +18,6 @@ const nicknameScheme = Yup.string()
 const emailScheme = Yup.string()
   .email('Не соответствует формату email')
   .matches(emailRegex, 'Не соответствует шаблону')
-  // TODO test whitelisted email domains
-  .test(() => {
-    return true;
-  })
   .required('Требуемое поле');
 
 const discordScheme = Yup.string().matches(
@@ -33,9 +29,12 @@ const accessTokenScheme = Yup.string().matches(tokenRegex);
 
 const passwordScheme = Yup.string()
   .matches(
-    passwordRegex,
-    'Не соответствует шаблону. Минимум 6 символов: цифр, и латинских букв'
+    /^.*{8,32}$/,
+    'Не соответствует шаблону: минимум 8 символов'
   )
+  .matches(/(\d)+/, 'Не соответствует шаблону: должен содержать цифры')
+  .matches(/([a-zа-яё\W])+/i, 'Не соответствует шаблону: должен содержать буквы или доп символы')
+  .matches(/^([\S])+$/i, 'Не соответствует шаблону: отсутствие пробелов')
   .required('Требуемое поле');
 
 const confpasswordScheme = Yup.string()
