@@ -1,19 +1,39 @@
-import React from 'react';
+import React from "react";
+import styles from './AboutPage.module.sass';
 
 const AboutPage = () => {
+  // const [mods, setMods] = useState([]);
+
+  /* useEffect(() => {
+    const getMods = async () => {
+      const data = await getServerInfoV2();
+
+      if (data?.mods?.names) {
+        setMods(data.mods.names);
+      }
+    };
+    getMods();
+  }, []); */
+
   return (
-    <div>
+    <div className={styles.aboutDiv}>
       <h1>О нас</h1>
       <p>
-        Сервер, основанный из пепла, на костях tfc.su (сервер теста), что в свою
-        очередь основан на костях tfc-survival.ru (сервер радика), что в свою
-        очередь основан на костях сервера зенина - тоже tfc-survival.ru. Мы
-        продолжаем их идею и концепт с небольшими изменениями. Сервер полностью
-        не коммерческий - доната тут вообще нет и не будет, вы сможете по
-        желанию пожертвовать любую сумму на развитие сервера, оплату домена и
-        электричества, связавшись с админами.
+        Данный terrafirmacraft сервер является наследником сервера tfc.su
+        (проект test'a), что в свою очередь является наследником проекта
+        tfc-survival.ru (проект zenin'a). Концепт данного сервера берет своё
+        начало ещё в 2014 году с проекта zenin'a. Мы продолжаем их идею с
+        небольшими изменениями и стараемся сохранить все самое лучшее. Сервер
+        полностью не коммерческий, доната тут в привычном его понимании нет и не
+        будет, есть только добровольные пожертвования, которые идут на оплату
+        домена, хостинга, сладкий хлеб для администрации (данный сервер создан
+        не для получения прибыли). Так же из особенностей сервера можно
+        выделить: бесплатные HD скины/плащи, уникальный в своем роде плагин
+        приватов и системы городов towny, более актуальную версию игры - 1.12.2,
+        некоторые самописанные моды, лояльное отношение администрации к игрокам,
+        минимум ограничений, максимальное уклон игровых механник к реальным
       </p>
-      <br />
+      {/* <br />
       <p>
         TerraFirmaCraft (основной мод) TFC - это мод, радикально меняющий
         механику игры в сторону реализма. Никакой херни - сначала каменный век,
@@ -30,17 +50,32 @@ const AboutPage = () => {
         например: нападение одного города на другой, торговля и т.д. Также вы
         можете основать свой город но это очень не просто так как накопить
         нужную сумму игровой валюты будет сложно.
+      </p> */}
+      <br />
+      <p>
+        Список модификаций: tfc-tng, advanced tfc tech, antiueatlas, astikorcarts, caryon, davicisvessels, dynmap, immersiveengenering, immersive energy, immersivelligence, immersivepetroleum, immersivetechnology, mmmmmmmmmmmm, puddles, terrafirmathings, tfcdecoration, tfcdryingrack, tfcagreddrinks, tfcsurvivalstuff, tfctech, threechop, voicechatreloaded, waterflasks, wearablebackpacks, dynamictrees tfc, tfc-survivalstuff.
+        {/* {" "}
+        {mods.map((v) => (
+          <span className="mod">{v}, </span>
+        ))} */}
       </p>
       <br />
       <p>
-        Список модов: TerraFirmaCraft, PlayerRevive, Puddles, waterflasks,
-        WearableBackpacks, firmalife, а также мелкие клиентские моды, список
-        также будет расширяться.
+        Администрация проекта:
+        <ol>
+          <li>__xelo__ - Создатель проекта</li>
+          <li>hohserg - баг-фиксер/мододел</li>
+          <li>Taper4ik - мододел/писатель рецептов/переводчик</li>
+          <li>koenigstag - разработчик сайта</li>
+          <li>Gainfull_Gremlin - баг-фиксер</li>
+          <li>Khanivore - билдер</li>
+          <li>Jykk - редактор постов</li>
+        </ol>
       </p>
       <br />
       <p>
-        Чтобы связаться с админами заходите на наш{' '}
-        <a href='https://discord.gg/xaFCzGarws'>Дискорд сервер</a>.
+        Для связи с администрацией заходите на наш{" "}
+        <a href="https://discord.gg/xaFCzGarws">Дискорд сервер</a>.
       </p>
     </div>
   );
