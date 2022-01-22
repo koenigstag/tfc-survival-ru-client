@@ -36,6 +36,7 @@ const OnlinePage = () => {
 
       <h4>Сейчас онлайн: {serverInfo.players && `${serverInfo.players.online} / ${serverInfo.players.max}`} </h4>
       <div>Список (до 12 игроков)</div>
+      <div>Для просмотра актуального списка онлайна воспользуйтесь командой list в нашем дискорде в канале</div>
       <Table
         className={styles.table}
         list={serverInfo.players.sample}
