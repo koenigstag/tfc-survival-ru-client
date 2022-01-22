@@ -37,12 +37,14 @@ const OnlinePage = () => {
         <iframe
           title="minecraftrating/progress/tfc.survival"
           height="23"
-          scrolling='no'
+          scrolling="no"
           src="https://minecraftrating.ru/widgets_api/monitoring/monitoring.html?server_id=114193&color=blue&status=tfc-survival.ru"
           frameborder="0"
         ></iframe>
       </center>
-      <h6 style={{ marginTop: "10px" }}>* График обновляется с запаздыванием</h6>
+      <h6 style={{ marginTop: "10px" }}>
+        * График обновляется с запаздыванием
+      </h6>
       <iframe
         title="minecraftrating/graph/tfc.survival"
         src="https://minecraftrating.ru/server_chart/114193/"
@@ -63,7 +65,7 @@ const OnlinePage = () => {
       </h6>
       <Table
         className={styles.table}
-        list={serverInfo.players.sample}
+        list={serverInfo.players.sample ? serverInfo.players.sample : []}
         headers={["Ники"]}
         paths={["name"]}
         sortFunc={(item1, item2) => {
