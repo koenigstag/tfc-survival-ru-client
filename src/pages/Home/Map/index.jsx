@@ -44,9 +44,9 @@ const MapPage = () => {
           width: "85%",
           height: "80%",
         }}
-        title="Tfc-survival map"
+        title="tfc-survival.ru dynmap"
         // src={constants.MAP_URL}
-        src='/map.html'
+        src='/dynmap-web/index.html'
       >
         Something went wrong...
       </iframe>
