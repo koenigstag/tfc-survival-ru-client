@@ -1,3 +1,4 @@
+@import "common/media.module.sass"
 $appMainBackground: #282c34
 
 .App
@@ -55,9 +56,9 @@ $appMainBackground: #282c34
   .container
     max-width: 960px
 
-@media screen and (max-width: 992px)
+@media screen and (max-width: $mediaShowBurgerMenu)
   .container
-    max-width: 720px
+    max-width: 760px
 
 @media screen and (max-width: 768px)
   .container
@@ -65,7 +66,7 @@ $appMainBackground: #282c34
 
 @media screen and (max-width: 576px)
   .container
-    max-width: 320px
+    max-width: 420px
 
 .xelo
   position: fixed

@@ -19,3 +19,9 @@ export const getMapHtml = async () => {
 
   return response.data;
 }
+
+export const getVKNews = async () => {
+  const response = await clientApi.get('/vknews');
+  
+  return response.data;
+}
