@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { baseURL } from 'api';
+import React, { useState } from "react";
+import { baseURL } from "api";
 
 const Skin3DPreview = ({ fileSrc, imageStyles }) => {
   const [show, setShow] = useState(false);
@@ -9,20 +9,20 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
       <img
         style={imageStyles}
         src={`${baseURL}/static/skins/steve.png`}
-        alt='Default skin'
+        alt="Default skin"
       />
     ) : (
       <img
         style={imageStyles}
-        src={fileSrc + '?time=' + new Date().getTime()}
-        alt='User skin'
+        src={fileSrc + "?time=" + new Date().getTime()}
+        alt="User skin"
       />
     );
 
   let renderSrc;
   if (fileSrc) {
     const fileURL = new URL(fileSrc);
-    const paths = fileURL.pathname.split('/');
+    const paths = fileURL.pathname.split("/");
     const filename = paths[paths.length - 1];
     renderSrc = `/3drender/index.html?filename=${filename}`;
   }
@@ -39,25 +39,29 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
       <div>
         <button
           onClick={() => {
-            setShow(s => !s);
+            setShow((s) => !s);
           }}
-          type='button'
+          type="button"
         >
-          Показать/Скрыть превью
+          Показать/Скрыть 3D превью
         </button>
 
         {show && (
-          <div>
-            <iframe
-              title='skin 3d render'
-              style={{
-                width: '500px',
-                height: '500px',
-                // display: show ? 'block' : 'none',
-              }}
-              src={renderSrc}
-              frameBorder='1'
-            ></iframe>
+          <div style={{ maxWidth: "100%" }}>
+            <center>
+              <iframe
+                title="skin 3d render"
+                style={{
+                  maxWidth: "300px",
+                  width: "80%",
+                  height: "500px",
+                  overflow: "hidden",
+                  // display: show ? 'block' : 'none',
+                }}
+                src={renderSrc}
+                frameBorder="1"
+              ></iframe>
+            </center>
           </div>
         )}
       </div>

@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Form, Formik } from 'formik';
+import React, { useCallback, useEffect, useState } from "react";
+import { Form, Formik } from "formik";
 
 const UploadFileForm = ({
   text = {},
@@ -7,40 +7,40 @@ const UploadFileForm = ({
   sideEffectDependency = undefined,
   submitFunc = async () => {},
   filePreview = () => {},
-  mimeType = 'image/png',
+  mimeType = "image/png",
   maxFileSize = 800 * 1024,
 }) => {
   const [fileSrc, setFileSrc] = useState(null);
 
   useEffect(() => {
     sideEffect()
-      .then(res => {
+      .then((res) => {
         setFileSrc(res);
       })
-      .catch(e => {
+      .catch((e) => {
         // TODO show errors in ui
         console.error(e.message);
       });
   }, [sideEffect, fileSrc]);
 
-  const preview = useCallback(() => filePreview(fileSrc), [
-    fileSrc,
-    filePreview,
-  ]);
+  const preview = useCallback(
+    () => filePreview(fileSrc),
+    [fileSrc, filePreview]
+  );
 
   return (
     <Formik
-      initialValues={{ file: '' }}
+      initialValues={{ file: "" }}
       onSubmit={({ file }, formikBag) => {
         if (!file) {
           return;
         }
 
-        submitFunc(file).then(res => {
+        submitFunc(file).then((res) => {
           setFileSrc(res);
         });
 
-        formikBag.setFieldValue('file', '');
+        formikBag.setFieldValue("file", "");
         formikBag.resetForm();
       }}
     >
@@ -56,7 +56,7 @@ const UploadFileForm = ({
           }
 
           if (file.type !== mimeType) {
-            setFieldError(name, 'Неверный тип файла');
+            setFieldError(name, "Неверный тип файла");
             return;
           }
           if (file.size >= maxFileSize) {
@@ -76,13 +76,15 @@ const UploadFileForm = ({
               <legend>{text.legend}</legend>
               <Form>
                 <div>{text.description}</div>
-                <input type='file' name='file' onChange={onChangeFile} />
+                <input type="file" name="file" onChange={onChangeFile} />
 
                 <div>
-                  <button type='submit' disabled={!values.file || errors.file}>
+                  <button type="submit" disabled={!values.file || errors.file}>
                     {text.submitBtn}
-                  </button>{' '}
-                  <span style={{ color: 'red' }}>{errors.file ? errors.file : ''}</span>
+                  </button>{" "}
+                  <span style={{ color: "red" }}>
+                    {errors.file ? errors.file : ""}
+                  </span>
                 </div>
               </Form>
               <div>{preview()}</div>
