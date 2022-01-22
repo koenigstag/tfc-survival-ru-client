@@ -45,8 +45,8 @@ const MapPage = () => {
           height: "80%",
         }}
         title="Tfc-survival map"
-        src={constants.MAP_URL}
-        // src='https://localhost:5001/api/map'
+        // src={constants.MAP_URL}
+        src='/map.html'
       >
         Something went wrong...
       </iframe>
