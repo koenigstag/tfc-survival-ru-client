@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ButtonLink from "components/ETC/ButtonLink";
 import { useSelector } from "react-redux";
 import { selectUser } from "app/slices/userSlice";
@@ -7,6 +7,11 @@ import styles from "./HomePage.module.sass";
 
 const HomePage = () => {
   const user = useSelector(selectUser);
+  const [discordBlock, setDiscordBlock] = useState(false);
+  const handleDiscordShow = useCallback(() => {
+    setDiscordBlock((s) => !s);
+  }, []);
+
   const [news, setNews] = useState([]);
 
   useEffect(() => {
@@ -26,7 +31,8 @@ const HomePage = () => {
       <div className={styles.homePageButtons}>
         <ButtonLink
           text="Наш дискорд сервер"
-          href="https://discord.gg/xaFCzGarws"
+          // href="https://discord.gg/xaFCzGarws"
+          onClick={handleDiscordShow}
           title="Discord сообщество проекта"
         />
         <ButtonLink
@@ -49,11 +55,47 @@ const HomePage = () => {
           title="Проголосовать"
         />
       </div>
+      <div
+        style={{
+          display: discordBlock ? "block" : "none",
+          position: "fixed",
+          right: "5px",
+          bottom: "5px",
+          zIndex: 3,
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#202225",
+            color: "white",
+            margin: "0 auto",
+            borderRadius: '10px 10px 0 0',
+            position: 'relative',
+            bottom: '-5px',
+            zIndex: 2,
+            paddingRight: '10px',
+            textAlign: 'right'
+          }}
+          onClick={handleDiscordShow}
+        >
+          X
+        </div>
+        <iframe
+          title="discord-widget"
+          src="https://discord.com/widget?id=253218452209270784&amp;theme=dark"
+          width="280"
+          height="400"
+          allowtransparency="true"
+          frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        ></iframe>
+      </div>
+
       <section
         id="vk-news"
         style={{
           // border: "1px solid blue",
-          boxShadow: '0px 0px 8px 0px rgba(0, 0, 0, 0.5)',
+          boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.5)",
           borderRadius: "5px",
           padding: "20px",
           maxWidth: "100%",
