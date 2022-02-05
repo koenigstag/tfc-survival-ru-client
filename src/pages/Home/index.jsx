@@ -90,7 +90,8 @@ const HomePage = () => {
                       borderRadius: "50%",
                       verticalAlign: "top",
                     }}
-                    src="https://sun6-20.userapi.com/s/v1/ig2/o0ZCxo53d34cU8toliWWxF8xOplmsu0Db1SmpkWXbeTeNBC0wQVorxVNxNzp0BQfFdpXhztDE3Kf8fajmE0RNFdI.jpg?size=50x50&quality=96&crop=0,0,415,415&ava=1"
+                    // src="https://sun6-20.userapi.com/s/v1/ig2/o0ZCxo53d34cU8toliWWxF8xOplmsu0Db1SmpkWXbeTeNBC0wQVorxVNxNzp0BQfFdpXhztDE3Kf8fajmE0RNFdI.jpg?size=50x50&quality=96&crop=0,0,415,415&ava=1"
+                    src="/logo_small.png"
                     alt="vk-logo"
                   />
                 </a>
