@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { /* getUserData,  */ getUserStats } from "api/userAPI";
 import Table from "components/ETC/Table";
 import styles from "./StatsPage.module.sass";
+import _ from "lodash";
 
 export const StatsPage = () => {
   const [stats, setStats] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const rowsPerPage = 20;
+
+  const [debounceLoadStats] = useState(() =>
+    _.debounce(
+      async (page, rowsPerPage) => {
+        const { pages, stats } = await getUserStats(page, rowsPerPage);
+
+        setTotalPages(pages);
+
+        const prepared = stats.map((item) => ({
+          ...item,
+          "stat.playOneMinute": (item["stat.playOneMinute"] / 72000).toFixed(2),
+        }));
+
+        setStats(prepared);
+      },
+      1000,
+      { trailing: true }
+    )
+  );
+
   // const [data, setData] = useState(null);
 
   useEffect(() => {
-    const getStats = async () => {
-      const stats = await getUserStats();
-
-      const prepared = stats.map((item) => ({
-        ...item,
-        "stat.playOneMinute": (item["stat.playOneMinute"] / 72000).toFixed(2),
-      }));
-
-      setStats(prepared);
-    };
-
-    getStats();
-
     /* const getData = async () => {
       const data = await getUserData();
 
@@ -28,23 +39,46 @@ export const StatsPage = () => {
     }; */
 
     // getData();
+
+    debounceLoadStats(page, rowsPerPage);
+  }, [debounceLoadStats, page]);
+
+  const handleNextPage = useCallback(() => {
+    setPage((p) => {
+      return Math.min(++p, totalPages + 1);
+    });
+  }, [totalPages]);
+
+  const handlePrevPage = useCallback(() => {
+    setPage((p) => {
+      return Math.max(--p, 1);
+    });
   }, []);
+
+  console.log(stats && stats.length);
 
   return (
     <>
       <h4>Статистика игроков</h4>
+      <div>
+        <button onClick={handlePrevPage}>Пред</button>
+        <span
+          style={{
+            display: "inline-block",
+            textAlign: "center",
+            minWidth: "50px",
+          }}
+        >
+          {page}/{totalPages}
+        </span>
+        <button onClick={handleNextPage}>След</button>
+      </div>
 
       <div className={styles.tableWrapper}>
         {stats && (
           <Table
             className={styles.table}
-            headers={[
-              "Ники",
-              "Смертей",
-              "Выходов",
-              "Прыжков",
-              "Часов",
-            ]}
+            headers={["Ники", "Смертей", "Выходов", "Прыжков", "Часов"]}
             list={stats}
             paths={[
               "nickname",

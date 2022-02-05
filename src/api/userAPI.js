@@ -77,8 +77,8 @@ export const getCape = async ({ nickname }) => {
   return baseURL + `/static/capes/${nickname}.png`;
 };
 
-export const getUserStats = async () => {
-  const response = await clientApi.get('/users/stats');
+export const getUserStats = async (page, rows) => {
+  const response = await clientApi.get('/users/stats?page=' + page + '&rows=' + rows);
 
   return response.data.data;
 };
