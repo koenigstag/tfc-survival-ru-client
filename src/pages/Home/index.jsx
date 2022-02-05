@@ -12,7 +12,6 @@ const HomePage = () => {
   useEffect(() => {
     const getNews = async () => {
       const news = await getVKNews();
-      console.log(news);
       setNews(news);
     };
     getNews();
