@@ -45,7 +45,7 @@ export const StatsPage = () => {
 
   const handleNextPage = useCallback(() => {
     setPage((p) => {
-      return Math.min(++p, totalPages + 1);
+      return Math.min(++p, totalPages);
     });
   }, [totalPages]);
 
