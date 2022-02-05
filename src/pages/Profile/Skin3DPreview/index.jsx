@@ -53,7 +53,6 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
                 title="skin 3d render"
                 style={{
                   maxWidth: "300px",
-                  width: "80%",
                   height: "500px",
                   overflow: "hidden",
                   // display: show ? 'block' : 'none',

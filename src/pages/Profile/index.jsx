@@ -11,7 +11,7 @@ import styles from "./ProfilePage.module.sass";
 
 const imageStyles = {
   marginTop: "10px",
-  maxWidth: "300px",
+  maxWidth: "80%",
   width: "100%",
   // border: '1px solid #555',
   // borderRadius: '5px',
@@ -61,7 +61,9 @@ const ProfilePage = () => {
             })
           }
           filePreview={(fileSrc) => (
-            <Skin3DPreview fileSrc={fileSrc} imageStyles={imageStyles} />
+            <center>
+              <Skin3DPreview fileSrc={fileSrc} imageStyles={imageStyles} />
+            </center>
           )}
         />
 
@@ -85,9 +87,9 @@ const ProfilePage = () => {
             fileSrc === null ? (
               "Плащ не установлен"
             ) : (
-              <>
+              <center>
                 <img style={imageStyles} src={fileSrc} alt="User cape" />
-              </>
+              </center>
             )
           }
         />
