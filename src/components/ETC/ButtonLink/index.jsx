@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import cx from 'classnames';
 import styles from './ButtonLink.module.sass';
 
-const ButtonLink = ({ href, link, text, variant, ...rest }) => {
+const ButtonLink = ({ style, href, link, text, variant, ...rest }) => {
   const classnames = cx(styles.buttonLink, {
     [styles.buttonLinkWhite]: (variant ? variant : 'white') === 'white',
     [styles.buttonLinkBlue]: variant === 'blue',
+    [styles.buttonLinkGreen]: variant === 'green',
   });
 
   if (href) {
     return (
-      <a href={href} className={classnames} target='_blank' rel='noreferrer'>
+      <a href={href} className={classnames} style={style} target='_blank' rel='noreferrer'>
         {text}
       </a>
     );
@@ -19,14 +20,14 @@ const ButtonLink = ({ href, link, text, variant, ...rest }) => {
 
   if (link) {
     return (
-      <Link to={link} className={classnames} {...rest}>
+      <Link to={link} className={classnames} style={style} {...rest}>
         {text}
       </Link>
     );
   }
 
   return (
-    <button className={classnames} {...rest}>
+    <button className={classnames} style={style} {...rest}>
       {text}
     </button>
   );

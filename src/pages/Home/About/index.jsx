@@ -1,5 +1,6 @@
+import ButtonLink from "components/ETC/ButtonLink";
 import React from "react";
-import styles from './AboutPage.module.sass';
+import styles from "./AboutPage.module.sass";
 
 const AboutPage = () => {
   // const [mods, setMods] = useState([]);
@@ -18,6 +19,41 @@ const AboutPage = () => {
   return (
     <div className={styles.aboutDiv}>
       <h1>О нас</h1>
+      <br />
+      <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+        <div className={styles.homePageButtons}>
+          <ButtonLink
+            text="Наш дискорд сервер"
+            href="https://discord.gg/xaFCzGarws"
+            title="Discord сообщество проекта"
+          />
+          <ButtonLink
+            text="Наша группа ВК"
+            href="https://vk.com/tfcsurvivalru"
+            title="Группа проекта в соц сети ВКонтакте"
+          />
+        </div>
+        <h5>Мы есть на мониторингах, голосуйте за нас</h5>
+        <div>
+          <ButtonLink
+            text="minecraftratig.ru"
+            href="https://minecraftrating.ru/vote/114193/"
+            title="Проголосовать"
+            variant="green"
+            style={{ borderRadius: '5px 0px 0px 5px' }}
+          />
+          <ButtonLink
+            text="monitoringminecraft.ru"
+            href="https://monitoringminecraft.ru/top/tfc-survival"
+            title="Проголосовать"
+            variant="green"
+            style={{ margin: '0px', borderRadius: '0px 5px 5px 0px' }}
+          />
+        </div>
+      </div>
+      <br />
+      <hr />
+      <br />
       <p>
         Данный terrafirmacraft сервер является наследником сервера tfc.su
         (проект test'a), что в свою очередь является наследником проекта
@@ -53,7 +89,13 @@ const AboutPage = () => {
       </p> */}
       <br />
       <p>
-        Список модификаций: tfc-tng, advanced tfc tech, antiueatlas, astikorcarts, caryon, davicisvessels, dynmap, immersiveengenering, immersive energy, immersivelligence, immersivepetroleum, immersivetechnology, mmmmmmmmmmmm, puddles, terrafirmathings, tfcdecoration, tfcdryingrack, tfcagreddrinks, tfcsurvivalstuff, tfctech, threechop, voicechatreloaded, waterflasks, wearablebackpacks, dynamictrees tfc, tfc-survivalstuff.
+        Список модификаций: tfc-tng, advanced tfc tech, antiueatlas,
+        astikorcarts, caryon, davicisvessels, dynmap, immersiveengenering,
+        immersive energy, immersivelligence, immersivepetroleum,
+        immersivetechnology, mmmmmmmmmmmm, puddles, terrafirmathings,
+        tfcdecoration, tfcdryingrack, tfcagreddrinks, tfcsurvivalstuff, tfctech,
+        threechop, voicechatreloaded, waterflasks, wearablebackpacks,
+        dynamictrees tfc, tfc-survivalstuff.
         {/* {" "}
         {mods.map((v) => (
           <span className="mod">{v}, </span>
