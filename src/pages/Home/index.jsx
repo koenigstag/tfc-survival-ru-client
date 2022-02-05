@@ -52,7 +52,8 @@ const HomePage = () => {
       <section
         id="vk-news"
         style={{
-          border: "1px solid blue",
+          // border: "1px solid blue",
+          boxShadow: '0px 0px 8px 0px rgba(0, 0, 0, 0.5)',
           borderRadius: "5px",
           padding: "20px",
           maxWidth: "100%",
