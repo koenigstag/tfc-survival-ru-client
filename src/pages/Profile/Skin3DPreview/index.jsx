@@ -4,27 +4,27 @@ import { baseURL } from "api";
 const Skin3DPreview = ({ fileSrc, imageStyles }) => {
   const [show, setShow] = useState(false);
 
-  const calcImage = () =>
-    fileSrc === null ? (
+  const calcImage = () => {
+    const calcSrc = fileSrc === null ? `${baseURL}/static/skins/steve.png` : fileSrc + "?time=" + new Date().getTime();
+
+    return (
       <img
         style={imageStyles}
-        src={`${baseURL}/static/skins/steve.png`}
-        alt="Default skin"
-      />
-    ) : (
-      <img
-        style={imageStyles}
-        src={fileSrc + "?time=" + new Date().getTime()}
+        src={calcSrc}
         alt="User skin"
       />
     );
+  };
 
   let renderSrc;
   if (fileSrc) {
     const fileURL = new URL(fileSrc);
     const paths = fileURL.pathname.split("/");
     const filename = paths[paths.length - 1];
+    console.log(filename);
     renderSrc = `/3drender/index.html?filename=${filename}`;
+  } else {
+    renderSrc = `/3drender/index.html?filename=steve.png`;
   }
 
   return (
