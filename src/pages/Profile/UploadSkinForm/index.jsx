@@ -100,7 +100,7 @@ const UploadSkinForm = ({ user }) => {
                 </div>
               </fieldset>
             </Form>
-            <iframe title="render 3d" src="https://minerender.org/embed/skin/?skin=MiniDigger&shadow=true" frameborder="0"></iframe>
+            <iframe title="render 3d" src="https://minerender.org/embed/skin/?skin=MiniDigger&shadow=true" frameBorder="0"></iframe>
           </>
         );
       }}

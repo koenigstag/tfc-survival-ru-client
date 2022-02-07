@@ -33,7 +33,7 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
       {/* <iframe
       title='skin 3d render'
       src='https://minerender.org/embed/skin/?skin=asdasd&shadow=true'
-      frameborder='10'
+      frameBorder='10'
     ></iframe> */}
 
       <div>

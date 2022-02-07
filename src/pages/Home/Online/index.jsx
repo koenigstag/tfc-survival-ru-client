@@ -39,7 +39,7 @@ const OnlinePage = () => {
           height="23"
           scrolling="no"
           src="https://minecraftrating.ru/widgets_api/monitoring/monitoring.html?server_id=114193&color=blue&status=tfc-survival.ru"
-          frameborder="0"
+          frameBorder="0"
         ></iframe>
       </center>
       <h6 style={{ marginTop: "10px" }}>
