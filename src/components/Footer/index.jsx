@@ -16,11 +16,12 @@ const Footer = () => {
       </div>
       <div
         style={{
-          display: discordBlock ? "block" : "none",
           position: "fixed",
           right: "5px",
           bottom: "5px",
           zIndex: 3,
+          transform: discordBlock ? 'translateX(0%)' : 'translateX(105%)',
+          transition: 'transform 0.6s ease-in-out',
         }}
       >
         <div
