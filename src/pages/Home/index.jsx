@@ -78,7 +78,7 @@ const HomePage = () => {
               </header>
               <div>
                 {post.text.split("\n").map((t, i) => {
-                  const links = /((https?:\/\/)?[^\s.]+\.[\w][^\s]+)/.exec(t);
+                  // const links = /((https?:\/\/)?[^\s.]+\.[\w][^\s]+)/.exec(t);
 
                   // console.log(links);
 

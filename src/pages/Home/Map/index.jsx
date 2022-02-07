@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { getMapHtml } from 'api/commonAPI';
+import React from "react";
+// import { getMapHtml } from 'api/commonAPI';
 import blank_map from "./media/images/blank_map.png";
-import constants from '../../../constants';
+// import constants from '../../../constants';
 
 const MapPage = () => {
   /* const [htmlMap, setHtmlMap] = useState('');
