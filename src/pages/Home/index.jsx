@@ -8,11 +8,14 @@ const HomePage = () => {
   const user = useSelector(selectUser);
 
   const [news, setNews] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     const getNews = async () => {
+      setIsFetching(true);
       const news = await getVKNews();
       setNews(news);
+      setIsFetching(false);
     };
     getNews();
   }, []);
@@ -38,7 +41,7 @@ const HomePage = () => {
       >
         {news.length === 0 ? (
           <center>
-            Тут должны были быть новости из VK.com но Крампус их украл 😥
+            {!isFetching && 'Тут должны были быть новости из VK.com но Крампус их украл 😥'}
           </center>
         ) : (
           news.map((post) => (
