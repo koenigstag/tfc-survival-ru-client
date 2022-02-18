@@ -45,7 +45,7 @@ const AboutPage = () => {
 
         <div>
           <ButtonLink
-            text="minecraftratig.ru"
+            text="minecraftrating.ru"
             href="https://minecraftrating.ru/vote/114193/"
             title="Проголосовать"
             variant="green"
