@@ -59,7 +59,7 @@ export const StatsPage = () => {
 
   return (
     <>
-      <div>
+      <div style={{ marginTop: '20px' }}>
         <button onClick={handlePrevPage}>Пред</button>
         <span
           style={{

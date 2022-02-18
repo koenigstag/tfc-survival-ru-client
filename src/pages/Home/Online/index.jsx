@@ -54,8 +54,8 @@ const OnlinePage = () => {
         frameBorder="0"
       ></iframe>
 
-      <details>
-        <summary style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
+      <details style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
+        <summary style={{ border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} >
           <h4 style={{ display: 'inline-block' }} >
             Сейчас онлайн:{" "}
             {serverInfo.players &&
@@ -63,7 +63,7 @@ const OnlinePage = () => {
           </h4>
         </summary>
 
-        <div>Список (до 12 игроков)</div>
+        <div style={{ marginTop: '20px' }}>Список (до 12 игроков)</div>
         <h6>
           * Для просмотра полного списка онлайна воспользуйтесь командой list в
           нашем дискорде в канале
@@ -85,8 +85,8 @@ const OnlinePage = () => {
           itemKey="id"
         />
       </details>
-      <details>
-        <summary style={{ border: '1px solid #aaa', padding: '10px 20px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
+      <details style={{ border: '1px solid #aaa', padding: '10px 20px', marginTop: '10px' }} >
+        <summary style={{ border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
         <StatsPage />
       </details>
     </div>
