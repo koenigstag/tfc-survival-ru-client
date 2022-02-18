@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "components/ETC/Table";
 import styles from "./OnlinePage.module.sass";
 import { getServerInfo } from "api/commonAPI";
+import StatsPage from "../Stats";
 
 const OnlinePage = () => {
   // TODO online full list
@@ -33,7 +34,7 @@ const OnlinePage = () => {
       <h4>Онлайн сервера</h4>
       <div>Статус сервера: {serverInfo.online ? "Включен" : "Отключен"}</div>
 
-      <center>
+      {/* <center>
         <iframe
           title="minecraftrating/progress/tfc.survival"
           height="23"
@@ -41,7 +42,7 @@ const OnlinePage = () => {
           src="https://minecraftrating.ru/widgets_api/monitoring/monitoring.html?server_id=114193&color=blue&status=tfc-survival.ru"
           frameBorder="0"
         ></iframe>
-      </center>
+      </center> */}
       <h6 style={{ marginTop: "10px" }}>
         * График обновляется с запаздыванием
       </h6>
@@ -53,32 +54,41 @@ const OnlinePage = () => {
         frameBorder="0"
       ></iframe>
 
-      <h4>
-        Сейчас онлайн:{" "}
-        {serverInfo.players &&
-          `${serverInfo.players.online} / ${serverInfo.players.max}`}{" "}
-      </h4>
-      <div>Список (до 12 игроков)</div>
-      <h6>
-        * Для просмотра полного списка онлайна воспользуйтесь командой list в
-        нашем дискорде в канале
-      </h6>
-      <Table
-        className={styles.table}
-        list={serverInfo.players.sample ? serverInfo.players.sample : []}
-        headers={["Ники"]}
-        paths={["name"]}
-        sortFunc={(item1, item2) => {
-          if (item2.name < item1.name) {
-            return 1;
-          }
-          if (item1.name < item2.name) {
-            return -1;
-          }
-          return 0;
-        }}
-        itemKey="id"
-      />
+      <details>
+        <summary style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
+          <h4 style={{ display: 'inline-block' }} >
+            Сейчас онлайн:{" "}
+            {serverInfo.players &&
+              `${serverInfo.players.online} / ${serverInfo.players.max}`}{" "}
+          </h4>
+        </summary>
+
+        <div>Список (до 12 игроков)</div>
+        <h6>
+          * Для просмотра полного списка онлайна воспользуйтесь командой list в
+          нашем дискорде в канале
+        </h6>
+        <Table
+          className={styles.table}
+          list={serverInfo.players.sample ? serverInfo.players.sample : []}
+          headers={["Ники"]}
+          paths={["name"]}
+          sortFunc={(item1, item2) => {
+            if (item2.name < item1.name) {
+              return 1;
+            }
+            if (item1.name < item2.name) {
+              return -1;
+            }
+            return 0;
+          }}
+          itemKey="id"
+        />
+      </details>
+      <details>
+        <summary style={{ border: '1px solid #aaa', padding: '10px 20px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
+        <StatsPage />
+      </details>
     </div>
   );
 };

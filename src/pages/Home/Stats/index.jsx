@@ -59,7 +59,6 @@ export const StatsPage = () => {
 
   return (
     <>
-      <h4>Статистика игроков</h4>
       <div>
         <button onClick={handlePrevPage}>Пред</button>
         <span
