@@ -1,6 +1,6 @@
 import React from "react";
 // import { getMapHtml } from 'api/commonAPI';
-import blank_map from "./media/images/blank_map.png";
+// import blank_map from "./media/images/blank_map.png";
 // import constants from '../../../constants';
 
 const MapPage = () => {
@@ -17,7 +17,7 @@ const MapPage = () => {
   return (
     <div
       style={{
-        background: `url(${blank_map}) no-repeat`,
+        // background: `url(${blank_map}) no-repeat`,
         backgroundSize: "100% 100%",
         // backgroundPosition: 'center',
         position: "absolute",
@@ -41,8 +41,8 @@ const MapPage = () => {
           zIndex: 2,
 
           margin: "auto",
-          width: "85%",
-          height: "80%",
+          width: "95%",
+          height: "90%",
         }}
         title="tfc-survival.ru dynmap"
         // src={constants.MAP_URL}
