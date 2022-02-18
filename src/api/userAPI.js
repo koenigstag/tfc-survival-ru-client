@@ -83,6 +83,12 @@ export const getUserStats = async (page, rows) => {
   return response.data.data;
 };
 
+export const getMyStats = async (nickname) => {
+  const response = await clientApi.get('/users/stats?nickname=' + nickname);
+
+  return response.data.data;
+};
+
 export const getUserData = async () => {
   const response = await clientApi.get('/users/data');
 

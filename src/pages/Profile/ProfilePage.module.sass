@@ -2,3 +2,27 @@
   display: flex
   flex-flow: row wrap
   justify-content: center
+
+.table
+  border-collapse: collapse
+  margin-bottom: 1rem
+  width: 100%
+
+  thead td
+    font-size: 1.4em
+    font-weight: 500
+    border-top: 1px solid #c3c5c7
+    border-bottom: 2px solid #c3c5c7
+
+  td
+    border-bottom: 1px solid #dee2e6
+    padding: .75rem
+    border-top: 1px solid #dee2e6
+
+  tbody tr:nth-child(2n - 1)
+    background-color: #f0f0f0
+
+  tbody td:not(td:first-child),
+  thead,
+  tfoot
+    text-align: center

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { useSelector } from "react-redux";
 import { selectUser } from "app/slices/userSlice";
@@ -6,8 +6,9 @@ import ChangePasswordForm from "./ChangePasswordForm";
 import LinkDiscordForm from "./LinkDiscordForm";
 import UploadFileForm from "./UploadFileForm";
 import Skin3DPreview from "./Skin3DPreview";
-import { getCape, setCape, getSkin, setSkin } from "api/userAPI";
+import { getCape, setCape, getSkin, setSkin, getMyStats } from "api/userAPI";
 import styles from "./ProfilePage.module.sass";
+import Table from "components/ETC/Table";
 
 const imageStyles = {
   marginTop: "10px",
@@ -20,6 +21,24 @@ const imageStyles = {
 
 const ProfilePage = () => {
   const user = useSelector(selectUser);
+  
+  const [stats, setStats] = useState(null);
+
+  const getMyStat = async (nick) => {
+    const { stats } = await getMyStats(nick);
+    console.log(stats);
+
+    const prepared = stats.map((item) => ({
+      ...item,
+      "stat.playOneMinute": (item["stat.playOneMinute"] / 72000).toFixed(2),
+    }));
+
+    setStats(prepared);
+  }
+
+  useEffect(() => {
+    getMyStat(user.data.nickname);
+  }, [user.nickname]);
 
   if (!user.isAuth) {
     return <Redirect to="/account/login" />;
@@ -93,6 +112,21 @@ const ProfilePage = () => {
             )
           }
         />
+      </div>
+      <div style={{ marginTop: '40px' }}>
+        <h5>Личная статистика</h5>
+        <Table
+            className={styles.table}
+            headers={["Смертей", "Выходов", "Прыжков", "Часов"]}
+            list={stats || [{}]}
+            paths={[
+              "stat.deaths",
+              "stat.leaveGame",
+              "stat.jump",
+              "stat.playOneMinute",
+            ]}
+            itemKey={"nickname"}
+          />
       </div>
     </div>
   );
