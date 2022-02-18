@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "components/ETC/Table";
 import styles from "./OnlinePage.module.sass";
 import { getServerInfo } from "api/commonAPI";
-import StatsPage from "../Stats";
+import StatsPage from "./Stats";
 
 const OnlinePage = () => {
   // TODO online full list
@@ -55,7 +55,7 @@ const OnlinePage = () => {
       ></iframe>
 
       <details style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
-        <summary style={{ border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} >
+        <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} >
           <h4 style={{ display: 'inline-block' }} >
             Сейчас онлайн:{" "}
             {serverInfo.players &&
@@ -86,7 +86,7 @@ const OnlinePage = () => {
         />
       </details>
       <details style={{ border: '1px solid #aaa', padding: '10px 20px', marginTop: '10px' }} >
-        <summary style={{ border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
+        <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
         <StatsPage />
       </details>
     </div>
