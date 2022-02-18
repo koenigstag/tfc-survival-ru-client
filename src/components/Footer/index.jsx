@@ -11,6 +11,9 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <Copyright />
+      <div style={{ position: "absolute", bottom: "5px", right: "85px", zIndex: 2 }}>
+        <a href="https://vk.com/tfcsurvivalru" target="_blank" rel="noreferrer" ><img className={styles.homeVKButton} src="/vk-button.png" alt="vkontakte logo" /></a>
+      </div>
       <div style={{ position: "absolute", bottom: "0px", right: "25px", zIndex: 2 }}>
         <img onClick={handleDiscordShow} className={styles.homeDiscordButton} src="/dis-comb.png" alt="discord logo" />
       </div>
