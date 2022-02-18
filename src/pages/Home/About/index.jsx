@@ -126,7 +126,7 @@ const AboutPage = () => {
       <br />
       <p>
         Для связи с администрацией заходите на наш{" "}
-        <a href="https://discord.gg/xaFCzGarws">Дискорд сервер</a>.
+        <a href="https://discord.gg/xaFCzGarws" target="_blank" rel="noreferrer" >Дискорд сервер</a>.
       </p>
     </div>
   );
