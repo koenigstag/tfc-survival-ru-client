@@ -113,7 +113,7 @@ const ProfilePage = () => {
           }
         />
       </div>
-      <div style={{ marginTop: '40px' }}>
+      <div style={{ marginTop: '20px' }}>
         <h5>Личная статистика</h5>
         <Table
             className={styles.table}
