@@ -44,8 +44,10 @@ const HomePage = () => {
             {!isFetching && 'Тут должны были быть новости из VK.com но Крампус их украл 😥'}
           </center>
         ) : (
-          news.map((post) => (
-            <article
+          news.map((post) => {
+            // console.log(post);
+
+            return <article
               key={post.id}
               style={{
                 marginBottom: "20px",
@@ -73,7 +75,7 @@ const HomePage = () => {
                   />
                 </a>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <a href="https://vk.com/tfcsurvivalru">TFC-survival.ru</a>
+                  <a href={`https://vk.com/tfcsurvivalru?w=wall${post.owner_id}_${post.id}`} target="_blank" rel="noreferrer" >TFC-survival.ru</a>
                   <span style={{ marginTop: "3px" }}>
                     {new Date(post.date * 1000).toLocaleString()}
                   </span>
@@ -168,7 +170,7 @@ const HomePage = () => {
                 )}
               </div>
             </article>
-          ))
+          })
         )}
       </section>
     </div>
