@@ -21,7 +21,6 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
     const fileURL = new URL(fileSrc);
     const paths = fileURL.pathname.split("/");
     const filename = paths[paths.length - 1];
-    console.log(filename);
     renderSrc = `/3drender/index.html?filename=${filename}`;
   } else {
     renderSrc = `/3drender/index.html?filename=steve.png`;

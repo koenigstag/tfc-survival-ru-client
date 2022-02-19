@@ -15,7 +15,6 @@ const OnlinePage = () => {
     async function getInfo() {
       try {
         const info = await getServerInfo();
-        // console.log(info);
         setServerInfo(info);
       } catch (error) {}
     }

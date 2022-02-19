@@ -55,8 +55,6 @@ export const StatsPage = () => {
     });
   }, []);
 
-  console.log(stats && stats.length);
-
   return (
     <>
       <div style={{ marginTop: '20px' }}>

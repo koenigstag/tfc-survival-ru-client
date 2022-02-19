@@ -15,9 +15,7 @@ clientApi.interceptors.request.use(
     let accessToken = window.localStorage.getItem(CONSTANTS.ACCESS_TOKEN);
     if (accessToken) {
 
-      /* const expires = decode(accessToken).exp
-
-      console.log(expires); */
+      /* const expires = decode(accessToken).exp*/
 
       config.headers = {
         ...config.headers,

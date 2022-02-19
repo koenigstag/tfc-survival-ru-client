@@ -26,7 +26,6 @@ const ProfilePage = () => {
 
   const getMyStat = async (nick) => {
     const { stats } = await getMyStats(nick);
-    console.log(stats);
 
     const prepared = stats.map((item) => ({
       ...item,

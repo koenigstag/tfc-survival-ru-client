@@ -6,7 +6,6 @@ var maptypes = {};
 var map = null;	// Leaflet assumes top-level 'map'...
 
 componentconstructors['testcomponent'] = function(dynmap, configuration) {
-	console.log('initialize');
 	$(dynmap).bind('worldchanged', function() { console.log('worldchanged'); });
 	$(dynmap).bind('mapchanging', function() { console.log('mapchanging'); });
 	$(dynmap).bind('mapchanged', function() { console.log('mapchanged'); });
