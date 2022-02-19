@@ -3,7 +3,7 @@ import axios from "axios";
 import CONSTANTS from "../constants";
 import { removeTokens, refreshUser, saveTokens } from "./authAPI";
 
-export const baseURL = `http://${CONSTANTS.SERVER_DOMAIN}`;
+export const baseURL = `${CONSTANTS.SERVER_DOMAIN}`;
 
 const clientApi = axios.create({
   baseURL: `${baseURL}/api/`,
