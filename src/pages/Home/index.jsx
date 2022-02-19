@@ -48,7 +48,7 @@ const HomePage = () => {
             // console.log(post);
 
             return <article
-              key={post.id}
+              key={post.id + Math.random()}
               style={{
                 marginBottom: "20px",
                 paddingBottom: "20px",
