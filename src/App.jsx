@@ -92,9 +92,9 @@ const App = () => {
                 {/* Public routes */}
                 <Route exact path='/' component={HomePage} />
 
-                <Route exact path='/home/launcher' component={LauncherPage} />
                 <Route exact path='/home/rules' component={RulesPage} />
                 <Route exact path='/home/about' component={AboutPage} />
+                <Route exact path='/home/launcher' component={LauncherPage} />
 
                 <Route exact path='/home/map' component={MapPage} />
 
