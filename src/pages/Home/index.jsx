@@ -48,7 +48,7 @@ const HomePage = () => {
             // console.log(post);
 
             return <article
-              key={post.id + Math.random()}
+              key={post.id + Math.random() * 100}
               style={{
                 marginBottom: "20px",
                 paddingBottom: "20px",
@@ -88,7 +88,7 @@ const HomePage = () => {
                   // console.log(links);
 
                   return (
-                    <span key={i}>
+                    <span key={i + Math.random() * 100}>
                       {t}
                       {t && <br />}
                     </span>
@@ -110,7 +110,7 @@ const HomePage = () => {
                   post.attachments[0].type === "photo" ? (
                     post.attachments.map((a) => (
                       <img
-                        key={a.id + Math.random()}
+                        key={a.id + Math.random() * 100}
                         style={{
                           display: "block",
                           maxWidth: post.attachments.length > 1 ? "20%" : "70%",
