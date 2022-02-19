@@ -110,7 +110,7 @@ const HomePage = () => {
                   post.attachments[0].type === "photo" ? (
                     post.attachments.map((a) => (
                       <img
-                        key={a.id}
+                        key={a.id + Math.random()}
                         style={{
                           display: "block",
                           maxWidth: post.attachments.length > 1 ? "20%" : "70%",
