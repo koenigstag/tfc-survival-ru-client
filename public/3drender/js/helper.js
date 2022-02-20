@@ -1,5 +1,5 @@
 var skinSrc = {
-  current: 'https://tfc-survival:3001/static/skins/',
+  current: 'https://tfc-survival.ru:3001/static/skins/',
 };
 
 function getSkinSrc () {
