@@ -37,7 +37,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     getMyStat(user.data.nickname);
-  }, [user.nickname]);
+  }, [user.data.nickname, user.nickname]);
 
   if (!user.isAuth) {
     return <Redirect to="/account/login" />;
