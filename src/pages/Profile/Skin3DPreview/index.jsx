@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { baseURL } from "api";
 
 const Skin3DPreview = ({ fileSrc, imageStyles }) => {
   const [show, setShow] = useState(false);
+
+  const [dimm, setDimm] = useState({});
+
+  const onImgLoad = useCallback(({ target: img }) => {
+    setDimm({ height: img.height, width: img.width });
+  }, []);
 
   const calcImage = () => {
     const calcSrc = fileSrc === null ? `${baseURL}/static/skins/steve.png` : fileSrc + "?time=" + new Date().getTime();
 
     return (
       <img
+        onLoad={onImgLoad}
         style={imageStyles}
         src={calcSrc}
         alt="User skin"
@@ -48,6 +55,7 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
         {show && (
           <div style={{ maxWidth: "100%" }}>
             <center>
+              <div>{dimm.width > 64 && 'Не работает для больших скинов'}</div>
               <iframe
                 title="skin 3d render"
                 style={{
