@@ -55,7 +55,7 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
         {show && (
           <div style={{ maxWidth: "100%" }}>
             <center>
-              <div>{dimm.width > 64 && 'Не работает для больших скинов'}</div>
+              <div>{dimm.width > 64 && 'Не работает для скинов больше ширины 64 пикс. В игре все ОК.'}</div>
               <iframe
                 title="skin 3d render"
                 style={{
