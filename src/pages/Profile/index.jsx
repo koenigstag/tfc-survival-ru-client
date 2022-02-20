@@ -51,7 +51,7 @@ const ProfilePage = () => {
           src={`/dynmap-web/tiles/faces/32x32/${user.data.nickname}.png`}
           onError={({ target }) => {
             target.onerror = null;
-            target.src = "/dynmap-web/tiles/faces/32x32/aboba.png";
+            target.src = "/dynmap-web/tiles/faces/32x32/steve.png";
           }}
           alt="skin face"
         />
