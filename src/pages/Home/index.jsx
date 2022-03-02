@@ -39,7 +39,7 @@ const HomePage = () => {
           textAlign: "left",
         }}
       >
-        {news.length === 0 ? (
+        {news?.length === 0 ? (
           <center>
             {!isFetching && 'Тут должны были быть новости из VK.com но Крампус их украл 😥'}
           </center>
@@ -106,7 +106,7 @@ const HomePage = () => {
                   textAlign: "center",
                 }}
               >
-                {post.attachments.length ? (
+                {post.attachments?.length ? (
                   post.attachments[0].type === "photo" ? (
                     post.attachments.map((a) => (
                       <img
