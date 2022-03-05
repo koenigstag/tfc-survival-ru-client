@@ -31,6 +31,11 @@ const OnlinePage = () => {
   return (
     <div>
       <h4>Онлайн сервера</h4>
+      <div style={{ display: 'inline-block' }} >
+        Сейчас онлайн:{" "}
+        {serverInfo.players &&
+          `${serverInfo.players.online} / ${serverInfo.players.max}`}{" "}
+      </div>
       <div>Статус сервера: {serverInfo.online ? "Включен" : "Отключен"}</div>
 
       {/* <center>
@@ -53,7 +58,7 @@ const OnlinePage = () => {
         frameBorder="0"
       ></iframe>
 
-      <details style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
+      {/* <details style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
         <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} >
           <h4 style={{ display: 'inline-block' }} >
             Сейчас онлайн:{" "}
@@ -83,7 +88,7 @@ const OnlinePage = () => {
           }}
           itemKey="id"
         />
-      </details>
+      </details> */}
       <details style={{ border: '1px solid #aaa', padding: '10px 20px', marginTop: '10px' }} >
         <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
         <StatsPage />
