@@ -41,9 +41,10 @@ const MapPage = () => {
             right: 0,
             zIndex: 2,
 
-            margin: "auto",
-            width: "95%",
-            height: "90%",
+            border: 'none',
+            margin: "-10px 0px 0px",
+            width: "100%",
+            height: "102%",
           }}
           title="tfc-survival.ru dynmap"
           // src={constants.MAP_URL}
