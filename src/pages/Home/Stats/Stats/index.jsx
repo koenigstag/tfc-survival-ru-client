@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { /* getUserData,  */ getUserStats } from "api/userAPI";
 import Table from "components/ETC/Table";
-import styles from "./StatsPage.module.sass";
+import styles from "./Stats.module.sass";
 import _ from "lodash";
 
 export const StatsPage = () => {

@@ -17,7 +17,7 @@ const navList = [
     title: 'Список забанных игроков и причины банов',
   },
   // { link: '/home/stats', text: 'Статистика', title: 'Статистика игроков' },
-  { link: '/home/online', text: 'Онлайн', title: 'Список игроков онлайн' },
+  { link: '/home/stats', text: 'Статистика', title: 'Список игроков онлайн' },
   {
     link: '/home/map',
     text: 'Карта',

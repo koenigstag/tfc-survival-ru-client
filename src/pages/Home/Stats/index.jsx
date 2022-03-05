@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 // import Table from "components/ETC/Table";
-// import styles from "./OnlinePage.module.sass";
+// import styles from "./StatsPage.module.sass";
 import { getServerInfo } from "api/commonAPI";
-import StatsPage from "./Stats";
+import Stats from "./Stats";
 
-const OnlinePage = () => {
+const StatsPage = () => {
   // TODO online full list
   const [serverInfo, setServerInfo] = useState({
     online: false,
@@ -91,10 +91,10 @@ const OnlinePage = () => {
       </details> */}
       <details style={{ border: '1px solid #aaa', padding: '10px 20px', marginTop: '10px' }} >
         <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
-        <StatsPage />
+        <Stats />
       </details>
     </div>
   );
 };
 
-export default OnlinePage;
+export default StatsPage;
