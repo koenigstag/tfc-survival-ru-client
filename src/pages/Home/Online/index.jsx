@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Table from "components/ETC/Table";
-import styles from "./OnlinePage.module.sass";
+// import Table from "components/ETC/Table";
+// import styles from "./OnlinePage.module.sass";
 import { getServerInfo } from "api/commonAPI";
 import StatsPage from "./Stats";
 
