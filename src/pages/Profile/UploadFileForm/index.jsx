@@ -21,7 +21,7 @@ const UploadFileForm = ({
         // TODO show errors in ui
         console.error(e.message);
       });
-  }, [sideEffect, fileSrc]);
+  }, [sideEffect, setFileSrc]);
 
   const preview = useCallback(
     () => filePreview(fileSrc),
