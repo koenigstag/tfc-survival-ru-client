@@ -1,21 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { baseURL } from "api";
 
 const Skin3DPreview = ({ fileSrc, imageStyles }) => {
   const [show, setShow] = useState(false);
-
-  const [dimm, setDimm] = useState({});
-
-  const onImgLoad = useCallback(({ target: img }) => {
-    setDimm({ height: img.height, width: img.width });
-  }, []);
 
   const calcImage = () => {
     const calcSrc = fileSrc === null ? `${baseURL}/static/skins/steve.png` : fileSrc + "?time=" + new Date().getTime();
 
     return (
       <img
-        onLoad={onImgLoad}
         style={imageStyles}
         src={calcSrc}
         alt="User skin"
@@ -36,11 +29,6 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
   return (
     <div>
       {calcImage()}
-      {/* <iframe
-      title='skin 3d render'
-      src='https://minerender.org/embed/skin/?skin=asdasd&shadow=true'
-      frameBorder='10'
-    ></iframe> */}
 
       <div>
         <button
@@ -55,7 +43,6 @@ const Skin3DPreview = ({ fileSrc, imageStyles }) => {
         {show && (
           <div style={{ maxWidth: "100%" }}>
             <center>
-              <div>{dimm.width > 64 && 'Не работает для скинов больше ширины 64 пикс. В игре все ОК.'}</div>
               <iframe
                 title="skin 3d render"
                 style={{

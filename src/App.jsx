@@ -52,7 +52,7 @@ const App = () => {
     }
   }, [dispatch, user.data]);
 
-  const rolltheDice = Math.random() * 100 >= 97;
+  const rolltheDice = Math.random() * 100 >= 0;
 
   if (rolltheDice) {
     setTimeout(() => {
@@ -60,7 +60,7 @@ const App = () => {
 
       if (elemXelo) {
         const hideXelo = () => {
-          elemXelo.style.transform = 'translate(0px, 200px) scaleX(-1)';
+          elemXelo.style.transform = 'translate(0px, 400px) scaleX(-1)';
         };
 
         elemXelo.addEventListener('mouseenter', hideXelo);

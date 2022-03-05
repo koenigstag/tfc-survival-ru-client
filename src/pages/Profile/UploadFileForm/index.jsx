@@ -12,7 +12,7 @@ const UploadFileForm = ({
 }) => {
   const [fileSrc, setFileSrc] = useState(null);
 
-  useEffect(() => {
+  const requestFile = useCallback(() => {
     sideEffect()
       .then((res) => {
         setFileSrc(res);
@@ -23,10 +23,19 @@ const UploadFileForm = ({
       });
   }, [sideEffect, setFileSrc]);
 
-  const preview = useCallback(
-    () => filePreview(fileSrc),
-    [fileSrc, filePreview]
-  );
+  useEffect(() => {
+    requestFile();
+  }, [requestFile]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      requestFile();
+      filePreview(fileSrc);
+    }, 3000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [requestFile, filePreview,fileSrc]);
 
   return (
     <Formik
@@ -87,7 +96,7 @@ const UploadFileForm = ({
                   </span>
                 </div>
               </Form>
-              <div>{preview()}</div>
+              <div>{filePreview(fileSrc)}</div>
             </fieldset>
           </>
         );

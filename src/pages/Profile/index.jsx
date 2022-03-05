@@ -21,7 +21,9 @@ const imageStyles = {
 
 const ProfilePage = () => {
   const user = useSelector(selectUser);
-  
+
+  const [nick, setNick] = useState(user.data.nickname);
+
   const [stats, setStats] = useState(null);
 
   const getMyStat = async (nick) => {
@@ -33,11 +35,11 @@ const ProfilePage = () => {
     }));
 
     setStats(prepared);
-  }
+  };
 
   useEffect(() => {
     getMyStat(user.data.nickname);
-  }, [user.data.nickname, user.nickname]);
+  }, [user.data.nickname]);
 
   if (!user.isAuth) {
     return <Redirect to="/account/login" />;
@@ -48,10 +50,10 @@ const ProfilePage = () => {
       <h3>
         Личный кабинет. Ник: {user.data.nickname}{" "}
         <img
-          src={`/dynmap-web/tiles/faces/32x32/${user.data.nickname}.png`}
+          src={`/dynmap-web/tiles/faces/32x32/${nick}.png`}
           onError={({ target }) => {
             target.onerror = null;
-            target.src = "/dynmap-web/tiles/faces/32x32/steve.png";
+            setNick("steve");
           }}
           alt="skin face"
         />
@@ -112,20 +114,20 @@ const ProfilePage = () => {
           }
         />
       </div>
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: "20px" }}>
         <h5>Личная статистика</h5>
         <Table
-            className={styles.table}
-            headers={["Смертей", "Выходов", "Прыжков", "Часов"]}
-            list={stats || [{}]}
-            paths={[
-              "stat.deaths",
-              "stat.leaveGame",
-              "stat.jump",
-              "stat.playOneMinute",
-            ]}
-            itemKey={"nickname"}
-          />
+          className={styles.table}
+          headers={["Смертей", "Выходов", "Прыжков", "Часов"]}
+          list={stats || [{}]}
+          paths={[
+            "stat.deaths",
+            "stat.leaveGame",
+            "stat.jump",
+            "stat.playOneMinute",
+          ]}
+          itemKey={"nickname"}
+        />
       </div>
     </div>
   );
