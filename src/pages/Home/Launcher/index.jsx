@@ -97,7 +97,7 @@ const LauncherPage = () => {
         </p>
         <p>
           Если ссылка на оф. сайт Oracle недоступна то можно скачать JRE v1.8321 для {getOSString()} {getBitString()} по 
-          <a href={`${baseURL}/static/jre/${getJREFileSrc()}`}> этой ссылке</a>. Для других систем<a href={`${baseURL}/static/launchers/`}> тут</a>.
+          <a href={`${baseURL}/static/jre/${getJREFileSrc()}`}> этой ссылке</a>. Для других систем<a href={`${baseURL}/static/jre/`}> тут</a>.
         </p>
         <hr />
         <br />
