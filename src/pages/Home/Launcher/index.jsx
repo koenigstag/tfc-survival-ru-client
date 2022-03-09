@@ -50,8 +50,6 @@ const LauncherPage = () => {
     } else if (getOSString() === 'Macintosh') {
       if (getBitString() === 'x64') {
         result = 'jre-8u321-macosx-x64.dmg';
-      } else {
-        result = 'Launcher.jar';
       }
     } else if (getOSString() === 'Windows') {
       if (getBitString() === 'x64') {
