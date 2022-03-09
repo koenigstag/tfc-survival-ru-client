@@ -16,7 +16,10 @@ const LauncherPage = () => {
 
   const getOSString = useCallback((invert = false) => {
     let result;
-    if (window.navigator.userAgent.includes('Linux') || window.navigator.userAgent.includes('Macintosh')) {
+    if (window.navigator.userAgent.includes('Macintosh')) {
+      return 'MacOS';
+    }
+    if (window.navigator.userAgent.includes('Linux')) {
       result = invert ? 'Windows' : 'Linux';
     } else {
       result = invert ? 'Linux' : 'Windows';
@@ -27,7 +30,7 @@ const LauncherPage = () => {
 
   const getLauncherFileSrc = useCallback((invert = false) => {
     let result;
-    if (getOSString().includes('Linux')) {
+    if (getOSString() === 'Linux' || getOSString() === 'MacOS') {
       result = invert ? 'Launcher.exe' : 'Launcher.jar';
     } else {
       result = invert ? 'Launcher.jar' : 'Launcher.exe';
@@ -35,6 +38,31 @@ const LauncherPage = () => {
 
     return result;
   }, [getOSString]);
+
+  const getJREFileSrc = useCallback(() => {
+    let result;
+    if (getOSString() === 'Linux') {
+      if (getBitString() === 'x64') {
+        result = 'jre-8u321-linux-x64.tar.gz';
+      } else {
+        result = 'jre-8u321-linux-i586.tar.gz';
+      }
+    } else if (getOSString() === 'Macintosh') {
+      if (getBitString() === 'x64') {
+        result = 'jre-8u321-macosx-x64.dmg';
+      } else {
+        result = 'Launcher.jar';
+      }
+    } else if (getOSString() === 'Windows') {
+      if (getBitString() === 'x64') {
+        result = 'jre-8u321-windows-x64.exe';
+      } else {
+        result = 'jre-8u321-windows-i586.exe';
+      }
+    }
+
+    return result;
+  }, [getOSString, getBitString]);
 
   return (
     <>
@@ -65,9 +93,13 @@ const LauncherPage = () => {
             target="_blank"
             rel="noreferrer"
           >
-            Java Offline 64-bit
+            Java Offline {getBitString()}
           </a>
           , для коректной работы игры.
+        </p>
+        <p>
+          Если ссылка на оф. сайт Oracle недоступна то можно скачать JRE v1.8321 для {getOSString()} {getBitString()} по 
+          <a href={`${baseURL}/static/jre/${getJREFileSrc()}`}> этой ссылке</a>. Для других систем<a href={`${baseURL}/static/launchers/`}> тут</a>.
         </p>
         <hr />
         <br />
