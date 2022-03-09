@@ -3,7 +3,6 @@ import { baseURL } from './index';
 import clientApi from './index';
 import { encrypt } from 'utils/passTransfer';
 
-// TODO test api
 export const changePass = async ({ nickname, password, oldpassword }) => {
   const response = await clientApi.patch(`users/password/${nickname}`, {
     passwordCrypt: encrypt(password),
@@ -17,7 +16,6 @@ export const changePass = async ({ nickname, password, oldpassword }) => {
   return response.data;
 };
 
-// TODO test api
 export const linkDiscord = async ({ nickname, discord }) => {
   const response = await clientApi.patch(`users/discord/${nickname}`, {
     discord,
@@ -58,7 +56,12 @@ export const setCape = async ({ nickname, accessToken, file }) => {
 };
 
 export const getSkin = async ({ nickname }) => {
-  const res = await axios.get(`${baseURL}/static/skins/${nickname}.png`);
+  let res;
+  try {
+    res = await axios.get(`${baseURL}/static/skins/${nickname}.png`);
+  } catch (e) {
+    return;
+  }
 
   if (res.status !== 200) {
     throw new Error('Cannot get skin');
@@ -68,7 +71,12 @@ export const getSkin = async ({ nickname }) => {
 };
 
 export const getCape = async ({ nickname }) => {
-  const res = await axios.get(`${baseURL}/static/capes/${nickname}.png`);
+  let res;
+  try {
+    res = await axios.get(`${baseURL}/static/capes/${nickname}.png`);
+  } catch (e) {
+    return;
+  }
 
   if (res.status !== 200) {
     throw new Error('Cannot get cape');

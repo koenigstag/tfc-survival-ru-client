@@ -1,9 +1,9 @@
 import React from 'react';
 
-const TableRow = ({ paths, data }) => {
+const TableRow = ({ paths, data, defaultValue }) => {
   return (
     <tr>
-      {paths.map((path) => <td key={path}>{data[path]}</td>)}
+      {paths.map((path) => <td key={path}>{Boolean(data[path]) ? data[path] : defaultValue}</td>)}
     </tr>
   );
 };

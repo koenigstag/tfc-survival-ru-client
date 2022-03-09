@@ -7,6 +7,7 @@ export default function Table({
   list,
   sortFunc,
   paths,
+  defaultValue,
   headers,
   itemKey,
 }) {
@@ -22,6 +23,7 @@ export default function Table({
       <tbody>
         {list.sort(sortFunc).map((data) => (
           <TableRow
+            defaultValue={defaultValue}
             data={data}
             paths={paths}
             key={data[itemKey] + '_' + Math.random() * 100}

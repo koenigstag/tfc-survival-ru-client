@@ -10,6 +10,8 @@ import { getCape, setCape, getSkin, setSkin, getMyStats } from "api/userAPI";
 import styles from "./ProfilePage.module.sass";
 import Table from "components/ETC/Table";
 
+const sum = (...nums) => nums.reduce((acc, val) => isNaN(val) ? acc : acc + val, 0);
+
 const imageStyles = {
   marginTop: "10px",
   maxWidth: "80%",
@@ -32,9 +34,9 @@ const ProfilePage = () => {
     const prepared = stats.map((item) => ({
       ...item,
       "stat.playOneMinute": (item["stat.playOneMinute"] / 72000).toFixed(2),
-      "stat.totalWalkOneCm": (item["stat.sprintOneCm"] + item["stat.walkOneCm" + item["stat.crouchOneCm"]]),
-      "stat.totalSwimOneCm": (item["stat.diveOneCm"] + item["stat.swimOneCm"] + item["stat.boatOneCm"]),
-      "stat.totalFlyOneCm": (item["stat.fallOneCm"] + item["stat.flyOneCm"]),
+      "stat.totalWalkOneCm": sum(item["stat.sprintOneCm"], item["stat.walkOneCm"], item["stat.crouchOneCm"]),
+      "stat.totalSwimOneCm": sum(item["stat.diveOneCm"], item["stat.swimOneCm"], item["stat.boatOneCm"]),
+      "stat.totalFlyOneCm": sum(item["stat.fallOneCm"], item["stat.flyOneCm"]),
     }));
 
     setStats(prepared);
@@ -123,6 +125,7 @@ const ProfilePage = () => {
           className={styles.table}
           headers={["Выходов", "Смертей", "Убито мобов", "Убито игроков", "Прыжков", "Пройдено блоков", "Проплыто", "На лошади", "Часов"]}
           list={stats || [{}]}
+          defaultValue={0}
           paths={[
             "stat.leaveGame",
             "stat.deaths",

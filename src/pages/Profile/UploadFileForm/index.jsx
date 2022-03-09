@@ -31,7 +31,7 @@ const UploadFileForm = ({
     const id = setInterval(() => {
       requestFile();
       filePreview(fileSrc);
-    }, 3000);
+    }, 30000);
     return () => {
       clearInterval(id);
     };
