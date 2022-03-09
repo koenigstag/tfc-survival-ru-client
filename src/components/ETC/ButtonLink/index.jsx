@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import cx from 'classnames';
 import styles from './ButtonLink.module.sass';
 
-const ButtonLink = ({ style, href, link, text, variant, ...rest }) => {
+const ButtonLink = ({ style, href, link, text, variant, target = '_blank', ...rest }) => {
   const classnames = cx(styles.buttonLink, {
     [styles.buttonLinkWhite]: (variant ? variant : 'white') === 'white',
     [styles.buttonLinkBlue]: variant === 'blue',
@@ -12,7 +12,7 @@ const ButtonLink = ({ style, href, link, text, variant, ...rest }) => {
 
   if (href) {
     return (
-      <a href={href} className={classnames} style={style} target='_blank' rel='noreferrer'>
+      <a href={href} className={classnames} style={style} target={target} rel='noreferrer'>
         {text}
       </a>
     );

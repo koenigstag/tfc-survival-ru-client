@@ -1,40 +1,57 @@
-import React from "react";
+import React, { useCallback } from "react";
 import ButtonLink from "components/ETC/ButtonLink";
 import styles from "./LauncherPage.module.sass";
 import { baseURL } from "api";
 
 const LauncherPage = () => {
+
+  const getBitString = useCallback(() => {
+    if (window.navigator.userAgent.includes('x64')) {
+      return 'x64';
+    } else if (window.navigator.userAgent.includes('x86') || window.navigator.userAgent.includes('x32')) {
+      return 'x86';
+    }
+    return 'x64';
+  }, []);
+
+  const getOSString = useCallback((invert = false) => {
+    let result;
+    if (window.navigator.userAgent.includes('Linux') || window.navigator.userAgent.includes('Macintosh')) {
+      result = invert ? 'Windows' : 'Linux';
+    } else {
+      result = invert ? 'Linux' : 'Windows';
+    }
+
+    return result;
+  }, []);
+
+  const getLauncherFileSrc = useCallback((invert = false) => {
+    let result;
+    if (getOSString().includes('Linux')) {
+      result = invert ? 'Launcher.exe' : 'Launcher.jar';
+    } else {
+      result = invert ? 'Launcher.jar' : 'Launcher.exe';
+    }
+
+    return result;
+  }, [getOSString]);
+
   return (
     <>
       <div className={styles.launcherDiv}>
         <h1>Лаунчер</h1>
         <br />
         <p>Скачать лаунчер:</p>
-        <ul>
-          <li>
-            <div>
-              <span>Для Windows:</span>
-              <ButtonLink
-                variant="blue"
-                text="Launcher.exe"
-                title="Исполняемый файл .exe для ОС Windows. Необходимо JRE 1.8+."
-                href={`${baseURL}/static/launchers/Launcher.exe`}
-              />
-            </div>
-          </li>
-          <li>
-            <br />
-            <div>
-              <span>Для MacOS/Linux:</span>
-              <ButtonLink
-                variant="blue"
-                text="Launcher.jar"
-                title="Исполняемый файл .jar для ОС Linux. Необходимо JRE 1.8+."
-                href={`${baseURL}/static/launchers/Launcher.jar`}
-              />
-            </div>
-          </li>
-        </ul>
+          <div>
+            <ButtonLink
+              target=''
+              variant="blue"
+              text={`Скачать лаунчер для ${getOSString()}`}
+              title="Исполняемый файл. Необходимо JRE 1.8+."
+              href={`${baseURL}/static/launchers/${getLauncherFileSrc()}`}
+            />
+          </div>
+          <a style={{ display: 'inline-block', marginTop: '10px' }} href={`${baseURL}/static/launchers/${getLauncherFileSrc(true)}`}>Скачать для {getOSString(true)}</a>
       </div>
       <div className={styles.addInfoDiv}>
         <br />
