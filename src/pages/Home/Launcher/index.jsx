@@ -51,7 +51,7 @@ const LauncherPage = () => {
               href={`${baseURL}/static/launchers/${getLauncherFileSrc()}`}
             />
           </div>
-          <a style={{ display: 'inline-block', marginTop: '10px' }} href={`${baseURL}/static/launchers/${getLauncherFileSrc(true)}`}>Скачать для {getOSString(true)}</a>
+          <a style={{ display: 'inline-block', marginTop: '10px' }} href={`${baseURL}/static/launchers/${getLauncherFileSrc(true)}`}>Или для {getOSString(true)}</a>
       </div>
       <div className={styles.addInfoDiv}>
         <br />
