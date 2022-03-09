@@ -6,7 +6,7 @@ import { baseURL } from "api";
 const LauncherPage = () => {
 
   const getBitString = useCallback(() => {
-    if (window.navigator.userAgent.includes('x64')) {
+    if (window.navigator.userAgent.includes('x64') || window.navigator.userAgent.includes('64')) {
       return 'x64';
     } else if (window.navigator.userAgent.includes('x86') || window.navigator.userAgent.includes('x32')) {
       return 'x86';
@@ -17,7 +17,7 @@ const LauncherPage = () => {
   const getOSString = useCallback((invert = false) => {
     let result;
     if (window.navigator.userAgent.includes('Macintosh')) {
-      return 'MacOS';
+      return invert ? 'Windows' : 'MacOS';
     }
     if (window.navigator.userAgent.includes('Linux')) {
       result = invert ? 'Windows' : 'Linux';
