@@ -32,6 +32,9 @@ const ProfilePage = () => {
     const prepared = stats.map((item) => ({
       ...item,
       "stat.playOneMinute": (item["stat.playOneMinute"] / 72000).toFixed(2),
+      "stat.totalWalkOneCm": (item["stat.sprintOneCm"] + item["stat.walkOneCm" + item["stat.crouchOneCm"]]),
+      "stat.totalSwimOneCm": (item["stat.diveOneCm"] + item["stat.swimOneCm"] + item["stat.boatOneCm"]),
+      "stat.totalFlyOneCm": (item["stat.fallOneCm"] + item["stat.flyOneCm"]),
     }));
 
     setStats(prepared);
@@ -118,12 +121,17 @@ const ProfilePage = () => {
         <h5>Личная статистика</h5>
         <Table
           className={styles.table}
-          headers={["Смертей", "Выходов", "Прыжков", "Часов"]}
+          headers={["Выходов", "Смертей", "Убито мобов", "Убито игроков", "Прыжков", "Пройдено блоков", "Проплыто", "На лошади", "Часов"]}
           list={stats || [{}]}
           paths={[
-            "stat.deaths",
             "stat.leaveGame",
+            "stat.deaths",
+            "stat.mobKills",
+            "stat.playerKills",
             "stat.jump",
+            "stat.totalWalkOneCm",
+            "stat.totalSwimOneCm",
+            "stat.horseOneCm",
             "stat.playOneMinute",
           ]}
           itemKey={"nickname"}
