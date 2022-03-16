@@ -47,7 +47,7 @@ const LauncherPage = () => {
       } else {
         result = 'jre-8u321-linux-i586.tar.gz';
       }
-    } else if (getOSString() === 'Macintosh') {
+    } else if (getOSString() === 'MacOS') {
       if (getBitString() === 'x64') {
         result = 'jre-8u321-macosx-x64.dmg';
       }
