@@ -20,6 +20,7 @@ const UploadFileForm = ({
       .catch((e) => {
         // TODO show errors in ui
         console.error(e.message);
+        setFileSrc(null);
       });
   }, [sideEffect, setFileSrc]);
 

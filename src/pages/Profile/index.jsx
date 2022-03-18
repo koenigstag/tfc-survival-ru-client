@@ -109,12 +109,12 @@ const ProfilePage = () => {
             })
           }
           filePreview={(fileSrc) =>
-            fileSrc === null ? (
-              "Плащ не установлен"
-            ) : (
+            fileSrc ? (
               <center>
                 <img style={imageStyles} src={fileSrc} alt="User cape" />
               </center>
+            ) : (
+              "Плащ не установлен"
             )
           }
         />
