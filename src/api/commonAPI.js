@@ -1,4 +1,4 @@
-import clientApi from 'api';
+import clientApi, { baseURL } from 'api';
 import axios from 'axios';
 import constants from '../constants';
 
@@ -21,7 +21,7 @@ export const getMapHtml = async () => {
 }
 
 export const getVKNews = async () => {
-  const response = await clientApi.get('/vknews');
+  const response = await axios.get(`${baseURL}/vknews`);
   
   return response.data;
 }
