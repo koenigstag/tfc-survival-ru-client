@@ -1,5 +1,5 @@
 export const client = axios.create({
-  baseURL: `${SERVER_DOMAIN}/api`,
+  baseURL: `${SERVER_DOMAIN}`,
 });
 
 client.interceptors.response.use(undefined, (error) => {
