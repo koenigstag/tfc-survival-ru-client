@@ -98,11 +98,12 @@ const HomePage = () => {
               <div
                 style={{
                   display: "flex",
+                  flexWrap: "wrap",
                   alignItems: "center",
+                  justifyContent: "center",
                   marginTop: "20px",
                   maxWidth: "100%",
                   overflowX: "auto",
-                  justifyContent: "center",
                   textAlign: "center",
                 }}
               >
@@ -113,7 +114,8 @@ const HomePage = () => {
                         key={a.id + Math.random() * 100}
                         style={{
                           display: "block",
-                          maxWidth: post.attachments.length > 1 ? "20%" : "70%",
+                          margin: '2px',
+                          maxWidth: post.attachments.length > 1 ? window.innerWidth < 500 ? "20%" : "48%" : "70%",
                         }}
                         src={a.photo.sizes[a.photo.sizes.length - 1].url}
                         alt={a.photo.text}
