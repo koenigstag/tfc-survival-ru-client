@@ -5,12 +5,12 @@ import { getVKNews } from "./api/vk.mjs";
 
 window.HTML_Container = document.querySelector("#container");
 
-if (!HTML_Container) {
+if (!window.HTML_Container) {
   throw new Error("Html container not found");
 }
 
 (async function () {
-  HTML_Container.innerHTML = `
+  window.HTML_Container.innerHTML = `
   <span>
     ${Spinner()}
   </span>
@@ -38,6 +38,6 @@ if (!HTML_Container) {
   }
 
   if (Array.isArray(news)) {
-    HTML_Container.innerHTML = App({ news });
+    window.HTML_Container.innerHTML = App({ news });
   }
 })();
