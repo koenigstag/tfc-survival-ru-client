@@ -1,4 +1,4 @@
-export const client = window.axios.create({
+export const client = axios.create({
   baseURL: `${window.SERVER_DOMAIN}`,
 });
 

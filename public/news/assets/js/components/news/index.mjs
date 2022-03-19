@@ -4,11 +4,7 @@ export const articles = [];
 
 export default function NewsFeed(props) {
 
-  for(const data of props.news) {
-    articles.push(Article(data));
-  }
-
   return `
-    ${articles.join('')}
+    ${props.news.map((post, index, news) => Article({ news, index, post })).join('')}
   `;
 }

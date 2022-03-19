@@ -1,8 +1,8 @@
 import NewsFeed from "./components/news/index.mjs";
 
 // main
-export default function App(data) {
+export default function App(props) {
   return `
-    ${NewsFeed(data)}
+    ${NewsFeed(props)}
   `
 }
