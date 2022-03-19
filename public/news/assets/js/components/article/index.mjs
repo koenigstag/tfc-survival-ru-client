@@ -8,7 +8,7 @@ export default function Article(props) {
       style="
         margin-top: 10px;
         padding: 10px 20px 20px;
-        border-bottom: 3px solid rgba(120, 120, 120, 0.3);
+        border-bottom: 3px solid rgba(120, 120, 120, 0.2);
         font-family: sans-serif;
       "
     >
