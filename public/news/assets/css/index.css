@@ -5,6 +5,11 @@
 body {
   margin: 0;
   padding: 0;
+  font-size: 0.9rem;
+}
+
+a {
+  color: blue
 }
 
 #banner {
