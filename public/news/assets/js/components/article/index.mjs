@@ -8,7 +8,7 @@ export default function Article(props) {
       style="
         margin-top: 10px;
         padding: 10px 20px 20px;
-        border-bottom: 5px solid #f0f0f0;
+        border-bottom: 5px solid #a0a0a0;
         font-family: sans-serif;
       "
     >

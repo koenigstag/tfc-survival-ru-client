@@ -3,6 +3,11 @@ import App from "./app.mjs";
 import Spinner from "./components/spinner/index.mjs";
 import { getVKNews } from "./api/vk.mjs";
 
+window.BANNER = document.querySelector("#banner");
+if (window.location.search.includes('banner=true')) {
+  window.BANNER.style = "display: block;";
+}
+
 window.HTML_Container = document.querySelector("#container");
 
 if (!window.HTML_Container) {
