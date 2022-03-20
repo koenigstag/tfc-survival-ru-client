@@ -35,6 +35,7 @@ const Header = () => {
   return (
     <>
       <header
+        id='main-header'
         className={styles.headerMain}
         style={{ position: 'relative', zIndex: 2 }}
       >

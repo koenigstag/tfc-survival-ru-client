@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { store } from 'app/store';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import './dark-theme.css';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -4,10 +4,10 @@ import cx from 'classnames';
 import styles from './ButtonLink.module.sass';
 
 const ButtonLink = ({ style, href, link, text, variant, target = '_blank', ...rest }) => {
-  const classnames = cx(styles.buttonLink, {
+  const classnames = cx('buttonLink', styles.buttonLink, {
     [styles.buttonLinkWhite]: (variant ? variant : 'white') === 'white',
-    [styles.buttonLinkBlue]: variant === 'blue',
-    [styles.buttonLinkGreen]: variant === 'green',
+    [styles.buttonLinkBlue + ' button-blue']: variant === 'blue',
+    [styles.buttonLinkGreen + ' button-green']: variant === 'green',
   });
 
   if (href) {
