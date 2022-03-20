@@ -4,9 +4,11 @@ import './style.css';
 const ThemeToggle = () => { 
   const [theme, toggleTheme] = useTheme();
 
+  console.log(theme);
+
   return (
     <div className="toggle-container">
-      <input type="checkbox" className="toggle-checkbox" id="toggle" />
+      <input type="checkbox" checked={theme === 'dark'} className="toggle-checkbox" id="toggle" />
       <label className={"toggle-label " + theme} htmlFor="toggle" onClick={toggleTheme} >
         {<svg
           style={{

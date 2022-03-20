@@ -3,7 +3,6 @@ import Copyright from "./Copyright";
 import styles from "./Footer.module.sass";
 
 const Footer = () => {
-  console.log("test");
   const [discordBlock, setDiscordBlock] = useState(false);
   const handleDiscordShow = useCallback(() => {
     setDiscordBlock((s) => !s);

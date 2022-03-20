@@ -16,9 +16,16 @@ import CircleLoader from 'react-spinners/ClipLoader';
 import HeaderSkeleton from './components/Header/HeaderSkeleton';
 import FooterSkeleton from './components/Footer/FooterSkeleton';
 import ActivateEmailPage from 'pages/Auth/ActivateEmail';
-
+/* 
 const daytime = new Date().getHours();
 const pretheme = daytime > 18 || daytime < 6 ? 'dark' : 'light';
+window.root.classList.add(pretheme); */
+
+let pretheme = localStorage.getItem('theme');
+if (!pretheme) {
+  pretheme = 'light';
+  localStorage.setItem('theme', pretheme);
+}
 window.root.classList.add(pretheme);
 
 const HomePage = React.lazy(() => import('pages/Home'));
@@ -47,20 +54,22 @@ const App = () => {
   const user = useSelector(selectUser);
 
   const [theme, setTheme] = useState(pretheme);
-
   const handleSetTheme = useCallback(() => {
     setTheme(v => {
-      if (v === 'light') {        
+      if (v === 'light') {
         window.root.classList.replace('light', 'dark');
+        localStorage.setItem('theme', 'dark');
         return 'dark';
       }
-      if (v === 'dark') {        
+      if (v === 'dark') {
         window.root.classList.replace('dark', 'light');
+        localStorage.setItem('theme', 'light');
         return 'light';
       }
     });
   }, []);
 
+  console.log(theme);
   const themeState = useMemo(() => [theme, handleSetTheme], [theme, handleSetTheme]);
 
   useEffect(() => {
