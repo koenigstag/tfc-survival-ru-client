@@ -82,7 +82,7 @@ const App = () => {
     }
   }, [dispatch, user.data]);
 
-  const rolltheDice = Math.random() * 100 >= 0;
+  const rolltheDice = Math.random() * 100 >= 97;
 
   if (rolltheDice) {
     setTimeout(() => {
