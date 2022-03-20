@@ -17,6 +17,11 @@ import HeaderSkeleton from './components/Header/HeaderSkeleton';
 import FooterSkeleton from './components/Footer/FooterSkeleton';
 import ActivateEmailPage from 'pages/Auth/ActivateEmail';
 
+const daytime = new Date().getHours();
+if (daytime > 18 || daytime < 6) {
+  window.root.classList.add('dark');
+}
+
 const HomePage = React.lazy(() => import('pages/Home'));
 const PageNotFound = React.lazy(() => import('./pages/404'));
 
