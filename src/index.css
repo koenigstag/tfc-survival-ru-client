@@ -63,10 +63,11 @@ body:after{
 }
 
 .theme-button {
+  cursor: pointer;
   background-color: transparent;
   width: 60px;
   border: 1px solid black;
-  border-radius: 45%;
+  border-radius: 40%;
 }
 
 code {
