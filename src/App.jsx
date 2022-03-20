@@ -9,7 +9,6 @@ import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
 import AdminRoute from './components/ETC/Routes/AdminRoute';
 import { ThemeProvider } from 'context';
-import xelo from 'xelo.webp';
 import styles from './App.module.sass';
 
 // import Loader from './components/Loader';
@@ -74,7 +73,7 @@ const App = () => {
     }
   }, [dispatch, user.data]);
 
-  const rolltheDice = Math.random() * 100 >= 97;
+  const rolltheDice = Math.random() * 100 >= 0;
 
   if (rolltheDice) {
     setTimeout(() => {
@@ -159,7 +158,7 @@ const App = () => {
           </Suspense>
           {/* TODO nigga xelo on dark theme */}
           {rolltheDice && (
-            <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
+            <img className={styles.xelo} src={theme === "light"? '/xelo.png' : '/xelo_black.png' } alt='Secret xelo posture' />
           )}
         </div>
       </BrowserRouter>
