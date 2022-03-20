@@ -1,0 +1,51 @@
+.toggle-container {
+  display: inline-block;
+  position: relative;
+  margin-right: 40px;
+}
+.toggle-checkbox {
+  opacity: 0;
+}
+
+.toggle-label {
+  background-color: #1F2933;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: absolute;
+  bottom: 15%;
+  height: 16px;
+  width: 28px;
+  transform: scale(1.5);
+}
+
+.toggle-label.dark {
+  background-color: #f9f9f9;
+}
+
+.toggle-label .toggle-ball.dark {
+  background-color: #1F2933;
+}
+
+.toggle-label .toggle-ball {
+  background-color: #f9f9f9;
+  border-radius: 50%;
+  position: absolute;
+  top: 1.5px;
+  left: 2px;
+  height: 12px;
+  width: 12px;
+  transform: translateX(0px);
+  transition: transform 0.2s linear;
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-ball {
+  transform: translateX(11px);
+}
+
+.toggle-icons {
+  height: 9px;
+}

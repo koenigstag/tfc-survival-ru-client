@@ -7,6 +7,7 @@ import BurgerMenu from './BurgerMenu';
 import ButtonLink from '../ETC/ButtonLink';
 import { selectUser, actionCreators } from 'app/slices/userSlice';
 import styles from './Header.module.sass';
+import ThemeToggle from 'components/ThemeToggle';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const Header = () => {
         />
         {user.isAuth ? (
           <div className={hideOnSmallScreen}>
+            <ThemeToggle />
             {user.data?.role === 'admin' &&
               <ButtonLink
                 link='/profile/admin'
@@ -53,7 +55,8 @@ const Header = () => {
                 title='Страница АДМ'
                 onClick={statusShow ? hideOrShow : () => { }}
                 style={{backgroundColor: '#009900', color: 'white', borderColor: '#004400'}}
-              />}
+              />
+            }
             <ButtonLink
               link='/profile'
               text='Личный кабинет'
@@ -70,6 +73,7 @@ const Header = () => {
           </div>
         ) : (
           <div className={hideOnSmallScreen} id='authButtons'>
+            <ThemeToggle />
             <ButtonLink
               link='/account/login'
               text='Войти'

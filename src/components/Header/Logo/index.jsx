@@ -5,7 +5,7 @@ import styles from './Logo.module.sass';
 
 const Logo = () => {
   return (
-    <Link to='/' className={styles.logoWrapper}>
+    <Link to='/' className={styles.logoWrapper + " logo"}>
       <img src={logo} alt='TFC Survival Logo' />
       <span>TFC-survival</span>
     </Link>

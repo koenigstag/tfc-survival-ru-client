@@ -53,3 +53,7 @@
 #root.dark tbody tr:nth-child(2n - 1) {
   background-color: #3E4C59
 }
+
+#root.dark .logo {
+  color: #9AA5B1;
+}
