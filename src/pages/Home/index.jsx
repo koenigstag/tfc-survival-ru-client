@@ -88,7 +88,7 @@ const HomePage = () => {
                   // console.log(links);
 
                   return (
-                    <span key={i + Math.random() * 100}>
+                    <span key={`${i} ${Math.random() * 1000}`}>
                       {t}
                       {t && <br />}
                     </span>
@@ -111,7 +111,7 @@ const HomePage = () => {
                   post.attachments[0].type === "photo" ? (
                     post.attachments.map((a) => (
                       <img
-                        key={a.id + Math.random() * 100}
+                        key={`${a.id} ${Math.random() * 1000}`}
                         style={{
                           display: "block",
                           margin: '2px',
@@ -122,7 +122,7 @@ const HomePage = () => {
                       />
                     ))
                   ) : post.attachments[0].type === "video" ? (
-                    <div>
+                    <div key={Math.random() * 1000}>
                       {/* <video src={post.attachments[0].video.url}></video> */}
                       <div style={{ display: "flex", position: "relative" }}>
                         <img

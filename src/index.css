@@ -53,11 +53,20 @@ body:after{
 #root {
   background-color: #f9f9f9;
   color: #212529;
+  transition-duration:  0.2s;
+  transition-property: background-color, color;
 }
 
 #main-header {
   background-color: white;
   color: #212529;
+}
+
+.theme-button {
+  background-color: transparent;
+  width: 60px;
+  border: 1px solid black;
+  border-radius: 45%;
 }
 
 code {

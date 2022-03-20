@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { refreshUserAsync, selectUser } from 'app/slices/userSlice';
@@ -8,6 +8,7 @@ import constants from './constants';
 import AuthRoute from './components/ETC/Routes/AuthRoute';
 import NoAuthRoute from './components/ETC/Routes/NoAuthRoute';
 import AdminRoute from './components/ETC/Routes/AdminRoute';
+import { ThemeProvider } from 'context';
 import xelo from 'xelo.webp';
 import styles from './App.module.sass';
 
@@ -18,9 +19,8 @@ import FooterSkeleton from './components/Footer/FooterSkeleton';
 import ActivateEmailPage from 'pages/Auth/ActivateEmail';
 
 const daytime = new Date().getHours();
-if (daytime > 18 || daytime < 6) {
-  window.root.classList.add('dark');
-}
+const pretheme = daytime > 18 || daytime < 6 ? 'dark' : 'light';
+window.root.classList.add(pretheme);
 
 const HomePage = React.lazy(() => import('pages/Home'));
 const PageNotFound = React.lazy(() => import('./pages/404'));
@@ -46,6 +46,23 @@ const AdminPage = React.lazy(() => import('./pages/Admin'));
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
+  const [theme, setTheme] = useState(pretheme);
+
+  const handleSetTheme = useCallback(() => {
+    setTheme(v => {
+      if (v === 'light') {        
+        window.root.classList.replace('light', 'dark');
+        return 'dark';
+      }
+      if (v === 'dark') {        
+        window.root.classList.replace('dark', 'light');
+        return 'light';
+      }
+    });
+  }, []);
+
+  const themeState = useMemo(() => [theme, handleSetTheme], [theme, handleSetTheme]);
 
   useEffect(() => {
     if (user.data === null) {
@@ -75,76 +92,78 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter /* history={browserHistory} */>
-      <div className={styles.App}>
-        <Suspense fallback={<HeaderSkeleton />}>
-          <Header />
-        </Suspense>
-        <main className={styles.AppMain}>
-          <div className={styles.container}>
-            <Suspense
-              fallback={
-                <center>
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <CircleLoader color='blue' size={100} />
-                </center>
-              }
-            >
-              <Switch>
-                {/* Public routes */}
-                <Route exact path='/' component={HomePage} />
+    <ThemeProvider value={themeState}>
+      <BrowserRouter /* history={browserHistory} */>
+        <div className={styles.App}>
+          <Suspense fallback={<HeaderSkeleton />}>
+            <Header />
+          </Suspense>
+          <main className={styles.AppMain}>
+            <div className={styles.container}>
+              <Suspense
+                fallback={
+                  <center>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <CircleLoader color='blue' size={100} />
+                  </center>
+                }
+              >
+                <Switch>
+                  {/* Public routes */}
+                  <Route exact path='/' component={HomePage} />
 
-                <Route exact path='/home/rules' component={RulesPage} />
-                <Route exact path='/home/about' component={AboutPage} />
-                <Route exact path='/home/launcher' component={LauncherPage} />
+                  <Route exact path='/home/rules' component={RulesPage} />
+                  <Route exact path='/home/about' component={AboutPage} />
+                  <Route exact path='/home/launcher' component={LauncherPage} />
 
-                <Route exact path='/home/map' component={MapPage} />
+                  <Route exact path='/home/map' component={MapPage} />
 
-                <Route exact path='/home/banned' component={BannedPage} />
-                <Route exact path='/home/stats' component={StatsPage} />
-                {/* <Route exact path='/home/stats' component={StatsPage} /> */}
+                  <Route exact path='/home/banned' component={BannedPage} />
+                  <Route exact path='/home/stats' component={StatsPage} />
+                  {/* <Route exact path='/home/stats' component={StatsPage} /> */}
 
-                {/* No auth routes */}
-                <NoAuthRoute
-                  exact={true}
-                  path='/account/login'
-                  component={LoginPage}
-                />
-                <NoAuthRoute
-                  exact={true}
-                  path='/account/register'
-                  component={RegisterPage}
-                />
-                <NoAuthRoute exact={true} path='/activate-email' component={ActivateEmailPage} />
+                  {/* No auth routes */}
+                  <NoAuthRoute
+                    exact={true}
+                    path='/account/login'
+                    component={LoginPage}
+                  />
+                  <NoAuthRoute
+                    exact={true}
+                    path='/account/register'
+                    component={RegisterPage}
+                  />
+                  <NoAuthRoute exact={true} path='/activate-email' component={ActivateEmailPage} />
 
-                {/* Auth required routes */}  
-                <AuthRoute
-                  exact={true}
-                  path='/profile'
-                  component={ProfilePage}
-                />
+                  {/* Auth required routes */}  
+                  <AuthRoute
+                    exact={true}
+                    path='/profile'
+                    component={ProfilePage}
+                  />
 
-                {/* Admin routes */}
-                <AdminRoute exact path='/profile/admin' component={AdminPage} />
+                  {/* Admin routes */}
+                  <AdminRoute exact path='/profile/admin' component={AdminPage} />
 
-                {/* 404 */}
-                <Route path={['*', '/404']} component={PageNotFound} />
-              </Switch>
-            </Suspense>
-          </div>
-        </main>
-        <Suspense fallback={<FooterSkeleton />}>
-          <Footer />
-        </Suspense>
-        {/* TODO nigga xelo on dark theme */}
-        {rolltheDice && (
-          <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
-        )}
-      </div>
-    </BrowserRouter>
+                  {/* 404 */}
+                  <Route path={['*', '/404']} component={PageNotFound} />
+                </Switch>
+              </Suspense>
+            </div>
+          </main>
+          <Suspense fallback={<FooterSkeleton />}>
+            <Footer />
+          </Suspense>
+          {/* TODO nigga xelo on dark theme */}
+          {rolltheDice && (
+            <img className={styles.xelo} src={xelo} alt='Secret xelo posture' />
+          )}
+        </div>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
