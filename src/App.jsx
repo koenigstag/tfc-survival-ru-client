@@ -82,23 +82,6 @@ const App = () => {
     }
   }, [dispatch, user.data]);
 
-  const rolltheDice = Math.random() * 100 >= 97;
-
-  if (rolltheDice) {
-    setTimeout(() => {
-      const elemXelo = document.querySelector('.' + styles.xelo);
-
-      if (elemXelo) {
-        const hideXelo = () => {
-          elemXelo.style.transform = 'translate(0px, 400px) scaleX(-1)';
-        };
-
-        elemXelo.addEventListener('mouseenter', hideXelo);
-        setTimeout(hideXelo, 5000);
-      }
-    }, 500);
-  }
-
   return (
     <ThemeProvider value={themeState}>
       <BrowserRouter /* history={browserHistory} */>
@@ -165,10 +148,6 @@ const App = () => {
           <Suspense fallback={<FooterSkeleton />}>
             <Footer />
           </Suspense>
-          {/* TODO nigga xelo on dark theme */}
-          {rolltheDice && (
-            <img className={styles.xelo} src={theme === "light"? '/xelo.png' : '/xelo_black.png' } alt='Secret xelo posture' />
-          )}
         </div>
       </BrowserRouter>
     </ThemeProvider>
