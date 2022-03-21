@@ -13,8 +13,18 @@ const HomePage = () => {
   useEffect(() => {
     const getNews = async () => {
       setIsFetching(true);
-      const news = await getVKNews();
-      setNews(news);
+
+      const localnews = localStorage.getItem('news-cache');
+      const timestamp = localStorage.getItem('timestamp');
+      if (localnews && timestamp + 1000 * 60 * 60 * 24 > Date.now()) {
+        setNews(JSON.parse(localnews));
+      } else {
+        const news = await getVKNews();
+        setNews(news);
+        localStorage.setItem('news-cache', JSON.stringify(news));
+        localStorage.setItem('timestamp', Date.now())
+      }
+
       setIsFetching(false);
     };
     getNews();
