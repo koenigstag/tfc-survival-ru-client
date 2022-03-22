@@ -1,190 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "app/slices/userSlice";
-import { getVKNews } from "api/commonAPI";
 import styles from "./HomePage.module.sass";
+import VKNews from "./VKNews";
 
 const HomePage = () => {
   const user = useSelector(selectUser);
-
-  const [news, setNews] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-
-  useEffect(() => {
-    const getNews = async () => {
-      setIsFetching(true);
-
-      const localnews = localStorage.getItem('news-cache');
-      const timestamp = localStorage.getItem('timestamp');
-      if (localnews && timestamp + 1000 * 60 * 60 * 24 > Date.now()) {
-        setNews(JSON.parse(localnews));
-      } else {
-        const news = await getVKNews();
-        setNews(news);
-        localStorage.setItem('news-cache', JSON.stringify(news));
-        localStorage.setItem('timestamp', Date.now())
-      }
-
-      setIsFetching(false);
-    };
-    getNews();
-  }, []);
-
+  
   return (
     <div className={styles.homePage}>
       <h3>
         Добро пожаловать на TFC-survival,{" "}
         {user.isAuth ? user.data.nickname : "дружок"}
       </h3>
-      <section
-        id="vk-news"
-        style={{
-          // border: "1px solid blue",
-          boxShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.5)",
-          borderRadius: "5px",
-          padding: "20px",
-          maxWidth: "100%",
-          minHeight: "45vmin",
-          margin: "50px auto 0 auto",
-          textAlign: "left",
-        }}
-      >
-        {news?.length === 0 ? (
-          <center>
-            {!isFetching && 'Тут должны были быть новости из VK.com но Крампус их украл 😥'}
-          </center>
-        ) : (
-          news.map((post) => {
-            // console.log(post);
-
-            return <article
-              key={post.id + Math.random() * 100}
-              style={{
-                marginBottom: "20px",
-                paddingBottom: "20px",
-                borderBottom: "2px solid blue",
-              }}
-            >
-              <header style={{ display: "flex", marginBottom: "20px" }}>
-                <a
-                  style={{ width: "50px", height: "50px", marginRight: "15px" }}
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://vk.com/tfcsurvivalru"
-                >
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: "50%",
-                      verticalAlign: "top",
-                    }}
-                    // src="https://sun6-20.userapi.com/s/v1/ig2/o0ZCxo53d34cU8toliWWxF8xOplmsu0Db1SmpkWXbeTeNBC0wQVorxVNxNzp0BQfFdpXhztDE3Kf8fajmE0RNFdI.jpg?size=50x50&quality=96&crop=0,0,415,415&ava=1"
-                    src="/logo_small.png"
-                    alt="vk-logo"
-                  />
-                </a>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <a href={`https://vk.com/tfcsurvivalru?w=wall${post.owner_id}_${post.id}`} target="_blank" rel="noreferrer" >TFC-survival.ru</a>
-                  <span style={{ marginTop: "3px" }}>
-                    {new Date(post.date * 1000).toLocaleString()}
-                  </span>
-                </div>
-              </header>
-              <div>
-                {post.text.split("\n").map((t, i) => {
-                  // const links = /((https?:\/\/)?[^\s.]+\.[\w][^\s]+)/.exec(t);
-
-                  // console.log(links);
-
-                  return (
-                    <span key={`${i} ${Math.random() * 1000}`}>
-                      {t}
-                      {t && <br />}
-                    </span>
-                  );
-                })}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "20px",
-                  maxWidth: "100%",
-                  overflowX: "auto",
-                  textAlign: "center",
-                }}
-              >
-                {post.attachments?.length ? (
-                  post.attachments[0].type === "photo" ? (
-                    post.attachments.map((a) => (
-                      <img
-                        key={`${a.id} ${Math.random() * 1000}`}
-                        style={{
-                          display: "block",
-                          margin: '2px',
-                          maxWidth: post.attachments.length > 1 ? window.innerWidth < 500 ? "20%" : "48%" : "70%",
-                        }}
-                        src={a.photo.sizes[a.photo.sizes.length - 1].url}
-                        alt={a.photo.text}
-                      />
-                    ))
-                  ) : post.attachments[0].type === "video" ? (
-                    <div key={Math.random() * 1000}>
-                      {/* <video src={post.attachments[0].video.url}></video> */}
-                      <div style={{ display: "flex", position: "relative" }}>
-                        <img
-                          style={{
-                            display: "block",
-                            width: "90%",
-                            margin: "0 auto",
-                          }}
-                          src={
-                            post.attachments[0].video.image[
-                              post.attachments[0].video.image.length - 1
-                            ].url
-                          }
-                          alt={post.attachments[0].video.title}
-                        />
-                        <a
-                          style={{
-                            position: "absolute",
-                            alignSelf: "center",
-                            left: "calc(50% - 25px)",
-                          }}
-                          target="_blank"
-                          rel="noreferrer"
-                          href={`https://vk.com/tfcsurvivalru?z=video${post.attachments[0].video.owner_id}_${post.attachments[0].video.id}`}
-                        >
-                          <img
-                            style={{ width: "50px" }}
-                            src="/play-button.png"
-                            alt="play"
-                          />
-                        </a>
-                      </div>
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={`https://vk.com/tfcsurvivalru?z=video-${post.attachments[0].video.owner_id}_${post.attachments[0].video.id}`}
-                      >
-                        {" "}
-                        {post.attachments[0].video.title}
-                      </a>
-                    </div>
-                  ) : (
-                    <></>
-                  )
-                ) : (
-                  <></>
-                )}
-              </div>
-            </article>
-          })
-        )}
-      </section>
+      <VKNews />
     </div>
   );
 };
