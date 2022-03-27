@@ -53,7 +53,7 @@ const AboutPage = () => {
           />
           <ButtonLink
             text="monitoringminecraft.ru"
-            href="https://monitoringminecraft.ru/top/tfc-survival"
+            href="https://monitoringminecraft.ru/top/terrafirmacraft"
             title="Проголосовать"
             variant="green"
             style={{ margin: "0px", borderRadius: "0px 5px 5px 0px" }}
