@@ -8,15 +8,16 @@ const StatsPage = () => {
   // TODO online full list
   const [serverInfo, setServerInfo] = useState({
     online: false,
-    players: { online: 0, max: 50, sample: [] },
   });
 
   useEffect(() => {
     async function getInfo() {
       try {
         const info = await getServerInfo();
-        setServerInfo(info);
-      } catch (error) {}
+        setServerInfo({ online: true, ...info });
+      } catch (error) {
+        setServerInfo({ online: false });
+      }
     }
     getInfo();
 
@@ -33,10 +34,9 @@ const StatsPage = () => {
       <h4>Онлайн сервера</h4>
       <div style={{ display: 'inline-block' }} >
         Сейчас онлайн:{" "}
-        {serverInfo.players &&
-          `${serverInfo.players.online} / ${serverInfo.players.max}`}{" "}
+          {`${serverInfo?.nowOnline ?? 0} / ${serverInfo?.maxPlayers ?? 0}`}
       </div>
-      <div>Статус сервера: {serverInfo.online ? "Включен" : "Отключен"}</div>
+      <div>Статус сервера: {serverInfo?.online ? "Включен" : "Отключен"}</div>
 
       {/* <center>
         <iframe

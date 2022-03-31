@@ -9,7 +9,7 @@ export const getServerInfo = async () => {
 }
 
 export const getServerInfoV2 = async () => {
-  const response = await axios.get('https://api.mcsrvstat.us/2/tfc-survival.ru');
+  const response = await axios.get('https://eu.mc-api.net/v3/server/ping/tfc-survival.ru');
   
   return response.data;
 }

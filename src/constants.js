@@ -4,7 +4,7 @@ const constants = {
   ADMIN_TOKEN: 'ADMIN_TOKEN',
   SERVER_DOMAIN: 'https://tfc-survival.ru:3001',
   MAP_URL: 'http://tfc-survival.ru:8154/',
-  SERVER_PING_URL: 'https://eu.mc-api.net/v3/server/ping/tfc-survival.ru',
+  SERVER_PING_URL: 'http://tfc-survival.ru:3001/api/ping',
 };
 
 export default constants;
