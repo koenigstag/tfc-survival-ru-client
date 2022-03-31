@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-// import Table from "components/ETC/Table";
-// import styles from "./StatsPage.module.sass";
-import { getServerInfo } from "api/commonAPI";
+import Table from "components/ETC/Table";
 import Stats from "./Stats";
+import { getServerInfo } from "api/commonAPI";
+import styles from "./StatsPage.module.sass";
 
 const StatsPage = () => {
   // TODO online full list
@@ -29,24 +29,13 @@ const StatsPage = () => {
     };
   }, []);
 
+  console.log(serverInfo);
+
   return (
     <div>
       <h4>Онлайн сервера</h4>
-      <div style={{ display: 'inline-block' }} >
-        Сейчас онлайн:{" "}
-          {`${serverInfo?.nowOnline ?? 0} / ${serverInfo?.maxPlayers ?? 0}`}
-      </div>
       <div>Статус сервера: {serverInfo?.online ? "Включен" : "Отключен"}</div>
-
-      {/* <center>
-        <iframe
-          title="minecraftrating/progress/tfc.survival"
-          height="23"
-          scrolling="no"
-          src="https://minecraftrating.ru/widgets_api/monitoring/monitoring.html?server_id=114193&color=blue&status=tfc-survival.ru"
-          frameBorder="0"
-        ></iframe>
-      </center> */}
+      
       <h6 style={{ marginTop: "10px" }}>
         * График обновляется с запаздыванием
       </h6>
@@ -58,23 +47,18 @@ const StatsPage = () => {
         frameBorder="0"
       ></iframe>
 
-      {/* <details style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
+      <details style={{ border: '1px solid #aaa', padding: '10px 20px' }} >
         <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} >
           <h4 style={{ display: 'inline-block' }} >
             Сейчас онлайн:{" "}
-            {serverInfo.players &&
-              `${serverInfo.players.online} / ${serverInfo.players.max}`}{" "}
+            {`${serverInfo?.nowOnline ?? 0} / ${serverInfo?.maxPlayers ?? 0}`}
           </h4>
         </summary>
 
-        <div style={{ marginTop: '20px' }}>Список (до 12 игроков)</div>
-        <h6>
-          * Для просмотра полного списка онлайна воспользуйтесь командой list в
-          нашем дискорде в канале
-        </h6>
+        <div style={{ marginTop: '20px' }}></div>
         <Table
           className={styles.table}
-          list={serverInfo.players.sample ? serverInfo.players.sample : []}
+          list={serverInfo.players ? serverInfo.players.map(v => ({ name: v })) : []}
           headers={["Ники"]}
           paths={["name"]}
           sortFunc={(item1, item2) => {
@@ -88,7 +72,7 @@ const StatsPage = () => {
           }}
           itemKey="id"
         />
-      </details> */}
+      </details>
       <details style={{ border: '1px solid #aaa', padding: '10px 20px', marginTop: '10px' }} >
         <summary style={{ cursor: 'pointer', border: '1px solid #aaa', padding: '10px 20px', margin: '-11px -21px -11px -21px' }} ><h4 style={{ display: 'inline-block' }} >Статистика игроков</h4></summary>
         <Stats />
