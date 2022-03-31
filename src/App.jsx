@@ -69,7 +69,6 @@ const App = () => {
     });
   }, []);
 
-  console.log(theme);
   const themeState = useMemo(() => [theme, handleSetTheme], [theme, handleSetTheme]);
 
   useEffect(() => {

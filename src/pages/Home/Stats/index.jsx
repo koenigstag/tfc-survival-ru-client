@@ -14,7 +14,7 @@ const StatsPage = () => {
     async function getInfo() {
       try {
         const info = await getServerInfo();
-        setServerInfo({ online: true, ...info });
+        setServerInfo({ online: true, ...info.data });
       } catch (error) {
         setServerInfo({ online: false });
       }
