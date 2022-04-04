@@ -5,7 +5,6 @@ import { getServerInfo } from "api/commonAPI";
 import styles from "./StatsPage.module.sass";
 
 const StatsPage = () => {
-  // TODO online full list
   const [serverInfo, setServerInfo] = useState({
     online: false,
   });
@@ -35,7 +34,7 @@ const StatsPage = () => {
     <div>
       <h4>Онлайн сервера</h4>
       <div>Статус сервера: {serverInfo?.online ? "Включен" : "Отключен"}</div>
-      {serverInfo.online && <div>Текущий TPS: {serverInfo.tps?.[1]}</div>}
+      {serverInfo.online && <div>Текущий TPS: {serverInfo.tps?.[1].toFixed(0)}</div>}
       
       <h6 style={{ marginTop: "10px" }}>
         * График обновляется с запаздыванием
