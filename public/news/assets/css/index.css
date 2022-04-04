@@ -9,7 +9,7 @@ body {
 }
 
 a {
-  color: blue
+  color: blue;
 }
 
 #banner {
@@ -20,6 +20,18 @@ a {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+#register-btn {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  color: white;
+  background-color: dodgerblue;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px 0 0 10px;
 }
 
 #container {
