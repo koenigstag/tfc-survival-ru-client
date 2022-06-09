@@ -44,7 +44,8 @@ const RegisterForm = () => {
           {registrationRUSErrors[user.errorMessage]}
         </div>
       ) : (
-        <div style={{ color: 'orangered' }}>{user.isMailSent && 'Письмо активации отправлено. Пожалуйста проверьте почту и пройдите по ссылке активации.'}</div>
+        // <div style={{ color: 'orangered' }}>{user.isMailSent && 'Письмо активации отправлено. Пожалуйста проверьте почту и пройдите по ссылке активации.'}</div>
+        <div style={{ color: 'orangered' }}>{user.isMailSent && 'Аккаунт успешно зарегистрирован'}</div>
       )}
       <Formik
         initialValues={initialValues}
